@@ -20,4 +20,5 @@ class ThreadController extends Controller
         return view('threads.show', compact('thread'));
     }
     
+    
 }
