@@ -24,7 +24,7 @@ class ThreadReadTest extends TestCase
     {
         $thread = factory('App\Thread')->create();
         
-        $response = $this->get('/threads/'.$thread->id);
+        $response = $this->get($thread->path());
         $response->assertSee($thread->title);
         
     }

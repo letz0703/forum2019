@@ -12,7 +12,7 @@ class ReplyController extends Controller
         $this->middleware('auth');
     }
     
-    public function store(Thread $thread)
+    public function store($channelId, Thread $thread)
     {
         $thread->addReply([
             'user_id' => auth()->id(),
