@@ -7,9 +7,10 @@ use Illuminate\Http\Request;
 
 class ThreadController extends Controller
 {
+    
     public function __construct()
     {
-        $this->middleware('auth')->only(['store','create']);
+        $this->middleware('auth')->only(['store', 'create']);
     }
     
     public function index()
@@ -26,12 +27,17 @@ class ThreadController extends Controller
     
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'title'      => 'required',
+            'body'       => 'required',
+            'channel_id' => 'required|exists:channels,id',
+        ]);
         //dd($request->all());
         $thread = Thread::create([
-            'user_id' => auth()->id(),
-            'channel_id' =>request('channel_id'),
-            'title'   => request('title'),
-            'body'    => request('body'),
+            'user_id'    => auth()->id(),
+            'channel_id' => request('channel_id'),
+            'title'      => request('title'),
+            'body'       => request('body'),
         ]);
         
         return redirect($thread->path());
