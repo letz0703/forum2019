@@ -14,13 +14,15 @@ class ThreadController extends Controller
         $this->middleware('auth')->only(['store', 'create']);
     }
     
-    public function index($channelSlug = null)
+    public function index(Channel $channel)
     {
-        if ($channelSlug){
+        if ($channel->exists){
             
-            $channelId = Channel::where('slug', $channelSlug)->first()->id;
+            $threads = $channel->threads()->latest()->get();
             
-            $threads = Thread::where('channel_id', $channelId)->latest()->get();
+            //$channelId = Channel::where('slug', $channelSlug)->first()->id;
+            //
+            //$threads = Thread::where('channel_id', $channelId)->latest()->get();
             
         } else{
             $threads = Thread::latest()->get();
