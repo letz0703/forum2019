@@ -19,12 +19,7 @@ class ThreadController extends Controller
         if ($channel->exists){
             
             $threads = $channel->threads()->latest()->get();
-            
-            //$channelId = Channel::where('slug', $channelSlug)->first()->id;
-            //
-            //$threads = Thread::where('channel_id', $channelId)->latest()->get();
-            
-        } else{
+        } else {
             $threads = Thread::latest()->get();
         }
         
@@ -38,6 +33,7 @@ class ThreadController extends Controller
     
     public function store(Request $request)
     {
+        //dd(request()->all());
         $this->validate($request, [
             'title'      => 'required',
             'body'       => 'required',
