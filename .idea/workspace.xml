@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9535bb5b-c5dd-4c26-90eb-9e827c844d42" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/tests/Feature/ExampleTest.php" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/ThreadController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/ThreadController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" afterPath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/Feature/ThreadReadTest.php" afterPath="$PROJECT_DIR$/tests/Feature/ThreadReadTest.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -25,11 +20,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ThreadController.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ThreadController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ThreadController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="544">
-              <caret line="26" column="65" lean-forward="false" selection-start-line="26" selection-start-column="65" selection-end-line="26" selection-end-column="65" />
+            <state relative-caret-position="736">
+              <caret line="34" column="3" lean-forward="false" selection-start-line="34" selection-start-column="3" selection-end-line="34" selection-end-column="3" />
               <folding>
                 <element signature="e#40#56#0#PHP" expanded="true" />
               </folding>
@@ -62,8 +57,8 @@
       <file leaf-file-name="ThreadReadTest.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tests/Feature/ThreadReadTest.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="793">
-              <caret line="51" column="7" lean-forward="false" selection-start-line="51" selection-start-column="7" selection-end-line="51" selection-end-column="7" />
+            <state relative-caret-position="841">
+              <caret line="53" column="27" lean-forward="true" selection-start-line="53" selection-start-column="27" selection-end-line="53" selection-end-column="27" />
               <folding>
                 <element signature="e#30#80#0#PHP" expanded="true" />
               </folding>
@@ -71,13 +66,13 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="app.blade.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="app.blade.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/views/layouts/app.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="43" column="43" lean-forward="false" selection-start-line="43" selection-start-column="43" selection-end-line="43" selection-end-column="43" />
+            <state relative-caret-position="672">
+              <caret line="48" column="34" lean-forward="false" selection-start-line="48" selection-start-column="34" selection-end-line="48" selection-end-column="34" />
               <folding>
-                <marker date="1557345949940" expanded="false" signature="4184:4198" ph="..." />
+                <marker date="1557427017496" expanded="false" signature="4840:4854" ph="..." />
               </folding>
             </state>
           </provider>
@@ -149,10 +144,10 @@
         <option value="$PROJECT_DIR$/app/Channel.php" />
         <option value="$PROJECT_DIR$/tests/Feature/RepliesReadTest.php" />
         <option value="$PROJECT_DIR$/resources/views/threads/create.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/layouts/app.blade.php" />
         <option value="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" />
         <option value="$PROJECT_DIR$/tests/Feature/ThreadReadTest.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/ThreadController.php" />
+        <option value="$PROJECT_DIR$/resources/views/layouts/app.blade.php" />
       </list>
     </option>
   </component>
@@ -482,9 +477,6 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="ChannelTest_a_channel_consists_of_threads - 2019.05.01 at 21h 21m 30s.xml">
-      <configuration name="ChannelTest.a_channel_consists_of_threads" configurationId="PHPUnitRunConfigurationType" />
-    </history-entry>
     <history-entry file="RepliesReadTest_a_user_can_read_replies_associated_with_a_thread - 2019.05.01 at 22h 19m 55s.xml">
       <configuration name="RepliesReadTest.a_user_can_read_replies_associated_with_a_thread" configurationId="PHPUnitRunConfigurationType" />
     </history-entry>
@@ -503,6 +495,9 @@
     <history-entry file="ThreadReadTest_a_user_can_filter_threads_by_any_user_name - 2019.05.10 at 00h 46m 30s.xml">
       <configuration name="ThreadReadTest.a_user_can_filter_threads_by_any_user_name" configurationId="PHPUnitRunConfigurationType" />
     </history-entry>
+    <history-entry file="ThreadReadTest_a_user_can_filter_threads_by_any_user_name - 2019.05.10 at 00h 52m 18s.xml">
+      <configuration name="ThreadReadTest.a_user_can_filter_threads_by_any_user_name" configurationId="PHPUnitRunConfigurationType" />
+    </history-entry>
     <history-entry file="ThreadReadTest_threads_can_be_filtered_by_channel - 2019.05.01 at 21h 22m 49s.xml">
       <configuration name="ThreadReadTest.threads_can_be_filtered_by_channel" configurationId="PHPUnitRunConfigurationType" />
     </history-entry>
@@ -514,7 +509,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="76093000" />
+    <option name="totallyTimeSpent" value="79082000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1920" height="1058" extended-state="6" />
@@ -884,29 +879,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tests/Feature/ThreadCreateTest.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="32" column="62" lean-forward="false" selection-start-line="32" selection-start-column="62" selection-end-line="32" selection-end-column="62" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/threads/create.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="48">
           <caret line="17" column="42" lean-forward="false" selection-start-line="17" selection-start-column="42" selection-end-line="17" selection-end-column="42" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/layouts/app.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="43" column="43" lean-forward="false" selection-start-line="43" selection-start-column="43" selection-end-line="43" selection-end-column="43" />
-          <folding>
-            <marker date="1557345949940" expanded="false" signature="4184:4198" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -928,22 +905,40 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ThreadController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="736">
+          <caret line="34" column="3" lean-forward="false" selection-start-line="34" selection-start-column="3" selection-end-line="34" selection-end-column="3" />
+          <folding>
+            <element signature="e#40#56#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/Feature/ThreadCreateTest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="32" column="62" lean-forward="false" selection-start-line="32" selection-start-column="62" selection-end-line="32" selection-end-column="62" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/tests/Feature/ThreadReadTest.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="793">
-          <caret line="51" column="7" lean-forward="false" selection-start-line="51" selection-start-column="7" selection-end-line="51" selection-end-column="7" />
+        <state relative-caret-position="841">
+          <caret line="53" column="27" lean-forward="true" selection-start-line="53" selection-start-column="27" selection-end-line="53" selection-end-column="27" />
           <folding>
             <element signature="e#30#80#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ThreadController.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/layouts/app.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="26" column="65" lean-forward="false" selection-start-line="26" selection-start-column="65" selection-end-line="26" selection-end-column="65" />
+        <state relative-caret-position="672">
+          <caret line="48" column="34" lean-forward="false" selection-start-line="48" selection-start-column="34" selection-end-line="48" selection-end-column="34" />
           <folding>
-            <element signature="e#40#56#0#PHP" expanded="true" />
+            <marker date="1557427017496" expanded="false" signature="4840:4854" ph="..." />
           </folding>
         </state>
       </provider>
