@@ -7,6 +7,7 @@ use Tests\TestCase;
 
 class ThreadReadTest extends TestCase
 {
+    
     use RefreshDatabase;
     
     /** @test */
@@ -33,13 +34,25 @@ class ThreadReadTest extends TestCase
     public function threads_can_be_filtered_by_channel()
     {
         $channel = create('App\Channel');
-        $threadInChannel = create('App\Thread',['channel_id' => $channel->id]);
+        $threadInChannel = create('App\Thread', ['channel_id' => $channel->id]);
         $threadNotInChannel = create('App\Thread');
         
-        $this->get('/threads/'.$channel->slug)
+        $this->get('/threads/' . $channel->slug)
              ->assertSee($threadInChannel->title)
              ->assertDontSee($threadNotInChannel->title);
-            
+        
+    }
+    
+    /** @test */
+    public function a_user_can_filter_threads_by_any_user_name()
+    {
+        $this->signIn(create('App\User', ['name' => 'JohnDoe']));
+        $threadByJohn = create('App\Thread',['user_id' => auth()->id()]);
+        $threadNotByJohn = create('App\Thread');
+        
+        $this->get('/threads?by=JohnDoe')
+             ->assertSee($threadByJohn->title)
+             ->assertDontSee($threadNotByJohn->title);
     }
     
     

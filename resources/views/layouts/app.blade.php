@@ -41,12 +41,12 @@
                                 Channels
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                @foreach(\App\Channel::all() as $channel)
+                                @foreach($channels as $channel)
                                 <a class="dropdown-item" href="/threads/{{ $channel->slug }}">{{ $channel->name }}</a>
                                 @endforeach
                                 {{--<div class="dropdown-divider"></div>--}}
                                 {{--<a class="dropdown-item" href="#">Something else here</a>--}}
-                            </divk>
+                            </div>
                         </li>
 
                     </ul>
