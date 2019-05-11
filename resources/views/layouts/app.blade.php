@@ -44,7 +44,7 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="/threads">All Threads</a>
-                            @if(auth()->user())
+                            @if(auth()->check())
                                 <a class="dropdown-item" href="/threads?by={{ auth()->user()->name }}">My Threads</a>
                             @endif
                         </div>
