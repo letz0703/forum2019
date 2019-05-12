@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9535bb5b-c5dd-4c26-90eb-9e827c844d42" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Filters/Filters.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Filters/ThreadFilters.php" afterPath="$PROJECT_DIR$/app/Filters/ThreadFilters.php" />
     </list>
@@ -23,7 +24,17 @@
     <splitter split-orientation="horizontal" split-proportion="0.5">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="ThreadController.php" pinned="false" current-in-tab="true">
+          <file leaf-file-name="ThreadFilters.php" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/app/Filters/ThreadFilters.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="576">
+                  <caret line="24" column="1" lean-forward="true" selection-start-line="24" selection-start-column="1" selection-end-line="24" selection-end-column="1" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="ThreadController.php" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ThreadController.php">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="509">
@@ -60,15 +71,13 @@
         </leaf>
       </split-first>
       <split-second>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="ThreadFilters.php" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/app/Filters/ThreadFilters.php">
+        <leaf>
+          <file leaf-file-name="Filters.php" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/app/Filters/Filters.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="493">
-                  <caret line="31" column="8" lean-forward="false" selection-start-line="31" selection-start-column="8" selection-end-line="31" selection-end-column="8" />
-                  <folding>
-                    <element signature="e#31#44#0#PHP" expanded="true" />
-                  </folding>
+                <state relative-caret-position="208">
+                  <caret line="31" column="56" lean-forward="false" selection-start-line="31" selection-start-column="56" selection-end-line="31" selection-end-column="56" />
+                  <folding />
                 </state>
               </provider>
             </entry>
@@ -127,6 +136,7 @@
         <option value="$PROJECT_DIR$/app/Thread.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/ThreadController.php" />
         <option value="$PROJECT_DIR$/app/Filters/ThreadFilters.php" />
+        <option value="$PROJECT_DIR$/app/Filters/Filters.php" />
       </list>
     </option>
   </component>
@@ -470,14 +480,11 @@
       <workItem from="1555936491685" duration="9522000" />
       <workItem from="1556039374074" duration="24617000" />
       <workItem from="1556545947259" duration="19230000" />
-      <workItem from="1557662233245" duration="2067000" />
+      <workItem from="1557662233245" duration="6321000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="ThreadReadTest_a_user_can_filter_threads_by_any_user_name - 2019.05.12 at 07h 58m 35s.xml">
-      <configuration name="ThreadReadTest.a_user_can_filter_threads_by_any_user_name" configurationId="PHPUnitRunConfigurationType" />
-    </history-entry>
     <history-entry file="ThreadReadTest_a_user_can_filter_threads_by_any_user_name - 2019.05.12 at 07h 59m 03s.xml">
       <configuration name="ThreadReadTest.a_user_can_filter_threads_by_any_user_name" configurationId="PHPUnitRunConfigurationType" />
     </history-entry>
@@ -505,9 +512,12 @@
     <history-entry file="ThreadReadTest_threads_can_be_filtered_by_channel - 2019.05.13 at 01h 12m 42s.xml">
       <configuration name="ThreadReadTest.threads_can_be_filtered_by_channel" configurationId="PHPUnitRunConfigurationType" />
     </history-entry>
+    <history-entry file="ThreadReadTest_threads_can_be_filtered_by_channel - 2019.05.13 at 01h 44m 30s.xml">
+      <configuration name="ThreadReadTest.threads_can_be_filtered_by_channel" configurationId="PHPUnitRunConfigurationType" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="86449000" />
+    <option name="totallyTimeSpent" value="90703000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1920" height="1058" extended-state="6" />
@@ -516,7 +526,9 @@
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1875" sideWeight="0.54653466" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" x="100" y="122" width="1720" height="858" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32871288" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" show_stripe_button="true" weight="0.32970297" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" x="0" y="111" width="1920" height="942" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -528,7 +540,6 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32871288" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -562,14 +573,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/phpunit.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="600">
-          <caret line="25" column="12" lean-forward="false" selection-start-line="25" selection-start-column="12" selection-end-line="25" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="432">
@@ -765,6 +768,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="312">
           <caret line="31" column="36" lean-forward="false" selection-start-line="31" selection-start-column="36" selection-end-line="31" selection-end-column="36" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -912,11 +916,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Filters/ThreadFilters.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="31" column="8" lean-forward="false" selection-start-line="31" selection-start-column="8" selection-end-line="31" selection-end-column="8" />
-          <folding>
-            <element signature="e#31#44#0#PHP" expanded="true" />
-          </folding>
+        <state relative-caret-position="576">
+          <caret line="24" column="1" lean-forward="true" selection-start-line="24" selection-start-column="1" selection-end-line="24" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Filters/Filters.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="208">
+          <caret line="31" column="56" lean-forward="false" selection-start-line="31" selection-start-column="56" selection-end-line="31" selection-end-column="56" />
+          <folding />
         </state>
       </provider>
     </entry>
