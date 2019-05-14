@@ -14,10 +14,19 @@
                     <div class="card-body">
                         {{ $thread-> body }}
                     </div>
+                    <div class="card-footer">
+                        {{--@php--}}
+                            {{--$replies = $thread->replies()->paginate(2);--}}
+                        {{--@endphp--}}
+                        @foreach($replies as $reply)
+                            @include('threads.reply')
+                        @endforeach
+                    </div>
+                    <div style="align-self:center;">
+                        {{ $replies->links() }}
+                    </div>
                 </div>
-                @foreach($thread->replies as $reply)
-                    @include('threads.reply')
-                @endforeach
+
                 @if ( auth()->check())
                     <form method="POST" action="{{ $thread->path().'/replies' }}">
                         @csrf
@@ -49,9 +58,9 @@
                             {{ str_plural('comment',$thread->replies_count) }}
                             {{--$thread->replies_count == 1? comment: comments--}}
                             {{--@if ($thread->replies_count == 1)--}}
-                                {{--comment--}}
+                            {{--comment--}}
                             {{--@else--}}
-                                {{--comments--}}
+                            {{--comments--}}
                             {{--@endif--}}
                         </p>
                     </div>

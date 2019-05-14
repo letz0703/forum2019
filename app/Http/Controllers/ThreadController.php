@@ -36,7 +36,11 @@ class ThreadController extends Controller
         //return $thread->load('replies');
         //return Thread::withCount('replies')->first();
         //return $thread;
-        return view('threads.show', compact('thread'));
+        //return view('threads.show', compact('thread'));
+        return view('threads.show',[
+            'thread' =>$thread,
+            'replies' => $thread->replies()->paginate(1)
+        ]);
     }
     
     public function store(Request $request)
