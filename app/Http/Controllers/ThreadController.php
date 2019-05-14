@@ -18,21 +18,24 @@ class ThreadController extends Controller
     
     public function index(Channel $channel, ThreadFilters $filters)
     {
-        //$threads = $this->getThreads($channel);
+        $threads = $this->getThreads($filters);
+        
         if ($channel->exists){
-            $threads = $channel->threads()->latest();
-        } else {
-            $threads = Thread::latest();
+            $threads->where('channel_id',$channel->id);
+            //$threads = $channel->threads()->latest();
         }
         
         //$threads = Thread::filter($filters)->get();
-        $threads = $threads->filter($filters)->get();
+        $threads = $threads->get();
         
         return view('threads.index', compact('threads'));
     }
     
     public function show($channel, Thread $thread)
     {
+        //return $thread->load('replies');
+        //return Thread::withCount('replies')->first();
+        //return $thread;
         return view('threads.show', compact('thread'));
     }
     
@@ -58,6 +61,16 @@ class ThreadController extends Controller
     public function create()
     {
         return view('threads.create');
+    }
+    
+    /**
+     * @param ThreadFilters $filters
+     *
+     * @return mixed
+     */
+    protected function getThreads(ThreadFilters $filters)
+    {
+        return Thread::latest()->filter($filters);
     }
     
 }
