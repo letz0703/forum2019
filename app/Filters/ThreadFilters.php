@@ -7,7 +7,11 @@ use App\User;
 
 class ThreadFilters extends Filters
 {
-    protected $filters = ['by'];
+    
+    /**
+     * @var array
+     */
+    protected $filters = ['by', 'popular'];
     
     /**
      * @param $username
@@ -21,5 +25,17 @@ class ThreadFilters extends Filters
         
         return $this->builder->where('user_id', $user->id);
     }
+    
+    
+    /**
+     * Filter the thread according to most popular threads
+     * @return $this
+     */
+    protected function popular()
+    {
+        //$this->builder->getQuery()->oders = []; // not working
+        return $this->builder->orderBy('replies_count', 'desc');
+    }
+    
     
 }

@@ -18,15 +18,13 @@ class ThreadController extends Controller
     
     public function index(Channel $channel, ThreadFilters $filters)
     {
-        $threads = $this->getThreads($filters);
         
-        if ($channel->exists){
-            $threads->where('channel_id',$channel->id);
-            //$threads = $channel->threads()->latest();
+        $threads = $this->getThreads($channel, $filters);
+        
+        
+        if (request()->wantsJson()){
+            return $threads;
         }
-        
-        //$threads = Thread::filter($filters)->get();
-        $threads = $threads->get();
         
         return view('threads.index', compact('threads'));
     }
@@ -37,9 +35,9 @@ class ThreadController extends Controller
         //return Thread::withCount('replies')->first();
         //return $thread;
         //return view('threads.show', compact('thread'));
-        return view('threads.show',[
-            'thread' =>$thread,
-            'replies' => $thread->replies()->paginate(1)
+        return view('threads.show', [
+            'thread'  => $thread,
+            'replies' => $thread->replies()->paginate(1),
         ]);
     }
     
@@ -72,9 +70,18 @@ class ThreadController extends Controller
      *
      * @return mixed
      */
-    protected function getThreads(ThreadFilters $filters)
+    protected function getThreads(Channel $channel, ThreadFilters $filters)
     {
-        return Thread::latest()->filter($filters);
+        $threads = Thread::filter($filters)->latest();
+        
+        if ($channel->exists){
+            $threads->where('channel_id', $channel->id);
+        }
+        
+        //dd($threads->toSql());
+    
+        return $threads->get();
+        
     }
     
 }
