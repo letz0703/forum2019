@@ -18,4 +18,10 @@ class Reply extends Model
         return $this->morphMany(Favorite::class, 'favorited');
     }
     
+    public function tempo()
+    {
+        
+    }
+    
+    
 }
