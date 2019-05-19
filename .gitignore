@@ -9,6 +9,8 @@
 /storage/debugbar
 /vendor
 /.idea
+/.idea/workspace.xml
+/**/.idea/workspace.xml
 /.vscode
 /.vagrant
 Homestead.json

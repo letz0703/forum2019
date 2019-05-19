@@ -13,4 +13,9 @@ class Reply extends Model
         return $this->belongsTo('App\User','user_id');
     }
     
+    public function favorites()
+    {
+        return $this->morphMany(Favorite::class, 'favorited');
+    }
+    
 }
