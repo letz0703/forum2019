@@ -27,4 +27,22 @@ class FavoritesTest extends TestCase
         $this->post('/replies/'.$reply->id.'/favorites');
         $this->assertCount(1, $reply->favorites);
     }
+    
+    /** @test */
+    public function an_auth_user_may_only_favorite_once()
+    {
+        $this->signIn();
+        
+        try {
+            $reply = create('App\Reply');
+            $this->post('/replies/'.$reply->id.'/favorites');
+            $this->post('/replies/'.$reply->id.'/favorites');
+        } catch (\Exception $e){
+            $this->fail('Do not favorite twice');
+        }
+
+        //dd(\App\Favorite::all()->toArray());
+        $this->assertCount(1, $reply->favorites);
+    }
+    
 }
