@@ -81,7 +81,6 @@ class ThreadController extends Controller
         //dd($threads->toSql());
     
         return $threads->get();
-        
     }
     
 }
