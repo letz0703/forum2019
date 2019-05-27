@@ -68,10 +68,13 @@ class ThreadCreateTest extends TestCase
         $this->signIn();
         
         $thread = create('App\Thread');
+        $reply = create('App\Reply',['thread_id'=> $thread->id]);
         
-        $this->json('DELETE', $thread->path());
+        $response = $this->json('DELETE', $thread->path());
+        $response->assertStatus(204);
         //$this->assertDatabaseMissing('threads', $thread->toArray());
         $this->assertDatabaseMissing('threads', ['id' => $thread->id]);
+        $this->assertDatabaseMissing('replies', ['id' => $reply->id]);
     }
     
     
