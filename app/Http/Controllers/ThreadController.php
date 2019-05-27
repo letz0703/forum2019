@@ -41,6 +41,13 @@ class ThreadController extends Controller
         ]);
     }
     
+    public function destroy($channel, Thread $thread)
+    {
+        $thread->delete();
+    }
+    
+    
+    
     public function store(Request $request)
     {
         //dd(request()->all());
@@ -64,6 +71,7 @@ class ThreadController extends Controller
     {
         return view('threads.create');
     }
+    
     
     /**
      * @param ThreadFilters $filters
