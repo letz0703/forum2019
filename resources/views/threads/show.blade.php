@@ -5,11 +5,18 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">
+                        <div class="level">
+                            <span class="flex"> <a href="{{ route('profile', $thread->creator) }}"> {{ $thread->creator->name }} </a> posted
+                                {{ $thread->title }}
+                            </span>
+                            <form method="POST" action="{{ $thread->path() }}">
+                                @csrf
+                                {{ method_field('DELETE') }}
+                                <button type="submit" class="btn btn-link btn-sm">Delete Thread</button>
+                            </form>
+                        </div>
                         {{--<a href="/profiles/{{ $thread->creator->name }}">--}}
-                        <a href="{{ route('profile', $thread->creator) }}">
-                            {{ $thread->creator->name }}
-                        </a> posted
-                        {{ $thread->title }}
+
                     </div>
 
                     <div class="card-body">
@@ -17,7 +24,7 @@
                     </div>
                     <div class="card-footer">
                         {{--@php--}}
-                            {{--$replies = $thread->replies()->paginate(2);--}}
+                        {{--$replies = $thread->replies()->paginate(2);--}}
                         {{--@endphp--}}
                         @foreach($replies as $reply)
                             @include('threads.reply')

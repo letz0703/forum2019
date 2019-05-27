@@ -43,11 +43,15 @@ class ThreadController extends Controller
     
     public function destroy($channel, Thread $thread)
     {
-        $thread->replies()->delete();
+        //$thread->replies()->delete();
         $thread->delete();
-        return response([],204);
+        
+        if (request()->wantsJson()){
+            return response([], 204);
+        }
+        
+        return redirect('/threads');
     }
-    
     
     
     public function store(Request $request)
@@ -89,7 +93,7 @@ class ThreadController extends Controller
         }
         
         //dd($threads->toSql());
-    
+        
         return $threads->get();
     }
     
