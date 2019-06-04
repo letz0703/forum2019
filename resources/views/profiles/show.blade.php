@@ -14,19 +14,23 @@
                 @foreach($threads as $thread)
                     <div class="page-body">
                         <div class="card">
-                            <div class="card-header level">
+                            <div class="card-header">
+                                <div class="level">
                         <span class="flex">
-                        {{ $thread->title }}
+                            <a href="{{ route('profile', $thread->creator->name) }}">
+                            {{ $thread->creator->name }}</a> posted
+                            <a href="{{ $thread->path() }}"> {{ $thread->title }}</a>
                         </span>
-                                {{ $thread->created_at->diffForHumans() }}
+                                    <span>{{ $thread->created_at->diffForHumans() }}</span>
+                                </div>
+                                <div class="card-body">
+                                    {{ $thread-> body }}
+                                </div>
                             </div>
-                            <div class="card-body">
-                                {{ $thread-> body }}
-                            </div>
-
-                            {{ $threads->links() }}
 
                         </div>
+                        {{ $threads->links() }}
+
                     </div>
                 @endforeach
             </div>
