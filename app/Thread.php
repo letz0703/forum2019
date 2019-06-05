@@ -24,8 +24,6 @@ class Thread extends Model
             $thread->replies()->delete();
         });
         
-
-        
         //static::addGlobalScope('creator', function ($builder){
         //    $builder->with('creator');
         //});
