@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Thread extends Model
 {
     
+    use recordActivity;
+    
     protected $guarded = [];
     
     protected $with = ['creator', 'channel'];
@@ -22,26 +24,14 @@ class Thread extends Model
             $thread->replies()->delete();
         });
         
-        static::created(function ($thread){
-            $thread->recordActivity('created');
-        });
+
         
         //static::addGlobalScope('creator', function ($builder){
         //    $builder->with('creator');
         //});
     }
     
-    protected function recordActivity($eventType)
-    {
-        Activity::create([
-            'user_id'      => auth()->id(),
-            //'type'         => 'created_thread',
-            'type'         => $eventType.'_'.strtolower(class_basename($this)),
-            'subject_id'   => $this->id,
-            //'subject_type' => get_class($this)
-            'subject_type' => get_class($this)
-        ]);
-    }
+    
     
     
     //
