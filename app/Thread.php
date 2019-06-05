@@ -23,18 +23,26 @@ class Thread extends Model
         });
         
         static::created(function ($thread){
-            Activity::create([
-                'user_id'      => auth()->id(),
-                'type'         => 'created_thread',
-                'subject_id'   => $thread->id,
-                'subject_type' => 'App\Thread',
-            ]);
+            $thread->recordActivity('created');
         });
         
         //static::addGlobalScope('creator', function ($builder){
         //    $builder->with('creator');
         //});
     }
+    
+    protected function recordActivity($eventType)
+    {
+        Activity::create([
+            'user_id'      => auth()->id(),
+            //'type'         => 'created_thread',
+            'type'         => $eventType.'_'.strtolower(class_basename($this)),
+            'subject_id'   => $this->id,
+            //'subject_type' => get_class($this)
+            'subject_type' => get_class($this)
+        ]);
+    }
+    
     
     //
     public function path()
