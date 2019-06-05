@@ -9,19 +9,28 @@ class Thread extends Model
     
     protected $guarded = [];
     
-    protected $with = ['creator','channel'];
+    protected $with = ['creator', 'channel'];
     
     protected static function boot()
     {
         parent::boot();
         static::addGlobalScope('replyCount', function ($builder){
-           $builder->withCount('replies');
+            $builder->withCount('replies');
         });
         
-        static::deleting( function($thread){
+        static::deleting(function ($thread){
             $thread->replies()->delete();
         });
-    
+        
+        static::created(function ($thread){
+            Activity::create([
+                'user_id'      => auth()->id(),
+                'type'         => 'created_thread',
+                'subject_id'   => $thread->id,
+                'subject_type' => 'App\Thread',
+            ]);
+        });
+        
         //static::addGlobalScope('creator', function ($builder){
         //    $builder->with('creator');
         //});
@@ -41,8 +50,8 @@ class Thread extends Model
     public function replies()
     {
         return $this->hasMany(Reply::class);
-                    //->withCount('favorites')
-                    //->with('owner');
+        //->withCount('favorites')
+        //->with('owner');
     }
     
     public function channel()
