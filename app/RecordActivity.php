@@ -14,23 +14,32 @@ trait RecordActivity
     
     protected static function bootRecordActivity()
     {
-        if ( auth()->guest()) return ;
-        static::created(function ($thread){
-            $thread->recordActivity('created');
-        });
+        if (auth()->guest()) return;
+    
+        foreach (self::getActivitiesToRecord() as $event){
+            static::$event(function ($model) use ($event){
+                $model->recordActivity($event);
+            });
+        }
     }
+    
+    protected static function getActivitiesToRecord()
+    {
+        return ['created'];
+    }
+    
     
     protected function recordActivity($eventType)
     {
         $this->activity()->create([
-            'user_id'      => auth()->id(),
+            'user_id' => auth()->id(),
             //'type'         => 'created_thread',
-            'type'         => $this->getEventType($eventType),
-        //Activity::create([
-        //    'user_id'      => auth()->id(),
-        //    //'type'         => 'created_thread',
-        //    'type'         => $this->getEventType($eventType),
-        //
+            'type'    => $this->getEventType($eventType),
+            //Activity::create([
+            //    'user_id'      => auth()->id(),
+            //    //'type'         => 'created_thread',
+            //    'type'         => $this->getEventType($eventType),
+            //
             //'subject_id'   => $this->id,
             ////'subject_type' => get_class($this)
             //'subject_type' => get_class($this)
@@ -45,13 +54,15 @@ trait RecordActivity
     
     /**
      * created_thread
+     *
      * @param $eventType
      *
      * @return string like 'created'
      */
     protected function getEventType($eventType): string
     {
-        $className =strtolower(class_basename($this));
+        $className = strtolower(class_basename($this));
+        
         //return $eventType . '_' . strtolower(class_basename($this));
         return "{$eventType}_{$className}";
     }
