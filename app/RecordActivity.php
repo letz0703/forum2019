@@ -9,11 +9,12 @@
 namespace App;
 
 
-trait recordActivity
+trait RecordActivity
 {
     
     protected static function bootRecordActivity()
     {
+        if ( auth()->guest()) return ;
         static::created(function ($thread){
             $thread->recordActivity('created');
         });
