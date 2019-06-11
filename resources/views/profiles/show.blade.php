@@ -19,8 +19,8 @@
                     <hr>
                 @endforeach
 
-                {{--{{ $threads->links() }}--}}
             </div>
+            {{--{{ $threads->links() }}--}}
         </div>
     </div>
 @endsection
