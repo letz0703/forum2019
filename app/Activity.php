@@ -15,14 +15,17 @@ class Activity extends Model
         return $this->morphTo();
     }
     
-    protected static function feed($user)
+    protected static function feed($user, $take = 50)
     {
-        return $user->activity()
-                    ->with('subject')
-                    ->latest()->take(50)->get()
-                    ->groupBy(function ($activity){
-                        return $activity->created_at->format('Y-m-d');
-                    });
+        //return $user->activity()
+        return static::where('user_id', $user->id)
+                     ->with('subject')
+                     ->latest()
+                     ->take($take)
+                     ->get()
+                     ->groupBy(function ($activity){
+                         return $activity->created_at->format('Y-m-d');
+                     });
     }
     
 }

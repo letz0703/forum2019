@@ -42,17 +42,20 @@ class ActivityTest extends TestCase
     public function it_patches_activity_feed_for_any_user()
     {
         $this->signIn();
-        $thread = create('App\Thread', ['user_id' => auth()->id()]);
-        $thread = create('App\Thread', [
-            'user_id'    => auth()->id(),
-            'created_at' => Carbon::now()->subWeek()
-        ]);
+        $thread = create('App\Thread', ['user_id' => auth()->id()],2);
+    
+        auth()->user()->activity()->first()->update(['created_at' => Carbon::now()->subWeek()]);
         
-        $feed = Activity::feed(auth()->user());
+        $feed = Activity::feed(auth()->user(), 50);
         
         $this->assertTrue($feed->keys()->contains(
             Carbon::now()->format('Y-m-d')
         ));
+        
+        $this->assertTrue($feed->keys()->contains(
+            Carbon::now()->subWeek()->format('Y-m-d')
+        ));
     }
+    
     
 }
