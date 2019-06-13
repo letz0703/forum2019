@@ -4,8 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Thread extends Model
-{
+class Thread extends Model{
     
     use RecordActivity;
     
@@ -13,16 +12,21 @@ class Thread extends Model
     
     protected $with = ['creator', 'channel'];
     
-    protected static function boot()
-    {
+    protected static function boot(){
         parent::boot();
         static::addGlobalScope('replyCount', function ($builder){
             $builder->withCount('replies');
         });
         
         static::deleting(function ($thread){
-            $thread->replies()->delete();
+            $thread->replies->each(function ($reply){
+                $reply->delete();
+            });
         });
+        
+        //static::deleting(function ($thread){
+        //    $thread->replies()->delete();
+        //});
         
         //static::addGlobalScope('creator', function ($builder){
         //    $builder->with('creator');
@@ -30,46 +34,37 @@ class Thread extends Model
     }
     
     
-    
-    
     //
-    public function path()
-    {
+    public function path(){
         return "/threads/{$this->channel->slug}/{$this->id}";
     }
     
-    public function creator()
-    {
+    public function creator(){
         return $this->belongsTo('App\User', 'user_id');
     }
     
-    public function replies()
-    {
+    public function replies(){
         return $this->hasMany(Reply::class);
         //->withCount('favorites')
         //->with('owner');
     }
     
-    public function channel()
-    {
+    public function channel(){
         return $this->belongsTo(Channel::class);
     }
     
     
-    public function addReply($reply)
-    {
+    public function addReply($reply){
         $this->replies()->create($reply);
         
         return back();
     }
     
-    public function scopeFilter($query, $filters)
-    {
+    public function scopeFilter($query, $filters){
         return $filters->apply($query);
     }
     
-    public function getReplyCountAttribute()
-    {
+    public function getReplyCountAttribute(){
         return $this->replies()->count();
     }
     

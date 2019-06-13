@@ -21,6 +21,10 @@ trait RecordActivity
                 $model->recordActivity($event);
             });
         }
+        
+        self::deleting(function($model){
+            $model->activity()->delete();
+        });
     }
     
     protected static function getActivitiesToRecord()
