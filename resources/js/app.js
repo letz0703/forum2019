@@ -4,10 +4,10 @@
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
+window.Vue = require('vue');
 
 require('./bootstrap');
 
-window.Vue = require('vue');
 
 /**
  * The following block of code may be used to automatically register your
