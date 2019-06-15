@@ -1,4 +1,4 @@
-<div class="card">
+<div id="reply-{{$reply->id}}" class="card">
     {{--<div><h4 style="padding-left:0.4em;">Replies</h4></div>--}}
     <div class="card-header">
         <div class="level">
