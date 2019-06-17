@@ -3,8 +3,9 @@
     <div class="card-header">
         <div class="level">
             <h5 class="flex">
-{{--                <a href="/profiles/{{ $reply->owner->name }}"> {{ $reply->owner->name }} </a> said {{ $reply->created_at->diffForHumans() }}--}}
-                <a href="{{ route('profile', $reply->owner) }}"> {{ $reply->owner->name }} </a> said {{ $reply->created_at->diffForHumans() }}
+                {{--                <a href="/profiles/{{ $reply->owner->name }}"> {{ $reply->owner->name }} </a> said {{ $reply->created_at->diffForHumans() }}--}}
+                <a href="{{ route('profile', $reply->owner) }}"> {{ $reply->owner->name }} </a>
+                said {{ $reply->created_at->diffForHumans() }}
             </h5>
             <form action="/replies/{{ $reply->id }}/favorites" method="POST">
                 @csrf
@@ -17,4 +18,13 @@
     <div class="card-body">
         {{ $reply-> body }}
     </div>
+    @can('update')
+        <div class="card-footer">
+            <form method="POST" action="/replies/{{ $reply->id }}">
+                @csrf
+                {{ method_field('DELETE') }}
+                <button type="submit" class="btn btn-danger btn-sm">delete</button>
+            </form>
+        </div>
+    @endcan
 </div>
