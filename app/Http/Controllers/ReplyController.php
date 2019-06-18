@@ -25,6 +25,14 @@ class ReplyController extends Controller
         return back();
     }
     
+    public function update(Reply $reply)
+    {
+        $this->authorize('update', $reply);
+        $reply->update(request(['body']));
+        //$reply->update(['body'=>request('body')]);
+    }
+    
+    
     public function destroy(Reply $reply)
     {
         $this->authorize('update', $reply);

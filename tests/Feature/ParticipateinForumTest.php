@@ -76,5 +76,34 @@ class ParticipateinForumTest extends TestCase
         
     }
     
+    /** @test */
+    public function unauth_user_cannot_update_reply()
+    {
+        $this->withExceptionHandling();
+        
+        $reply = create('App\Reply');
+        
+        //$this->patch("/replies/{$reply->id}")
+        //     ->assertRedirect('login');
+        
+        $this->signIn()
+             ->patch("/replies/{$reply->id}")
+             ->assertStatus(403);
+    }
+    
+    /** @test */
+    public function authorized_users_can_update_replies()
+    {
+        $this->signIn();
+        $reply = create('App\Reply',['user_id'=>auth()->id()]);
+    
+    
+        $str = 'changed reply';
+        $this->patch("/replies/{$reply->id}", ['body' => $str]);
+        
+        $this->assertDatabaseHas('replies', ['id'=>$reply->id, 'body'=> $str]);
+        
+    }
+    
     
 }
