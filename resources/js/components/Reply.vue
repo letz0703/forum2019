@@ -24,7 +24,6 @@
             cancel() {
                 this.editing = false;
                 this.body = this.tempbody;
-
             }
         }
     }
