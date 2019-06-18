@@ -22,8 +22,7 @@
                     <textarea class="form-control" v-model="body"></textarea>
                 </div>
                 <button type="submit" class="btn btn-primary btn-sm" @click="update">update</button>
-                <button class="btn btn-link btn-sm" @click = "cancel"
-                >cancel</button>
+                <button class="btn btn-link btn-sm" @click = "cancel">cancel</button>
             </div>
             <div v-else v-text="body">
                 {{ $reply->body }}
@@ -34,11 +33,7 @@
                 <button class="btn btn-outline-dark btn-sm mr-1" @click="editing = true">
                     Edit
                 </button>
-                <form method="POST" action="/replies/{{ $reply->id }}">
-                    @csrf
-                    {{ method_field('DELETE') }}
-                    <button type="submit" class="btn btn-danger btn-sm">delete</button>
-                </form>
+                <button class="btn btn-danger btn-sm" @click="destroy">delete</button>
             </div>
         @endcan
     </div>

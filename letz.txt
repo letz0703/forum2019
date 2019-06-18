@@ -1,0 +1,6 @@
+L: reply delete 버튼을 vue화
+E: reply.blade, Reply.vue
+T: 1. 404 Not Fount >>> if (request()->expects())
+   2. 메시지 그대로 남아 있음
+        $(this.$el).fadeOut(300,()=>{ flash('메시지'); }
+Z:

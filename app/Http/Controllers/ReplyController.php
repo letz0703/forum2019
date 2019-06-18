@@ -39,6 +39,10 @@ class ReplyController extends Controller
         //if ($reply->user_id != auth()->id()){
         //    return response([], 403);
         //}
+        if ( request()->expectsJson()){
+            $reply->delete();
+            return response(['status'=>'reply deleted']);
+        }
         $reply->delete();
         return back();
     }

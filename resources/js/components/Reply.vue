@@ -24,6 +24,13 @@
             cancel() {
                 this.editing = false;
                 this.body = this.tempbody;
+            },
+
+            destroy() {
+                axios.delete('/replies/' + this.attributes.id);
+                $(this.$el).fadeOut(100, () =>{
+                    flash('your reply has been deleted');
+                });
             }
         }
     }
