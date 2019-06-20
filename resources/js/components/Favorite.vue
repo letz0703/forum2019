@@ -14,23 +14,39 @@
         data() {
             return {
                 favoritesCount: this.reply.favoritesCount,
-                isFavorited: false,
+                isFavorited: this.reply.isFavorited,
             }
         },
-        computed : {
+        computed: {
             classes() {
-                return ['btn', this.isFavorited ? 'btn-primary': 'btn-default'];
+                return ['btn', 'btn-sm', this.isFavorited ? 'btn-primary' : 'btn-outline-dark'];
+            },
+            endpoint() {
+                return '/replies/' + this.reply.id + '/favorites'
             }
         },
         methods: {
             toggle() {
-                if (this.isFavorited){
-                    axios.delete('/replies/' + this.reply.id + '/favorites'); // delete Favorite
-                } else{
-                    axios.post('/replies/' + this.reply.id + '/favorites');
-                    this.isFavorited = true;
-                    this.favoritesCount++;
-                }
+                this.isFavorited ? this.unfavorite() : this.favorite();
+                //                if (this.isFavorited){
+                //                    this.unfavorite();
+                //
+                //                } else{
+                //                    this.favorite();
+                //
+                //                }
+            },
+
+            unfavorite() {
+                axios.delete(this.endpoint); // delete Favorite
+                this.isFavorited = false;
+                this.favoritesCount--;
+            },
+
+            favorite() {
+                axios.post(this.endpoint);
+                this.isFavorited = true;
+                this.favoritesCount++;
             }
         }
     }
