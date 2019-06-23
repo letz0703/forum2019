@@ -15,3 +15,4 @@ $thread->replies를 <replies :data="{{ $thread->replies
     3. reply.blade 인라인템플릿을 Reply.vue로 이동
     4. Reply.vue: delete 시킬 때 fadeout 대신 $this.$emit('deleted', this.data.id)
     5. dynamic repliesCount
+    6. auth()->check()

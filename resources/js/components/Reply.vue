@@ -6,11 +6,9 @@
                         <a :href="'/profiles/'+data.owner.name" v-text="data.owner.name"></a>
                         said {{ data.created_at }}
                     </h5>
-                    <!--@if ( auth()->check() )-->
-                    <!--<div>-->
-                        <!--<favorite :reply = " {{ $reply }}"></favorite>-->
-                    <!--</div>-->
-                    <!--@endif-->
+                    <div v-if="signedIn">
+                        <favorite :reply="data"></favorite>
+                    </div>
                 </div>
             </div>
             <div class="card-body">
@@ -48,6 +46,12 @@
                 tempbody: '',
                 id: this.data.id
             };
+        },
+
+        computed: {
+            signedIn(){
+                return window.App.signedIn;
+            }
         },
 
         methods: {
