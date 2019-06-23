@@ -11,3 +11,4 @@ L: Favorite button Vue화.
 Collection to VUE
 $thread->replies를 <replies :data="{{ $thread->replies
     1. Replies.vue 생성
+    2. Import Reply

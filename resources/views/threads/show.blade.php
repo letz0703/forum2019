@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('content')
+    <thread-view inline-template>
     <div class="container">
         <div class="row">
             <div class="col-md-8">
@@ -25,7 +26,7 @@
                     <div class="card-body">
                         {{ $thread-> body }}
                     </div>
-                        <replies :data = "{{ $thread->replies }}"></replies>
+                    <replies :data="{{ $thread->replies }}"></replies>
                     {{--@php--}}
                     {{--$replies = $thread->replies()->paginate(2);--}}
                     {{--@endphp--}}
@@ -78,4 +79,5 @@
             </div>
         </div>
     </div>
+    </thread-view>
 @endsection
