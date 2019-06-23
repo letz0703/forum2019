@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-    <thread-view inline-template>
+    <thread-view inline-template :initial-replies-count="{{ $thread->replies_count }}">
     <div class="container">
         <div class="row">
             <div class="col-md-8">
@@ -26,7 +26,7 @@
                     <div class="card-body">
                         {{ $thread-> body }}
                     </div>
-                    <replies :data="{{ $thread->replies }}"></replies>
+                    <replies :data="{{ $thread->replies }}" @removed="repliesCount--"></replies>
                     {{--@php--}}
                     {{--$replies = $thread->replies()->paginate(2);--}}
                     {{--@endphp--}}
@@ -65,7 +65,8 @@
                     </div>
 
                     <div class="card-body">
-                        <p>it has {{ $thread->replies_count }}
+                        <p>it has <span v-text="repliesCount"></span>
+                            {{--{{ $thread->replies_count }}--}}
                             {{ str_plural('comment',$thread->replies_count) }}
                             {{--$thread->replies_count == 1? comment: comments--}}
                             {{--@if ($thread->replies_count == 1)--}}
