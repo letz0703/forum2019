@@ -22,7 +22,7 @@
                 <div v-else v-text="body"></div>
             </div>
             <!--@can('update')-->
-            <div class="card-footer level">
+            <div class="card-footer level" v-if="canUpdate">
                 <button class="btn btn-outline-dark btn-sm mr-1" @click="editing = true">
                     Edit
                 </button>
@@ -51,6 +51,11 @@
         computed: {
             signedIn(){
                 return window.App.signedIn;
+            },
+            canUpdate(){
+//                return true;
+                return this.authorize(user => this.data.user_id == user.id );
+//                                return this.data.user_id == window.App.user.id
             }
         },
 

@@ -23,6 +23,7 @@ window.axios = require('axios');
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
+
 /**
  * Letz Flash messaging for window.events.
  * */
@@ -31,6 +32,13 @@ window.events = new Vue(); // vue event
 window.flash = function(message) {
     window.events.$emit('flash', message);
 } // flash('My new Message')
+
+// LETz can('update')
+// window.Vue.prototype.authorize = function(handler) {
+Vue.prototype.authorize = function(handler) {
+    let user = window.App.user;
+    return user? handler(window.App.user): false ;
+}
 
 /**
  * Next we will register the CSRF Token as a common header with Axios so that
@@ -62,3 +70,4 @@ if (token) {
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     encrypted: true
 // });
+
