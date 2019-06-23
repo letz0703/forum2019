@@ -13,4 +13,4 @@ $thread->replies를 <replies :data="{{ $thread->replies
     1. Replies.vue 생성
     2. Import Reply
     3. reply.blade 인라인템플릿을 Reply.vue로 이동
-    next> delete 시킬 때 fadeout 대신 $this.$emit('deleted')
+    4. Reply.vue: delete 시킬 때 fadeout 대신 $this.$emit('deleted', this.data.id)

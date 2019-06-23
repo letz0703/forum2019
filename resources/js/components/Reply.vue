@@ -24,12 +24,12 @@
                 <div v-else v-text="body"></div>
             </div>
             <!--@can('update')-->
-            <!--<div class="card-footer level">-->
-                <!--<button class="btn btn-outline-dark btn-sm mr-1" @click="editing = true">-->
-                    <!--Edit-->
-                <!--</button>-->
-                <!--<button class="btn btn-danger btn-sm" @click="destroy">delete</button>-->
-            <!--</div>-->
+            <div class="card-footer level">
+                <button class="btn btn-outline-dark btn-sm mr-1" @click="editing = true">
+                    Edit
+                </button>
+                <button class="btn btn-danger btn-sm" @click="destroy">delete</button>
+            </div>
             <!--@endcan-->
         </div>
 </template>
@@ -68,9 +68,12 @@
 
             destroy() {
                 axios.delete('/replies/' + this.data.id);
-                $(this.$el).fadeOut(100, () =>{
-                    flash('your reply has been deleted');
-                });
+
+                this.$emit('deleted', this.data.id);
+
+//                $(this.$el).fadeOut(100, () =>{
+//                    flash('your reply has been deleted');
+//                });
             }
         }
     }
