@@ -25,14 +25,13 @@
                     <div class="card-body">
                         {{ $thread-> body }}
                     </div>
-                    <div class="card-footer">
-                        {{--@php--}}
-                        {{--$replies = $thread->replies()->paginate(2);--}}
-                        {{--@endphp--}}
-                        @foreach($replies as $reply)
-                            @include('threads.reply')
-                        @endforeach
-                    </div>
+                        <replies :data = "{{ $thread->replies }}"></replies>
+                    {{--@php--}}
+                    {{--$replies = $thread->replies()->paginate(2);--}}
+                    {{--@endphp--}}
+                    {{--@foreach($replies as $reply)--}}
+                    {{--@include('threads.reply')--}}
+                    {{--@endforeach--}}
                     <div style="align-self:center;">
                         {{ $replies->links() }}
                     </div>

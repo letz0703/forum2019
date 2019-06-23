@@ -8,6 +8,8 @@
                     <a href="{{ route('profile', $reply->owner) }}"> {{ $reply->owner->name }} </a>
                     said {{ $reply->created_at->diffForHumans() }}
                 </h5>
+                @if ( auth()->check() )
+                <div>
                 <favorite :reply = " {{ $reply }}"></favorite>
                 {{--<form action="/replies/{{ $reply->id }}/favorites" method="POST">--}}
                     {{--@csrf--}}
@@ -15,6 +17,8 @@
                         {{--{{$reply->favorites_count}} {{ str_plural('favorite', $reply->favorites_count) }}--}}
                     {{--</button>--}}
                 {{--</form>--}}
+                </div>
+                @endif
             </div>
         </div>
         <div class="card-body">
