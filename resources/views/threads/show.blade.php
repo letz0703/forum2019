@@ -26,7 +26,7 @@
                     <div class="card-body">
                         {{ $thread-> body }}
                     </div>
-                    <replies :data="{{ $thread->replies }}" @removed="repliesCount--"></replies>
+                    <replies :data="{{ $thread->replies }}" @remove="repliesCount--"></replies>
                     {{--@php--}}
                     {{--$replies = $thread->replies()->paginate(2);--}}
                     {{--@endphp--}}
@@ -38,22 +38,22 @@
                     </div>
                 </div>
 
-                @if ( auth()->check())
-                    <form method="POST" action="{{ $thread->path().'/replies' }}">
-                        @csrf
-                        <div class="form-group">
-                            <textarea name="body" id="body" class="form-control"
-                                      placeholder="Have something to say"
-                                      rows=5
-                            ></textarea>
-                        </div>
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-sm btn-primary">Submit</button>
-                        </div>
-                    </form>
-                @else
-                    <p style="text-align:center;">Please <a href="{{ route('login') }}">login to participate</a></p>,
-                @endif
+                {{--@if ( auth()->check())--}}
+                    {{--<form method="POST" action="{{ $thread->path().'/replies' }}">--}}
+                        {{--@csrf--}}
+                        {{--<div class="form-group">--}}
+                            {{--<textarea name="body" id="body" class="form-control"--}}
+                                      {{--placeholder="Have something to say"--}}
+                                      {{--rows=5--}}
+                            {{--></textarea>--}}
+                        {{--</div>--}}
+                        {{--<div class="form-group">--}}
+                            {{--<button type="submit" class="btn btn-sm btn-primary">Submit</button>--}}
+                        {{--</div>--}}
+                    {{--</form>--}}
+                {{--@else--}}
+                    {{--<p style="text-align:center;">Please <a href="{{ route('login') }}">login to participate</a></p>,--}}
+                {{--@endif--}}
             </div>
             <div class="col-md-4">
                 <div class="card">

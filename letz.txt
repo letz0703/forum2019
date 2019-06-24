@@ -17,4 +17,7 @@ $thread->replies를 <replies :data="{{ $thread->replies
     5. dynamic repliesCount
     6. auth()->check() => app.js
         window.App = {!! json_encode(['signedIn' => auth()->check()]) !!} ;
-    7. can('update')
+    7. can('update') 00ed34b
+
+New Reply Component
+

@@ -8,7 +8,6 @@
         data() {
             return {
                 repliesCount: this.initialRepliesCount,
-
             }
         }
     }
