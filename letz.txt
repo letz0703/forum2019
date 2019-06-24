@@ -19,5 +19,5 @@ $thread->replies를 <replies :data="{{ $thread->replies
         window.App = {!! json_encode(['signedIn' => auth()->check()]) !!} ;
     7. can('update') 00ed34b
 
-New Reply Component
-
+New Reply Component - 8e9100c - OneNote: Adding New Reply
+    endpoint: location.path + 'replies'
