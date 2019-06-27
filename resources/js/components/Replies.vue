@@ -3,6 +3,7 @@
         <div v-for="(reply, index) in items" :key="reply.id">
             <reply :data="reply" @deleted="remove(index)"></reply>
         </div>
+        <paginator :dataSet="dataSet" @updated="fetch"></paginator>
         <new-reply :endpoint='endpoint' @created="add"></new-reply>
     </div>
 </template>
@@ -16,12 +17,11 @@
 
         components: { Reply, NewReply },
 
-        mixins: [ collection ],
+        mixins: [collection],
 
         data() {
             return {
                 dataSet: false,
-                items: [],
                 endpoint: location.pathname + '/replies'
             }
         },
@@ -31,9 +31,14 @@
         },
 
         methods: {
-            fetch(){
-                axios.get(this.endpoint)
+            fetch(page){
+                axios.get(this.url(page))
                      .then(this.refresh);
+            },
+
+            url(page = 1) {
+                //                return location.pathname+'/replies?page='+page;
+                return `${location.pathname}/replies?page=` + page;
             },
 
             refresh({ data }){
