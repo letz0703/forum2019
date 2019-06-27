@@ -45,7 +45,7 @@ class ParticipateinForumTest extends TestCase
         $thread = create('App\Thread');
         $reply = make('App\Reply', ['body' => null]);
         
-        $this->post($thread->path() .'/replies', $reply->toArray())
+        $this->post($thread->path() . '/replies', $reply->toArray())
              ->assertSessionHasErrors('body');
     }
     
@@ -69,7 +69,7 @@ class ParticipateinForumTest extends TestCase
     public function auth_user_can_delete_thread()
     {
         $this->signIn();
-        $reply = create('App\Reply',['user_id'=>auth()->id()]);
+        $reply = create('App\Reply', ['user_id' => auth()->id()]);
         $this->delete("/replies/{$reply->id}")
              ->assertStatus(302);
         $this->assertDatabaseMissing('replies', ['id' => $reply->id]);
@@ -95,13 +95,27 @@ class ParticipateinForumTest extends TestCase
     public function authorized_users_can_update_replies()
     {
         $this->signIn();
-        $reply = create('App\Reply',['user_id'=>auth()->id()]);
-    
-    
+        $reply = create('App\Reply', ['user_id' => auth()->id()]);
+        
+        
         $str = 'changed reply';
         $this->patch("/replies/{$reply->id}", ['body' => $str]);
         
-        $this->assertDatabaseHas('replies', ['id'=>$reply->id, 'body'=> $str]);
+        $this->assertDatabaseHas('replies', ['id' => $reply->id, 'body' => $str]);
+        
+    }
+    
+    /** @test */
+    public function user_can_request_replies_for_a_given_thread()
+    {
+        $thread = create('App\Thread');
+        create('App\Reply', ['thread_id' => $thread->id], 2);
+        
+        $response = $this->getJson($thread->path() . '/replies')->json();
+        //dd($response);
+        
+        $this->assertCount(1, $response['data']);
+        $this->assertEquals(2, $response['total']);
         
     }
     

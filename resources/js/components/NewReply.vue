@@ -38,10 +38,10 @@
         methods: {
             addReply() {
                 axios.post(this.endpoint, { body: this.body })
-                     .then(({ data }) =>{
+                     .then(data =>{
                          this.body = '';
                          flash('reply has been posted');
-                         this.$emit('created', data);
+                         this.$emit('created', data.data);
                      });
             }
         }
