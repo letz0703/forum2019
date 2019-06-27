@@ -33,9 +33,9 @@
                         {{--@foreach($replies as $reply)--}}
                         {{--@include('threads.reply')--}}
                         {{--@endforeach--}}
-                        <div style="align-self:center;">
-                            {{ $replies->links() }}
-                        </div>
+                        {{--<div style="align-self:center;">--}}
+{{--                            {{ $thread->replies()->links() }}--}}
+                        {{--</div>--}}
                     </div>
 
                     {{--@if ( auth()->check())--}}

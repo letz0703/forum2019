@@ -30,10 +30,8 @@ class ThreadController extends Controller{
         //return Thread::withCount('replies')->first();
         //return $thread;
         //return view('threads.show', compact('thread'));
-        return view('threads.show', [
-            'thread'  => $thread,
-            'replies' => $thread->replies()->paginate(20),
-        ]);
+        return view('threads.show', compact('thread'));
+        
     }
     
     public function destroy($channel, Thread $thread){
