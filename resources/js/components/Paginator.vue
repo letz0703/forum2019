@@ -36,7 +36,7 @@
                 this.nextUrl = this.dataSet.next_page_url;
             },
             page() {
-                this.broadcast();
+                this.broadcast().updateUrl();
             }
         },
 
@@ -48,8 +48,14 @@
 
         methods: {
             broadcast(){
-                this.$emit('updated', this.page);
+                return this.$emit('updated', this.page);
+//                return this;
+            },
+
+            updateUrl(){
+                history.pushState(null, null, '?page=' + this.page);
             }
+
         },
     }
 </script>

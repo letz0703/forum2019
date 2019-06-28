@@ -1,3 +1,4 @@
+
 L: reply delete 버튼을 vue화
 E: reply.blade, Reply.vue
 T: 1. 404 Not Fount >>> if (request()->expects())
@@ -21,3 +22,11 @@ $thread->replies를 <replies :data="{{ $thread->replies
 
 New Reply Component - 8e9100c - OneNote: Adding New Reply
     endpoint: location.path + 'replies'
+
+
+Navigation URL 변경 반영하기
+    1. replies.vue  url() 메소드 수정
+        if (! page) { let query = location.search.match(/page=(\d+)/
+    2. Paginator.vue watch page() 수정: this.broadcast().updateUrl()
+        updateUrl(){ history.pushState(null,null, '?page='+ this.page);
+

@@ -4,7 +4,7 @@
             <reply :data="reply" @deleted="remove(index)"></reply>
         </div>
         <paginator :dataSet="dataSet" @updated="fetch"></paginator>
-        <new-reply :endpoint='endpoint' @created="add"></new-reply>
+        <new-reply  @created="add"></new-reply>
     </div>
 </template>
 
@@ -22,7 +22,6 @@
         data() {
             return {
                 dataSet: false,
-                endpoint: location.pathname + '/replies'
             }
         },
 
@@ -36,9 +35,13 @@
                      .then(this.refresh);
             },
 
-            url(page = 1) {
+            url(page) {
+                if (! page){
+                    let query = location.search.match(/page=(\d+)/);
+                    page = query? query[1]: 1;
+                }
                 //                return location.pathname+'/replies?page='+page;
-                return `${location.pathname}/replies?page=` + page;
+                return `${location.pathname}/replies?page=${page}`
             },
 
             refresh({ data }){
