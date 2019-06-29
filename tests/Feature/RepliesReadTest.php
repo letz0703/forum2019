@@ -21,9 +21,8 @@ class RepliesReadTest extends TestCase
     {
         $reply = factory('App\Reply')->create(['thread_id'=>$this->thread->id]);
         //dd($reply->body);
-        $this->get($this->thread->path())
-             ->assertSee($reply->body);
-    
+        $this->get($this->thread->path());
+        $this->assertDatabaseHas('replies', ['body' => $reply->body]);
     }
 }
 

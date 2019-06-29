@@ -34,14 +34,16 @@ class ParticipateinForumTest extends TestCase
         
         $this->post($thread->path() . '/replies', $reply->toArray());
         
-        $this->get($thread->path())
-             ->assertSee($reply->body);
+        $this->get($thread->path());
+        //->assertSee($reply->body);
+        $this->assertDatabaseHas('replies', ['body' => $reply->body]);
     }
     
     /** @test */
     public function a_reply_requires_a_body()
     {
-        $this->signIn()->withExceptionHandling();
+        $this->withExceptionHandling()->signIn();
+        
         $thread = create('App\Thread');
         $reply = make('App\Reply', ['body' => null]);
         
