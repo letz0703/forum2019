@@ -24,9 +24,11 @@ New Reply Component - 8e9100c - OneNote: Adding New Reply
     endpoint: location.path + 'replies'
 
 
-Navigation URL 변경 반영하기
+Navigation URL 변경 반영하기 8da53d8
     1. replies.vue  url() 메소드 수정
         if (! page) { let query = location.search.match(/page=(\d+)/
     2. Paginator.vue watch page() 수정: this.broadcast().updateUrl()
         updateUrl(){ history.pushState(null,null, '?page='+ this.page);
+
+FIX PTest
 
