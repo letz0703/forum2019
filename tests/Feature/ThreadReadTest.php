@@ -68,8 +68,24 @@ class ThreadReadTest extends TestCase
         
         $response = $this->getJson('/threads?popular=1')->json();
         //$response->assertSee($threadWith3Replies->title);
+        //dd($response);
         $this->assertEquals([3, 2, 0], array_column($response, 'replies_count'));
         //$response->assertEquals([3,2,0],  )
     }
+    
+    /** @test */
+    public function user_can_filter_unanswered_thread()
+    {
+        create('App\Thread');
+        $threadAnswered = create('App\Thread');
+        $reply = create('App\Reply',['thread_id' => $threadAnswered->id]);
+        
+        $response = $this->getJson('/threads?unaswered=1')->json();
+        //dd($response);
+        
+        $this->assertCount(1, $response);
+        
+    }
+    
     
 }
