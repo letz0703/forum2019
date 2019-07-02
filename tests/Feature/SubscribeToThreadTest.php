@@ -19,6 +19,15 @@ class SubscribeToThreadTest extends TestCase
         $this->assertDatabaseHas('subscriptions', ['user_id' => auth()->id()]);
     }
     
+    public function a_user_can_unsubscribe_from_thread()
+    {
+        $this->signIn();
+        $thread = create('App\Thread');
+        $this->post($thread->path().'/subscriptions');
+        $this->delete($thread->path().'/subscriptions');
+        $this->assertCount(0, $thread->subscriptions);
+    }
+    
     /** @test */
     //public function user_should_be_notified_when_a_subscribed_thread_has_new_reply()
     //{

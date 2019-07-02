@@ -21,14 +21,12 @@
                 </div>
                 <div v-else v-text="body"></div>
             </div>
-            <!--@can('update')-->
             <div class="card-footer level" v-if="canUpdate">
                 <button class="btn btn-outline-dark btn-sm mr-1" @click="editing = true">
                     Edit
                 </button>
                 <button class="btn btn-danger btn-sm" @click="destroy">delete</button>
             </div>
-            <!--@endcan-->
         </div>
 </template>
 <script>

@@ -11,7 +11,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
-    <script src="https://kit.fontawesome.com/0782cf7c5d.js"></script>
+    {{--<script src="https://kit.fontawesome.com/0782cf7c5d.js"></script>--}}
     <script>
         window.App = {!! json_encode([
         'signedIn' => Auth::check(),

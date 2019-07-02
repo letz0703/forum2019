@@ -75,6 +75,9 @@
                                 {{--comments--}}
                                 {{--@endif--}}
                             </p>
+                            <p>
+                                <subscriptions :active="{{ json_encode($thread->isSubscribedTo) }}"></subscriptions>
+                            </p>
                         </div>
                     </div>
                 </div>
