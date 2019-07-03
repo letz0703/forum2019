@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Notifications\ThreadWasUpdated;
 use Illuminate\Database\Eloquent\Model;
 
 class Thread extends Model{
@@ -54,8 +55,19 @@ class Thread extends Model{
         return $this->belongsTo(Channel::class);
     }
     
+    /**
+     * @param $reply
+     *
+     * @return Model
+     */
     public function addReply($reply){
-        return $this->replies()->create($reply);
+        $reply =  $this->replies()->create($reply);
+        
+        foreach($this->subscriptions as $subscription){
+            $subscription->user->notify(new ThreadWasUpdated($this, $reply));
+        }
+        
+        return $reply;
     }
     
     public function subscriptions()

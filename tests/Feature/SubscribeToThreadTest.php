@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Notifications\ThreadWasUpdated;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -29,16 +30,31 @@ class SubscribeToThreadTest extends TestCase
     }
     
     /** @test */
-    //public function user_should_be_notified_when_a_subscribed_thread_has_new_reply()
-    //{
-    //    $this->signIn();
-    //    $thread = create('App\Thread');
-    //    $this->post($thread->path().'/subscriptions');
-    //    $reply = create('App\Reply');
-    //    $this->assertCount(1,
-    //        auth()->user()->notifications
-    //    );
-    //
-    //}
+    public function user_should_be_notified_when_a_subscribed_thread_has_new_reply()
+    {
+        $this->signIn();
+        $thread = create('App\Thread');
+        $this->post($thread->path().'/subscriptions');
+        
+        //$this->assertDatabaseHas('subscriptions', [
+        //    'thread_id'=> $thread->id,
+        //    'user_id'=>auth()->id()]
+        //);
+        
+        //create('App\Reply',['thread_id'=>$thread->id]);
+        // 이건 왜 안될 까..
+        
+        $thread->addReply([
+            'user_id'=> 2,
+            'body' => auth()->id()
+        ]);
+        
+        //auth()->user()->notify(new ThreadWasUpdated($thread, $reply));
+        
+        $this->assertCount(
+            1,
+            auth()->user()->notifications
+        );
+    }
     
 }
