@@ -70,22 +70,22 @@ class Thread extends Model
     {
         $reply = $this->replies()->create($reply);
         
-        $this->subscriptions
-            ->filter(function ($sub) use ($reply){
-                return $sub->user_id != $reply->user_id;
-                //return true;
-            })
-            ->each->notify($reply);
-            //->each(function ($sub) use ($reply){
-            //    $sub->user->notify(new ThreadWasUpdated($this, $reply));
-            //}
-            //);
-        
-        //foreach ($this->subscriptions as $subscription){
-        //    if (auth()->id() != $reply->user_id){
-        //        $subscription->user->notify(new ThreadWasUpdated($this, $reply));
-        //    }
+        //$this->subscriptions
+        //    ->filter(function ($sub) use ($reply){
+        //        return $sub->user_id != $reply->user_id;
+        //        //return true;
+        //    })
+        //    ->each->notify($reply);
+        //->each(function ($sub) use ($reply){
+        //    $sub->user->notify(new ThreadWasUpdated($this, $reply));
         //}
+        //);
+        
+        foreach ($this->subscriptions as $subscription){
+            if (auth()->id() != $reply->user_id){
+                $subscription->user->notify(new ThreadWasUpdated($this, $reply));
+            }
+        }
         
         return $reply;
     }
