@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Notifications\ThreadWasUpdated;
 use Illuminate\Database\Eloquent\Model;
 
 class Thread extends Model
@@ -76,7 +77,6 @@ class Thread extends Model
             })
             ->each->notify($this, $reply);
         
-        return $reply;
         //$this->subscriptions
         //    ->filter(function ($sub) use ($reply){
         //        return $sub->user_id != $reply->user_id;
@@ -92,11 +92,13 @@ class Thread extends Model
         //});
         
         //foreach ($this->subscriptions as $subscription){
-        //    if (auth()->id() != $reply->user_id){
+        //    if ($subscription->user_id != $reply->user_id){
         //        $subscription->user->notify(new ThreadWasUpdated($this, $reply));
         //    }
         //}
-        
+    
+        return $reply;
+    
     }
     
     public function subscriptions()

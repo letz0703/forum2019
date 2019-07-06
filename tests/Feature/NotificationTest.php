@@ -2,10 +2,8 @@
 
 namespace Tests\Feature;
 
-use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Notifications\DatabaseNotification;
-use Illuminate\Notifications\Notification;
 use Tests\TestCase;
 
 class NotificationTest extends TestCase
@@ -19,23 +17,24 @@ class NotificationTest extends TestCase
     }
     
     /** @test */
-    public function a_notifications_is_prepared_when_a_subscribed_thread_received_a_new_reply()
+    public function a_notifications_is_prepared_when_a_subscribed_thread_received_a_new_reply_that_is_not_by_current_user()
     {
-        create(DatabaseNotification::class);
-        //$thread = create('App\Thread')->subscribe();
-        //$thread->addReply([
-        //    'user_id' => auth()->id(),
-        //    'body'    => 'body'
-        //]);
+        //create(DatabaseNotification::class);
+        $thread = create('App\Thread')->subscribe();
+        
+        $this->assertCount(0, auth()->user()->fresh()->notifications);
     
-        //auth()->user()->notify(new ThreadWasUpdated($thread, $reply));
+        $reply = $thread->addReply([
+            'user_id' => auth()->id(),
+            'body'    => 'body'
+        ]);
+        
+        $this->assertCount(0, auth()->user()->fresh()->notifications);
     
-        //$this->assertCount(0, auth()->user()->fresh()->notifications);
-    
-        //$thread->addReply([
-        //    'user_id' => create('App\User')->id,
-        //    'body'    => 'body'
-        //]);
+        $thread->addReply([
+            'user_id' => create('App\User')->id,
+            'body'    => 'body'
+        ]);
         
         $this->assertCount(1, auth()->user()->notifications);
     }
@@ -60,16 +59,15 @@ class NotificationTest extends TestCase
     {
         create(DatabaseNotification::class);
     
-        $this->assertCount(1, auth()->user()->unreadNotifications);
-        
-        $user = auth()->user();
-        $notificationId = $user->unreadNotifications->first()->id;
-        
-        $endpoint = "/profiles/{$user->name}/notifications/{$notificationId}";
-        
-        
-        $this->delete($endpoint);
-        $this->assertCount(0, $user->fresh()->unreadNotifications);
+        tap(auth()->user(), function($user){
+            $this->assertCount(1, $user->unreadNotifications);
+    
+            $notificationId = $user->unreadNotifications->first()->id;
+    
+            $endpoint = "/profiles/".$user->name."/notifications/{$notificationId}";
+            $this->delete($endpoint);
+            $this->assertCount(0, $user->fresh()->unreadNotifications);
+        });
     }
     
 }
