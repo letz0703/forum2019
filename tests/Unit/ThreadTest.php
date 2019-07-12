@@ -54,7 +54,17 @@ class ThreadTest extends TestCase
         $this->assertEquals($thread->path(), "/threads/{$thread->channel->slug}/{$thread->id}");
     }
     
-    
+    /** @test */
+    public function thread_can_check_auth_user_have_read_all_replies()
+    {
+        $this->signIn();
+        $thread = create('App\Thread');
+        $this->assertTrue($thread->hasUpdatesFor(auth()->user()));
+        // visit the thread page
+        $key = sprintf("users.%s.visits.%s", auth()->id(), $thread->id);
+        cache()->forever($key, \Carbon\Carbon::now());
+        $this->assertFalse($thread->hasUpdatesFor(auth()->user()));
+    }
     
     
 }

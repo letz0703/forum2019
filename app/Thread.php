@@ -2,8 +2,6 @@
 
 namespace App;
 
-use App\Events\ThreadHasNewReply;
-use App\Notifications\ThreadWasUpdated;
 use Illuminate\Database\Eloquent\Model;
 
 class Thread extends Model
@@ -144,6 +142,12 @@ class Thread extends Model
     public function getReplyCountAttribute()
     {
         return $this->replies()->count();
+    }
+    
+    public function hasUpdatesFor($user)
+    {
+        $key = sprintf("users.%s.visits.%s", auth()->id(), $this->id);
+        return $this->updated_at > cache($key);
     }
     
     

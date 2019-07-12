@@ -1,6 +1,6 @@
 <template>
     <div>
-        <li class="dropdown" v-if="notifications.length">
+        <li class="dropdown">
             <!--<li class="dropdown nav-item">-->
             <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
                 Notifications
@@ -8,7 +8,7 @@
 
             <ul class="dropdown-menu">
                 <li v-for="notification in notifications">
-                    <a :href="notification.data.link" v-text="notification.data.message"
+                    <a href="notification.data.link" v-text="notification.data.message"
                        @click="markAsRead(notification)"
                     ></a>
                 </li>

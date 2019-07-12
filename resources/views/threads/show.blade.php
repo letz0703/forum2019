@@ -34,7 +34,7 @@
                         {{--@include('threads.reply')--}}
                         {{--@endforeach--}}
                         {{--<div style="align-self:center;">--}}
-{{--                            {{ $thread->replies()->links() }}--}}
+                        {{--                            {{ $thread->replies()->links() }}--}}
                         {{--</div>--}}
                     </div>
 

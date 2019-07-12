@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Channel;
 use App\Filters\ThreadFilters;
 use App\Thread;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class ThreadController extends Controller{
@@ -26,6 +27,8 @@ class ThreadController extends Controller{
     }
     
     public function show($channel, Thread $thread){
+        $key = sprintf("users.%s.visits%s", auth()->id(), $thread->id);
+        cache()->forever($key, Carbon::now());
         //return $thread->load('replies');
         //return Thread::withCount('replies')->first();
         //return $thread;
