@@ -46,9 +46,10 @@ class NotificationTest extends TestCase
     public function a_thread_send_notification_to_all_subscribers_when_a_reply_is_left()
     {
         Notification::fake();
-        $this->signIn()
-             ->create('App\Thread')
-             ->subscribe()
+    
+        $this->signIn();
+        
+        create('App\Thread')->subscribe()
              ->addReply([
                  'user_id' => create('App\User')->id,
                  'body'    => 'body',
