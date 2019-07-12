@@ -120,8 +120,22 @@ class ParticipateinForumTest extends TestCase
         
         $this->assertCount(2, $response['data']);
         $this->assertEquals(2, $response['total']);
-        
     }
+    
+    /** @test */
+    public function reply_can_not_be_created_when_it_has_spam()
+    {
+        $this->signIn();
+        $thread = create('App\Thread');
+        $reply = create('App\Reply',[
+            'body' => 'Yahoo Customer Service'
+        ]);
+        
+        $this->expectException(\Exception::class);
+        $this->post($thread->path() . '/replies', $reply->toArray());
+    
+    }
+    
     
     
 }

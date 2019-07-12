@@ -14,11 +14,11 @@
                                     <h5 class="flex">
                                         <a href="{{ $thread->path() }}">
                                             @if(auth()->check() && $thread->hasUpdatesFor(auth()->user()))
-                                                <strong>
-                                                    {{ $thread->title }}
-                                                </strong>
-                                            @else
                                                 {{ $thread->title }}
+                                            @else
+                                                <span style="color:grey;">
+                                                {{ $thread->title }}
+                                                </span>
                                             @endif
                                         </a>
                                     </h5>
