@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Inspections\Spam;
 use App\Reply;
-use App\Spam;
 use App\Thread;
 
 class ReplyController extends Controller
@@ -20,9 +20,9 @@ class ReplyController extends Controller
     
     
     /**
-     * @param        $channelId
-     * @param Thread $thread
-     * @param Spam   $spam
+     * @param                                      $channelId
+     * @param Thread                               $thread
+     * @param Spam                       $spam
      *
      * @return $this|\Illuminate\Http\RedirectResponse
      */
