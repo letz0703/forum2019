@@ -11,7 +11,8 @@ class SpamTest extends TestCase
     use RefreshDatabase;
     
     /** @test */
-    public function it_detects_spam()
+    //public function it_detects_spam()
+    public function it_checks_for_invalid_keywords()
     {
         $spam = new \App\Spam();
         
@@ -19,4 +20,13 @@ class SpamTest extends TestCase
         $this->expectException(\Exception::class);
         $this->assertTrue($spam->detect('Yahoo customer service'));
     }
+    
+    /** @test */
+    public function it_checks_for_any_key_being_held_down()
+    {
+        $spam = new \App\Spam();
+        $this->expectException('Exception');
+        $spam->detect('aaaaaaa');
+    }
+    
 }
