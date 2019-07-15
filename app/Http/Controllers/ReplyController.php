@@ -10,7 +10,7 @@ class ReplyController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth',['except' => 'index']);
+        $this->middleware('auth', ['except' => 'index']);
     }
     
     public function index($channel, Thread $thread)
@@ -27,23 +27,14 @@ class ReplyController extends Controller
      */
     public function store($channelId, Thread $thread)
     {
-        //$this->validate(request(), [
-        //    'body' => 'required',
-        //]);
-        //
-        //$spam->detect(request('body'));
         $this->validateReply();
-    
+        
         $reply = $thread->addReply([
             'user_id' => auth()->id(),
             'body'    => request('body'),
         ]);
         
-        if (request()->expectsJson()){
-            return $reply->load('owner');
-        }
-        
-        return back();
+        return $reply->load('owner');
     }
     
     public function update(Reply $reply, Spam $spam)
@@ -63,9 +54,9 @@ class ReplyController extends Controller
         //if ($reply->user_id != auth()->id()){
         //    return response([], 403);
         //}
-        if ( request()->expectsJson()){
+        if (request()->expectsJson()){
             $reply->delete();
-            return response(['status'=>'reply deleted']);
+            return response(['status' => 'reply deleted']);
         }
         $reply->delete();
         return back();
@@ -76,7 +67,7 @@ class ReplyController extends Controller
         $this->validate(request(), [
             'body' => 'required',
         ]);
-    
+        
         resolve(Spam::class)->detect(request('body'));
     }
     
