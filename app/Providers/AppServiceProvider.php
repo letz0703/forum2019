@@ -27,15 +27,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //View::share('channels', Channel::all());
-        
-        //View::composer('*', function($view){
-        //    $view->with('channels', Channel::all());
-        //});
-        
-        //dd('query'); // X
-        //var_dump('query');
-        
         View::composer('*', function($view){
             $channels = \Cache::rememberForever('channels', function(){
                 return Channel::all();
@@ -43,5 +34,7 @@ class AppServiceProvider extends ServiceProvider
             
             $view->with('channels', $channels);
         });
+        
+        \Validator::extend('spamfree', 'App\Rules\SpamFree@passes');
     }
 }

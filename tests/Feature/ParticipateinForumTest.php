@@ -50,7 +50,8 @@ class ParticipateinForumTest extends TestCase
         $reply = make('App\Reply', ['body' => null]);
         
         $this->post($thread->path() . '/replies', $reply->toArray())
-             ->assertSessionHasErrors('body');
+             ->assertStatus(422);
+             //->assertSessionHasErrors('body');
     }
     
     /** @test */
@@ -128,15 +129,15 @@ class ParticipateinForumTest extends TestCase
     {
         $this->signIn();
         $thread = create('App\Thread');
-        $reply = create('App\Reply',[
-            'body' => 'Yahoo Customer Service'
+        $reply = create('App\Reply', [
+            'body' => 'Yahoo Customer Service',
         ]);
         
-        $this->expectException(\Exception::class);
-        $this->post($thread->path() . '/replies', $reply->toArray());
-    
+        //$this->expectException(\Exception::class);
+        $this->post($thread->path() . '/replies', $reply->toArray())
+             ->assertStatus(422);
+        
     }
-    
     
     
 }
