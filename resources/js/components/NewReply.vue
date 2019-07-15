@@ -37,10 +37,15 @@
         methods: {
             addReply() {
                 axios.post(location.pathname+'/replies', { body: this.body })
-                     .then(data =>{
+                     .catch(error => {
+//                         console.log('ERRORS');
+//                         console.log(errors.response.data);
+                         flash(error.response.data,'danger');
+                     })
+                     .then(({data}) =>{
                          this.body = '';
                          flash('reply has been posted');
-                         this.$emit('created', data.data);
+                         this.$emit('created', data);
                      });
             }
         }

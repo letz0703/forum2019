@@ -44,6 +44,7 @@ class ParticipateinForumTest extends TestCase
     public function a_reply_requires_a_body()
     {
         $this->withExceptionHandling()->signIn();
+        //$this->signIn();
         
         $thread = create('App\Thread');
         $reply = make('App\Reply', ['body' => null]);

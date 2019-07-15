@@ -20,30 +20,39 @@ class ReplyController extends Controller
     
     
     /**
-     * @param                                      $channelId
-     * @param Thread                               $thread
+     * @param        $channelId
+     * @param Thread $thread
      *
-     * @return $this|\Illuminate\Http\RedirectResponse
+     * @return $this|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
      */
     public function store($channelId, Thread $thread)
     {
-        $this->validateReply();
+        try {
+            $this->validateReply();
         
-        $reply = $thread->addReply([
-            'user_id' => auth()->id(),
-            'body'    => request('body'),
-        ]);
+            $reply = $thread->addReply([
+                'user_id' => auth()->id(),
+                'body'    => request('body'),
+            ]);
+        
+        } catch (\Exception $e) {
+            return response('You can not leave reply this time', 422);
+        }
         
         return $reply->load('owner');
     }
     
-    public function update(Reply $reply, Spam $spam)
+    public function update(Reply $reply)
     {
         $this->authorize('update', $reply);
+        try {
+            $this->validateReply();
+            $reply->update(request(['body']));
+        } catch ( \Exception $e ) {
+            return response('You can not update this time', 422);
+        }
         //$this->validate(request(), ['body' => 'required']);
         //$spam->detect(request('body'));
-        $this->validateReply();
-        $reply->update(request(['body']));
         //$reply->update(['body'=>request('body')]);
     }
     

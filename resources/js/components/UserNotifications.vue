@@ -1,6 +1,6 @@
 <template>
     <div>
-        <li class="dropdown">
+        <li class="dropdown" v-show="notifications.length">
             <!--<li class="dropdown nav-item">-->
             <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
                 Notifications
