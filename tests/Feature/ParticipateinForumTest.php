@@ -139,5 +139,21 @@ class ParticipateinForumTest extends TestCase
         
     }
     
+    /** @test */
+    public function user_can_only_rely_once_per_minute()
+    {
+        $this->signIn();
+        $thread = create('App\Thread');
+        $reply = make('App\Reply', [
+            'body' => 'simple reply'
+        ]);
+        
+        $this->post($thread->path() . '/replies', $reply->toArray())
+             ->assertStatus(201);
+        
+        $this->post($thread->path() . '/replies', $reply->toArray())
+             ->assertStatus(422);
+    }
+    
     
 }
