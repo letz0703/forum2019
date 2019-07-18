@@ -59,7 +59,7 @@ class ThreadCreateTest extends TestCase
         factory('App\Channel', 2)->create();
         $this->publishThread(['channel_id' => null])
              ->assertSessionHasErrors('channel_id');
-        $this->publishThread(['channel_id'=>999])
+        $this->publishThread(['channel_id' => 999])
              ->assertSessionHasErrors('channel_id');
     }
     
@@ -69,7 +69,7 @@ class ThreadCreateTest extends TestCase
         $this->withExceptionHandling();
         $thread = create('App\Thread');
         $this->delete($thread->path())->assertRedirect('login');
-    
+        
         $this->signIn();
         $this->delete($thread->path())->assertStatus(403);
     }
@@ -80,8 +80,8 @@ class ThreadCreateTest extends TestCase
     {
         $this->signIn();
         
-        $thread = create('App\Thread',['user_id'=>auth()->id()]);
-        $reply = create('App\Reply',['thread_id'=> $thread->id]);
+        $thread = create('App\Thread', ['user_id' => auth()->id()]);
+        $reply = create('App\Reply', ['thread_id' => $thread->id]);
         
         $response = $this->json('DELETE', $thread->path());
         $response->assertStatus(204);
@@ -101,7 +101,6 @@ class ThreadCreateTest extends TestCase
     }
     
     
-    
     public function publishThread($overrides = [])
     {
         $this->signIn()->withExceptionHandling();
@@ -109,10 +108,6 @@ class ThreadCreateTest extends TestCase
         
         return $this->post('/threads', $thread->toArray());
     }
-    
-    
-    
-    
     
     
 }

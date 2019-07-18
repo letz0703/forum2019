@@ -50,8 +50,7 @@ class ParticipateinForumTest extends TestCase
         $reply = make('App\Reply', ['body' => null]);
         
         $this->post($thread->path() . '/replies', $reply->toArray())
-             ->assertStatus(422);
-             //->assertSessionHasErrors('body');
+             ->assertSessionHasErrors('body');
     }
     
     /** @test */
@@ -127,6 +126,7 @@ class ParticipateinForumTest extends TestCase
     /** @test */
     public function reply_can_not_be_created_when_it_has_spam()
     {
+        $this->withExceptionHandling();
         $this->signIn();
         $thread = create('App\Thread');
         $reply = create('App\Reply', [
@@ -134,7 +134,7 @@ class ParticipateinForumTest extends TestCase
         ]);
         
         //$this->expectException(\Exception::class);
-        $this->post($thread->path() . '/replies', $reply->toArray())
+        $this->json('post',$thread->path() . '/replies', $reply->toArray())
              ->assertStatus(422);
         
     }
@@ -142,6 +142,7 @@ class ParticipateinForumTest extends TestCase
     /** @test */
     public function user_can_only_rely_once_per_minute()
     {
+        $this->withExceptionHandling();
         $this->signIn();
         $thread = create('App\Thread');
         $reply = make('App\Reply', [
@@ -152,7 +153,7 @@ class ParticipateinForumTest extends TestCase
              ->assertStatus(201);
         
         $this->post($thread->path() . '/replies', $reply->toArray())
-             ->assertStatus(422);
+             ->assertStatus(429);
     }
     
     

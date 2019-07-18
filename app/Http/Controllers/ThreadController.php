@@ -6,6 +6,7 @@ use App\Channel;
 use App\Filters\ThreadFilters;
 use App\Thread;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class ThreadController extends Controller
 {
@@ -67,7 +68,7 @@ class ThreadController extends Controller
     
     public function store(Request $request)
     {
-        //dd(request()->all());
+        
         $this->validate($request, [
             'title'      => 'required|spamfree',
             'body'       => 'required|spamfree',
@@ -75,7 +76,6 @@ class ThreadController extends Controller
         ]);
         
         
-        //dd($request->all());
         $thread = Thread::create([
             'user_id'    => auth()->id(),
             'channel_id' => request('channel_id'),

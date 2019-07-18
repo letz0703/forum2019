@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreatePostRequest;
 use App\Reply;
 use App\Thread;
-use Illuminate\Support\Facades\Gate;
 
 class ReplyController extends Controller
 {
@@ -19,32 +19,17 @@ class ReplyController extends Controller
     }
     
     /**
-     * @param        $channelId
-     * @param Thread $thread
+     * @param                   $channelId
+     * @param Thread            $thread
+     *
+     * @param CreatePostRequest $request
      *
      * @return $this|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
      */
-    public function store($channelId, Thread $thread)
+    public function store($channelId, Thread $thread, CreatePostRequest $request)
     {
-        if (Gate::denies('create', new Reply)) {
-            return response(
-                'You post too frequently. Please take a break', 422
-            );
-        }
-        
-        try {
-            //$this->authorize('create', new Reply);
-            $this->validate(request(), ['body' => 'required|spamfree']);
-            $reply = $thread->addReply([
-                'user_id' => auth()->id(),
-                'body'    => request('body'),
-            ]);
-        
-        } catch (\Exception $e) {
-            return response('You can not leave reply this time', 422);
-        }
-        
-        return $reply->load('owner');
+        return $thread->addReply(['user_id' => auth()->id(), 'body' => request('body')])
+                      ->load('owner');
     }
     
     public function update(Reply $reply)
@@ -53,7 +38,7 @@ class ReplyController extends Controller
         try {
             $this->validate(request(), ['body' => 'required|spamfree']);
             $reply->update(request(['body']));
-        } catch ( \Exception $e ) {
+        } catch (\Exception $e) {
             return response('You can not update this time', 422);
         }
         //$this->validate(request(), ['body' => 'required']);
