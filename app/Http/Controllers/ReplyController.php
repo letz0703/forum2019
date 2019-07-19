@@ -28,19 +28,17 @@ class ReplyController extends Controller
      */
     public function store($channelId, Thread $thread, CreatePostRequest $request)
     {
-        return $thread->addReply(['user_id' => auth()->id(), 'body' => request('body')])
-                      ->load('owner');
+        return $thread->addReply([
+            'user_id' => auth()->id(),
+            'body'    => request('body'),
+        ])->load('owner');
     }
     
     public function update(Reply $reply)
     {
         $this->authorize('update', $reply);
-        try {
-            $this->validate(request(), ['body' => 'required|spamfree']);
-            $reply->update(request(['body']));
-        } catch (\Exception $e) {
-            return response('You can not update this time', 422);
-        }
+        $this->validate(request(), ['body' => 'required|spamfree']);
+        $reply->update(request(['body']));
         //$this->validate(request(), ['body' => 'required']);
         //$spam->detect(request('body'));
         //$reply->update(['body'=>request('body')]);
