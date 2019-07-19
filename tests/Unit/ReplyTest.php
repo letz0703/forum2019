@@ -23,7 +23,17 @@ class ReplyTest extends TestCase
         $this->assertTrue($reply->wasJustPublished());
         $reply->created_at = \Carbon\Carbon::now()->subMonth();
         $this->assertFalse($reply->wasJustPublished());
-        
     }
+    
+    /** @test */
+    public function it_can_fetch_all_mentioned_users_in_the_body()
+    {
+        $reply = create('App\Reply',[
+            'body' => '@JoneDoe wants to talk @JaneDoe'
+        ]);
+        
+        $this->assertEquals(['JoneDoe','JaneDoe'], $reply->mentionedUsers());
+    }
+    
     
 }
