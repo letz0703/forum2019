@@ -49,6 +49,16 @@ class Reply extends Model
         return $matches[1];
     }
     
+    public function setBodyAttribute($body)
+    {
+        $this->attributes['body'] = preg_replace(
+            '/@([^\s]+)/',
+            "<a href='/profiles/$1'>$0</a>",
+            $body
+        );
+    }
+    
+    
     public function wasJustPublished()
     {
         return $this->created_at->gt(Carbon::now()->subMinute());
