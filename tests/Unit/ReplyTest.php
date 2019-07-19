@@ -2,6 +2,7 @@
 
 namespace Tests\Unit;
 
+use App\Reply;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -38,9 +39,10 @@ class ReplyTest extends TestCase
     /** @test */
     public function it_wraps_mentioned_user_name_within_anchor_tags()
     {
-        $reply = create('App\Reply',['body' => 'Hello @JaneDoe']);
+        //$reply = create('App\Reply',['body' => 'Hello @Jane-Doe']);
+        $reply = new Reply(['body' => 'Hello @Jane-Doe']);
         $this->assertEquals(
-            "Hello <a href='/profiles/JaneDoe'>@JaneDoe</a>",
+            "Hello <a href='/profiles/Jane-Doe'>@Jane-Doe</a>",
             $reply->body
         );
     }
