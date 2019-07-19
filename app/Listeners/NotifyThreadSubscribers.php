@@ -14,9 +14,8 @@ class NotifyThreadSubscribers
      */
     public function handle(ThreadReceivedNewReply $event)
     {
-        $thread = $event->reply->thread;
         //$event->thread->notifySubscribers($event->reply);
-        $thread->subscriptions
+        $event->reply->thread->subscriptions
             ->where('user_id', '!=', $event->reply->user_id)
             ->each
             ->notify($event->reply);
