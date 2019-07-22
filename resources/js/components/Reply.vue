@@ -21,7 +21,7 @@
                     <button class="btn btn-link btn-sm" @click="cancel" type="button">cancel</button>
                 </form>
             </div>
-            <div v-else v-text="body"></div>
+            <div v-else v-html="body"></div>
         </div>
         <div class="card-footer level" v-if="canUpdate">
             <button class="btn btn-outline-dark btn-sm mr-1" @click="editing = true">
