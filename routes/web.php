@@ -39,3 +39,4 @@ Route::get('/profiles/{user}','ProfileController@show')->name('profile');
 
 Route::get('/profiles/{user}/notifications','NotificationController@index');
 Route::delete('/profiles/{user}/notifications/{notification}','NotificationController@destroy');
+Route::get('/api/users','Api\UserController@index');
