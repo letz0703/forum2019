@@ -69,7 +69,8 @@ class ThreadReadTest extends TestCase
         $response = $this->getJson('/threads?popular=1')->json();
         //$response->assertSee($threadWith3Replies->title);
         //dd($response);
-        $this->assertEquals([3, 2, 0], array_column($response, 'replies_count'));
+        
+        $this->assertEquals([3, 2, 0], array_column($response['data'], 'replies_count'));
         //$response->assertEquals([3,2,0],  )
     }
     
@@ -83,7 +84,7 @@ class ThreadReadTest extends TestCase
         $response = $this->getJson('/threads?unaswered=1')->json();
         //dd($response);
         
-        $this->assertCount(1, $response);
+        $this->assertCount(1, $response['data']);
         
     }
     

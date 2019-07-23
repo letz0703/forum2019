@@ -106,9 +106,12 @@ class ThreadController extends Controller
             $threads->where('channel_id', $channel->id);
         }
         
+        return $threads->paginate(5);
+        
         //dd($threads->toSql());
         
-        return $threads->get();
+        //return $threads->get();
+        
     }
     
 }
