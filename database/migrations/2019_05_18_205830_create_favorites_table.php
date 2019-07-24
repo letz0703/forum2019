@@ -20,7 +20,7 @@ class CreateFavoritesTable extends Migration
             $table->string('favorited_type', 50);
             $table->timestamps();
             
-            $table->unique('user_id','favorited_id','favorited_type');
+            $table->unique(['user_id','favorited_id','favorited_type']);
         });
     }
 
