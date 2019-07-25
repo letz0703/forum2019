@@ -18,6 +18,8 @@ class UserAvatarController extends Controller
                                       //->storeAs('avatars','avatar.jpg','public')
             ->store('avatars', 'public')
         ]);
+        
+        return back();
     }
     
 }

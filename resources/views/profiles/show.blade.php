@@ -8,9 +8,21 @@
                     <h1> {{ $profileUser->name }}
                         <small>Since {{ $profileUser->created_at->diffForHumans() }}</small>
                     </h1>
-                        @can('update', $profileUser)
-                            Add Form Here
-                        @endcan
+
+                @can('update', $profileUser)
+                    <!--Add Form Here-->
+                        {{--<form action="/profiles/{{ $profileUser->name }}/avatar" method="POST">--}}
+                        <form action="{{ route('avatar', $profileUser) }}" method="POST"
+                              enctype="multipart/form-data"
+                        >
+                            @csrf
+                            <input type="file" name="avatar">
+                            <button type="submit">Add Avatar</button>
+                        </form>
+                    @endcan
+
+                    <img src="{{ asset($profileUser->avatar_path) }}" width="50" height="50">
+
                     <hr>
                 </div>
                 @forelse($activities as $date => $activity)

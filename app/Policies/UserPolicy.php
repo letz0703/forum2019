@@ -14,5 +14,4 @@ class UserPolicy
         return $signedInUser->id === $user->id;
     }
     
-    
 }
