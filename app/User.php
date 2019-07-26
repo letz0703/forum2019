@@ -3,32 +3,31 @@
 namespace App;
 
 use Carbon\Carbon;
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
     use Notifiable;
-
+    
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'avatar_path'
+        'name', 'email', 'password', 'avatar_path',
     ];
-
+    
     /**
      * The attributes that should be hidden for arrays.
      *
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token', 'email'
+        'password', 'remember_token', 'email',
     ];
-
+    
     /**
      * The attributes that should be cast to native types.
      *
@@ -48,6 +47,12 @@ class User extends Authenticatable
         return $this->hasMany(Thread::class)
                     ->latest();
     }
+    
+    public function avatar()
+    {
+        return $this->avatar_path?: 'avatars/default.jpg';
+    }
+    
     
     public function lastReply()
     {
