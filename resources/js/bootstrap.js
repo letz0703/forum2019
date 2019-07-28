@@ -37,7 +37,7 @@ window.flash = function(message, level = 'success'){
 // window.Vue.prototype.authorize = function(handler) {
 Vue.prototype.authorize = function(handler){
     let user = window.App.user;
-    return user ? handler(window.App.user) : false;
+    return user ? handler(user) : false;
 }
 
 /**

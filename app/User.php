@@ -50,7 +50,7 @@ class User extends Authenticatable
     
     public function avatar()
     {
-        return $this->avatar_path?: 'avatars/default.jpg';
+        return asset($this->avatar_path?: 'avatars/default.jpg');
     }
     
     
