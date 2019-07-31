@@ -38,7 +38,7 @@ class AddAvatarTest extends TestCase
             'avatar' => $file = UploadedFile::fake()->image('avatar.jpg'),
         ]);
         
-        $this->assertEquals('avatars/'.$file->hashName(), auth()->user()->avatar_path);
+        $this->assertEquals(asset('avatars/'.$file->hashName()), auth()->user()->avatar_path);
         
         Storage::disk('public')->assertExists('avatars/'.$file->hashName());
     }
@@ -47,9 +47,9 @@ class AddAvatarTest extends TestCase
     public function a_user_can_determin_their_avatar_path()
     {
         $user = create('App\User');
-        $this->assertEquals('avatars/default.jpg', $user->avatar());
+        $this->assertEquals(asset('avatars/default.jpg'), $user->avatar_path);
         $user->avatar_path = 'avatars/me.jpg';
-        $this->assertEquals('avatars/me.jpg', $user->avatar());
+        $this->assertEquals(asset('avatars/me.jpg'), $user->avatar_path);
     }
     
     
