@@ -11,7 +11,11 @@
                     <div class="card-header">
                         Trending Thread
                     </div>
-                    <div class="card-body">stuff</div>
+                    <div class="card-body">
+                        @foreach($trending as $thread)
+                            <li>{{ $thread->title}}</li>
+                        @endforeach
+                    </div>
                 </div>
             </div>
 
