@@ -13,7 +13,9 @@
                     </div>
                     <div class="card-body">
                         @foreach($trending as $thread)
-                            <li>{{ $thread->title}}</li>
+                            <a href="{{ url($thread->path) }}">
+                                <li>{{ $thread->title}}</li>
+                            </a>
                         @endforeach
                     </div>
                 </div>
