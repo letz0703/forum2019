@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use App\Channel;
 use App\Filters\ThreadFilters;
 use App\Thread;
+use App\Trending;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redis;
 
 class ThreadController extends Controller
 {
@@ -30,16 +30,15 @@ class ThreadController extends Controller
         ]);
     }
     
-    public function show($channel, Thread $thread)
+    public function show($channel, Thread $thread, Trending $trending)
     {
         if (auth()->check()){
             auth()->user()->read($thread);
         }
         
-        Redis::zincrby('trending_threads', 1, json_encode([
-            'title' => $thread->title,
-            'path'  => $thread->path(),
-        ]));
+        $trending->push($thread);
+        
+
         //return $thread->load('replies');
         //return Thread::withCount('replies')->first();
         //return $thread;
