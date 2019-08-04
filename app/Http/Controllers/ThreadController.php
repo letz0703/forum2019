@@ -23,8 +23,8 @@ class ThreadController extends Controller
         if (request()->wantsJson()){
             return $threads;
         }
-        
-        $trending = array_map('json_decode', Redis::zrevrange('trending_threads', 0, -1));
+    
+        $trending = array_map('json_decode', Redis::zrevrange('trending_threads', 0, 4));
         
         //$trending = collect(Redis::zrevrange('trending_threads', 0, -1))->map(function($thread){
         //    return json_decode($thread);
