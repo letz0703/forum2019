@@ -16,21 +16,18 @@ class ThreadController extends Controller
         $this->middleware('auth')->only(['store', 'create', 'destroy']);
     }
     
-    public function index(Channel $channel, ThreadFilters $filters)
+    public function index(Channel $channel, ThreadFilters $filters, Trending $trending)
     {
         $threads = $this->getThreads($channel, $filters);
         
         if (request()->wantsJson()){
             return $threads;
         }
-    
-        $trending = array_map('json_decode', Redis::zrevrange('trending_threads', 0, 4));
         
-        //$trending = collect(Redis::zrevrange('trending_threads', 0, -1))->map(function($thread){
-        //    return json_decode($thread);
-        //});
-        
-        return view('threads.index', compact('threads','trending'));
+        return view('threads.index', [
+            'threads' => $threads,
+            'trending' => $trending->get()
+        ]);
     }
     
     public function show($channel, Thread $thread)
