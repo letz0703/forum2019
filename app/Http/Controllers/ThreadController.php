@@ -36,6 +36,8 @@ class ThreadController extends Controller
             auth()->user()->read($thread);
         }
         
+        $thread->recordVisit();
+        
         $trending->push($thread);
         
 

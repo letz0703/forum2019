@@ -4,12 +4,10 @@ namespace App;
 
 use App\Notifications\ThreadReceivedNewReply;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Redis;
 
 class Thread extends Model
 {
-    
-    use RecordActivity;
+    use RecordActivity, RecordVisit;
     
     protected $guarded = [];
     
@@ -93,10 +91,10 @@ class Thread extends Model
     
     //public function notifySubscribers($reply)
     //{
-        //$this->subscriptions
-        //    ->where('user_id', '!=', $reply->user_id)
-        //    ->each
-        //    ->notify($reply);
+    //$this->subscriptions
+    //    ->where('user_id', '!=', $reply->user_id)
+    //    ->each
+    //    ->notify($reply);
     //}
     
     public function subscriptions()
@@ -151,23 +149,6 @@ class Thread extends Model
     {
         $key = $user->visitedThreadCacheKey($this);
         return $this->updated_at > cache($key);
-    }
-    
-    public function recordVisit()
-    {
-        Redis::incr("threads.{$this->id}.visits");
-        return $this;
-    }
-    
-    public function visits()
-    {
-        return Redis::get("threads.{$this->id}.visits");
-    }
-    
-    public function resetVisits()
-    {
-        Redis::del("threads.{$this->id}.visits");
-        return $this;
     }
     
 }
