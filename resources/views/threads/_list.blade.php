@@ -27,6 +27,9 @@
         <div class="card-body">
             <div class="body">{{ $thread->body }}</div>
         </div>
+        <div class="card-footer">
+            100 Visits
+        </div>
     </div>
 @empty
     <p> There is no relevant article right now</p>

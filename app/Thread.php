@@ -4,6 +4,7 @@ namespace App;
 
 use App\Notifications\ThreadReceivedNewReply;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Redis;
 
 class Thread extends Model
 {
@@ -98,7 +99,6 @@ class Thread extends Model
         //    ->notify($reply);
     //}
     
-    
     public function subscriptions()
     {
         return $this->hasMany(Subscription::class);
@@ -153,5 +153,21 @@ class Thread extends Model
         return $this->updated_at > cache($key);
     }
     
+    public function recordVisit()
+    {
+        Redis::incr("threads.{$this->id}.visits");
+        return $this;
+    }
+    
+    public function visits()
+    {
+        return Redis::get("threads.{$this->id}.visits");
+    }
+    
+    public function resetVisits()
+    {
+        Redis::del("threads.{$this->id}.visits");
+        return $this;
+    }
     
 }
