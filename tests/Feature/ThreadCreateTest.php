@@ -24,6 +24,14 @@ class ThreadCreateTest extends TestCase
     }
     
     /** @test */
+    public function auth_user_must_confirm_their_email_before_creating_a_thread()
+    {
+        $this->publishThread()
+             ->assertRedirect('/threads')
+             ->assertSessionHas('flash', 'You must confirm your email');
+    }
+    
+    /** @test */
     public function au_auth_user_can_create_new_forum_threads()
     {
         $this->signIn();
@@ -99,7 +107,6 @@ class ThreadCreateTest extends TestCase
         //    'subject_type' => get_class($reply)
         //]);
     }
-    
     
     public function publishThread($overrides = [])
     {

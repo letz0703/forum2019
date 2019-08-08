@@ -24,7 +24,6 @@ class ParticipateinForumTest extends TestCase
              ->assertRedirect('login');
     }
     
-    
     /** @test */
     public function an_auth_user_may_paticipate_in_forum_thread()
     {
