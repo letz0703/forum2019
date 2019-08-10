@@ -3,8 +3,10 @@
 namespace App\Providers;
 
 use App\Listeners\NotifyMentionedUsers;
+use App\Listeners\SendEmailConfirmationRequest;
 use App\Listeners\NotifyThreadSubscribers;
 use App\Notifications\ThreadReceivedNewReply;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
 class EventServiceProvider extends ServiceProvider
@@ -18,6 +20,9 @@ class EventServiceProvider extends ServiceProvider
         ThreadReceivedNewReply::class => [
             NotifyMentionedUsers::class,
             NotifyThreadSubscribers::class
+        ],
+        Registered::class =>[
+            SendEmailConfirmationRequest::class
         ]
     ];
 
