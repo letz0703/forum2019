@@ -24,11 +24,11 @@ class RegistrationsTest extends TestCase
     /** @test */
     public function user_can_fully_confirm_their_email_address()
     {
-        $this->signIn(create('App\User',['name'=>'John']));
+        $this->signIn(create('App\User', ['name' => 'John']));
         $this->post('/register', [
-            'name'                  => 'John',
-            'email'                 => 'john@john.com',
-            'password'              => 'foobar',
+            'name'     => 'John',
+            'email'    => 'john@john.com',
+            'password' => 'foobar',
             //'password_confirmation' => 'foobar',
         ]);
         
@@ -37,6 +37,12 @@ class RegistrationsTest extends TestCase
         $this->assertFalse($user->confirmed);
         //dd($user->confirmation_token);
         $this->assertNotNull($user->confirmation_token);
+        
+        $this->get('/register/confirm?token=' . $user->confirmation_token)
+             ->assertRedirect('/threads');
+        
+        $this->assertTrue($user->fresh()->confirmed);
+        //$response->assertRedirect('/threads');
     }
     
 }

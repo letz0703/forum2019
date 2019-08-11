@@ -18,6 +18,8 @@ Route::get('/', function (){
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('/register/confirm','Auth\RegistrationConfirmationController@index');
+
 Route::get('/threads/', 'ThreadController@index');
 Route::get('/threads/create', 'ThreadController@create');
 Route::post('/threads', 'ThreadController@store')->middleware('email-confirmation');

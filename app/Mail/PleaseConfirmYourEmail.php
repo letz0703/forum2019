@@ -10,15 +10,20 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 class PleaseConfirmYourEmail extends Mailable
 {
     use Queueable, SerializesModels;
-
+    /**
+     * @var
+     */
+    public $user;
+    
     /**
      * Create a new message instance.
      *
-     * @return void
+     * @param $user
      */
-    public function __construct()
+    public function __construct($user)
     {
         //
+        $this->user = $user;
     }
 
     /**
