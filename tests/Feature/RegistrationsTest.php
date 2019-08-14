@@ -3,14 +3,13 @@
 namespace Tests\Feature;
 
 use App\Mail\PleaseConfirmYourEmail;
-use App\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Mail;
 use Tests\TestCase;
 
-class RegistrationsTest extends TestCase
-{
+class RegistrationsTest extends TestCase{
+    
     use RefreshDatabase;
     
     /** @test */
@@ -24,25 +23,36 @@ class RegistrationsTest extends TestCase
     /** @test */
     public function user_can_fully_confirm_their_email_address()
     {
-        $this->signIn(create('App\User', ['name' => 'John']));
-        $this->post('/register', [
-            'name'     => 'John',
-            'email'    => 'john@john.com',
-            'password' => 'foobar',
-            //'password_confirmation' => 'foobar',
-        ]);
-        
-        $user = User::whereName('John')->first();
-        //dd($user->confirmed);
+        $user = factory('App\User')->state('unconfirmed')->create();
+        $this->signIn($user);
         $this->assertFalse($user->confirmed);
+        
+        //$this->post(route('register'), [
+        //    'name'     => $user->name,
+        //    'email'    => $user->email,
+        //    'password' => $user->password,
+        //    'password_confirmation' => $user->password
+        //]);
+        
+        //dd($user->confirmed);
         //dd($user->confirmation_token);
         $this->assertNotNull($user->confirmation_token);
-        
-        $this->get('/register/confirm?token=' . $user->confirmation_token)
-             ->assertRedirect('/threads');
-        
+        //
+        //$this->get('/register/confirm?token=' . $user->confirmation_token)
+        $this->get(route('register.confirm', ['token' => $user->confirmation_token]))
+             ->assertRedirect(route('threads'));
+        //
         $this->assertTrue($user->fresh()->confirmed);
-        //$response->assertRedirect('/threads');
+        ////$response->assertRedirect('/threads');
     }
+    
+    /** @test */
+    public function redirect_users_when_the_given_token_is_invalid()
+    {
+        $this->get(route('register.confirm'), ['confirmation_token' => 'invalid'])
+             ->assertRedirect(route('threads'))
+             ->assertSessionHas('flash', 'Unknown token');
+    }
+    
     
 }

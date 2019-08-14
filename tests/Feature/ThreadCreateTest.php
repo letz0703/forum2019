@@ -24,9 +24,12 @@ class ThreadCreateTest extends TestCase
     }
     
     /** @test */
-    public function auth_user_must_confirm_their_email_before_creating_a_thread()
+    public function new_users_must_confirm_their_email_before_creating_a_thread()
     {
-        $this->publishThread()
+        $user = factory('App\User')->state('unconfirmed')->create();
+        $this->signIn($user);
+        $thread = make('App\Thread');
+        $this->post('/threads', $thread->toArray())
              ->assertRedirect('/threads')
              ->assertSessionHas('flash', 'You must confirm your email');
     }
@@ -35,13 +38,10 @@ class ThreadCreateTest extends TestCase
     public function au_auth_user_can_create_new_forum_threads()
     {
         $this->signIn();
-        
         $thread = factory('App\Thread')->make();
-        
         // hit the end point
         $response = $this->post('/threads', $thread->toArray());
         //dd($response->headers->get('Location'));
-        
         $this->get($response->headers->get('Location'))
              ->assertSee($thread->title)
              ->assertSee($thread->body);
