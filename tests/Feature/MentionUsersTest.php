@@ -22,7 +22,7 @@ class MentionUsersTest extends TestCase
         $reply = create('App\Reply', [
             'body' => '@JaneDoe look at this notify @David',
         ]);
-        $this->json('post', $thread->path() . '/replies', $reply->toArray());
+        $response = $this->json('post', $thread->path() . '/replies', $reply->toArray());
         $this->assertCount(1, $jane->notifications);
     }
     

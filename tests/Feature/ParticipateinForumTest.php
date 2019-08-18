@@ -12,7 +12,7 @@ class ParticipateinForumTest extends TestCase
     
     
     /** @test */
-    public function unauth_user_may_not_participate_in_forum_thread()
+    public function unauthorized_user_may_not_participate_in_forum_thread()
     {
         //$this->expectException('Illuminate\Auth\AuthenticationException');
         //$thread = factory('App\Thread')->create();
@@ -32,7 +32,6 @@ class ParticipateinForumTest extends TestCase
         $reply = factory('App\Reply')->create(['thread_id' => $thread->id]);
         
         $this->post($thread->path() . '/replies', $reply->toArray());
-        
         $this->get($thread->path());
         //->assertSee($reply->body);
         $this->assertDatabaseHas('replies', ['body' => $reply->body]);

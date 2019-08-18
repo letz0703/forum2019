@@ -20,19 +20,21 @@ class ThreadController extends Controller
     {
         $threads = $this->getThreads($channel, $filters);
         
-        if (request()->wantsJson()){
+        if (request()->wantsJson())
+        {
             return $threads;
         }
         
         return view('threads.index', [
-            'threads' => $threads,
-            'trending' => $trending->get()
+            'threads'  => $threads,
+            'trending' => $trending->get(),
         ]);
     }
     
     public function show($channel, Thread $thread, Trending $trending)
     {
-        if (auth()->check()){
+        if (auth()->check())
+        {
             auth()->user()->read($thread);
         }
         
@@ -40,7 +42,7 @@ class ThreadController extends Controller
         
         $trending->push($thread);
         
-
+        
         //return $thread->load('replies');
         //return Thread::withCount('replies')->first();
         //return $thread;
@@ -64,7 +66,8 @@ class ThreadController extends Controller
         //$thread->replies()->delete();
         $thread->delete();
         
-        if (request()->wantsJson()){
+        if (request()->wantsJson())
+        {
             return response([], 204);
         }
         
@@ -79,12 +82,21 @@ class ThreadController extends Controller
             'body'       => 'required|spamfree',
             'channel_id' => 'required|exists:channels,id',
         ]);
-    
+        
+        
+        //if ( Thread::whereTitle(request('title'))->exists()){
+        //
+        //    pereg_replace_callback(/\d+$/, function($slug){ }, $max);
+        //    $this->incrementSlug();
+        //}
+        $slug = str_slug(request('title'));
+        
         $thread = Thread::create([
             'user_id'    => auth()->id(),
             'channel_id' => request('channel_id'),
             'title'      => request('title'),
             'body'       => request('body'),
+            'slug'       => request('title')
         ]);
         
         return redirect($thread->path())
@@ -106,7 +118,8 @@ class ThreadController extends Controller
     {
         $threads = Thread::filter($filters)->latest();
         
-        if ($channel->exists){
+        if ($channel->exists)
+        {
             $threads->where('channel_id', $channel->id);
         }
         
