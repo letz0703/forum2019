@@ -93,5 +93,15 @@ class ThreadTest extends TestCase
         $this->assertTrue(Thread::whereSlug('foo-title-3')->exists());
     }
     
+    /** @test */
+    public function thread_title_ends_with_number_should_have_proper_thread()
+    {
+        $this->signIn();
+        $thread = create('App\Thread',['title' => 'Foo Title 1', 'slug' => 'foo-title-1']);
+        $this->post(route('threads'), $thread->toArray());
+        $this->assertTrue(Thread::whereSlug('foo-title-1-2')->exists());
+    }
+    
+    
     
 }
