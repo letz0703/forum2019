@@ -2,6 +2,7 @@
 
 namespace App\Policies;
 
+use App\Reply;
 use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
@@ -13,5 +14,4 @@ class UserPolicy
     {
         return $signedInUser->id === $user->id;
     }
-    
 }

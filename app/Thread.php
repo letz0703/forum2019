@@ -171,5 +171,4 @@ class Thread extends Model
         $this->attributes['slug'] = $slug;
         
     }
-    
 }

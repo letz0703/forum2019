@@ -18,7 +18,7 @@ Route::get('/', function (){
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/register/confirm','Auth\RegistrationConfirmationController@index')->name('register.confirm');
+Route::get('/register/confirm', 'Auth\RegistrationConfirmationController@index')->name('register.confirm');
 
 Route::get('/threads/', 'ThreadController@index')->name('threads');
 Route::get('/threads/create', 'ThreadController@create');
@@ -32,10 +32,14 @@ Route::delete('/threads/{channel}/{thread}/subscriptions', 'ThreadSubscriptionCo
 Route::get('/threads/{channel}/{thread}/replies', 'ReplyController@index');
 Route::delete('/threads/{channel}/{thread}', 'ThreadController@destroy');
 Route::post('/threads/{channel}/{thread}/replies', 'ReplyController@store');
+
 Route::post('/replies/{reply}/favorites', 'FavoriteController@store');
 Route::delete('/replies/{reply}/favorites', 'FavoriteController@destroy');
 Route::delete('/replies/{reply}', 'ReplyController@destroy');
 Route::patch('/replies/{reply}', 'ReplyController@update');
+Route::post('/replies/{reply}/best', 'BestReplyController@store')
+->name('best-replies.store');
+
 
 Route::get('/profiles/{user}', 'ProfileController@show')->name('profile');
 

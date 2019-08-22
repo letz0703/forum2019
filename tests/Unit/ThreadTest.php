@@ -104,6 +104,17 @@ class ThreadTest extends TestCase
         $this->assertTrue(Thread::whereSlug('foo-title-1-2')->exists());
     }
     
+    /** @test */
+    public function it_knows_best_reply()
+    {
+        $this->signIn();
+        $reply = create('App\Reply');
+        $this->assertFalse($reply->isBest());
+        $reply->thread->update(['best_reply_id'=>$reply->id]);
+        $this->assertTrue($reply->fresh()->isBest());
+    }
+    
+    
     
     
 }
