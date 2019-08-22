@@ -24,6 +24,10 @@ class Thread extends Model
             //});
         });
         
+        static::created(function($thread){
+            $thread->update(['slug' => $thread->title]);
+        });
+        
         //static::deleting(function ($thread){
         //    $thread->replies()->delete();
         //});
@@ -165,6 +169,7 @@ class Thread extends Model
             $slug = "{$origin}-" . $count++;
         }
         $this->attributes['slug'] = $slug;
+        
     }
     
 }

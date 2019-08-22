@@ -84,10 +84,12 @@ class ThreadTest extends TestCase
     public function a_thread_requires_a_unique_slug()
     {
         $this->signIn();
-        $thread = create('App\Thread', ['title' => 'Foo title', 'slug' => 'foo-title']);
-        $this->assertEquals($thread->fresh()->slug, 'foo-title');
+        $thread = create('App\Thread',['title' => 'Foo title']);
+        $this->assertEquals('foo-title',$thread->slug);
+        //$thread = create('App\Thread', ['title' => 'Foo title']);
+        //$this->assertEquals($thread->fresh()->slug, 'foo-title-2');
         $this->post(route('threads'), $thread->toArray());
-        //$this->assertDatabaseHas('threads', ['slug'=>'foo-title-2']);
+        $this->assertDatabaseHas('threads', ['slug'=>'foo-title-2']);
         $this->assertTrue(Thread::whereSlug('foo-title-2')->exists());
         $this->post(route('threads'), $thread->toArray());
         $this->assertTrue(Thread::whereSlug('foo-title-3')->exists());
