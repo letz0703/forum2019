@@ -1,6 +1,6 @@
 <template>
-    <div :id="'reply-'+id" class="card">
-        <div class="card-header">
+    <div :id="'reply-'+id" class="card" >
+        <div class="card-header" :class="isBest?'bg-success text-white': 'bg-default'">
             <div class="level">
                 <h5 class="flex">
                     <a :href="'/profiles/'+data.owner.name" v-text="data.owner.name"></a>
@@ -23,11 +23,16 @@
             </div>
             <div v-else v-html="body"></div>
         </div>
-        <div class="card-footer level" v-if="canUpdate">
-            <button class="btn btn-outline-dark btn-sm mr-1" @click="editing = true">
-                Edit
-            </button>
-            <button class="btn btn-danger btn-sm" @click="destroy">delete</button>
+        <div class="card-footer level">
+            <div v-if="canUpdate">
+                <button class="btn btn-outline-dark btn-sm mr-1" @click="editing = true">
+                    Edit
+                </button>
+                <button class="btn btn-danger btn-sm mr-1" @click="destroy">delete</button>
+            </div>
+            <button class="btn btn-primary btn-sm mr-1 ml-auto" @click="markBest"
+                    v-show="! isBest"
+            >Best Reply?? </button>
         </div>
     </div>
 </template>
@@ -45,7 +50,8 @@
                 editing: false,
                 body: this.data.body,
                 tempbody: '',
-                id: this.data.id
+                id: this.data.id,
+                isBest: false,
             };
         },
 
@@ -93,6 +99,10 @@
                 //                $(this.$el).fadeOut(100, () =>{
                 //                    flash('your reply has been deleted');
                 //                });
+            },
+
+            markBest() {
+                this.isBest = true;
             }
         }
     }
