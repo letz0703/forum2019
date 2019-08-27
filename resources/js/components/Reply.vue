@@ -1,5 +1,5 @@
 <template>
-    <div :id="'reply-'+id" class="card" >
+    <div :id="'reply-'+id" class="card">
         <div class="card-header" :class="isBest?'bg-success text-white': 'bg-default'">
             <div class="level">
                 <h5 class="flex">
@@ -24,7 +24,8 @@
             <div v-else v-html="body"></div>
         </div>
         <div class="card-footer level">
-            <div v-if="canUpdate">
+            <!--<div v-if="authorize('updateReply', reply)">-->
+            <div v-if="authorize('updateReply', reply)">
                 <button class="btn btn-outline-dark btn-sm mr-1" @click="editing = true">
                     Edit
                 </button>
@@ -32,7 +33,8 @@
             </div>
             <button class="btn btn-primary btn-sm mr-1 ml-auto" @click="markBest"
                     v-show="! isBest"
-            >Best Reply?? </button>
+            >Best Reply??
+            </button>
         </div>
     </div>
 </template>
@@ -52,6 +54,7 @@
                 tempbody: '',
                 id: this.data.id,
                 isBest: false,
+                reply: this.data,
             };
         },
 
@@ -63,16 +66,10 @@
             signedIn(){
                 return window.App.signedIn;
             },
-
-            canUpdate(){
-                //                return true;
-                return this.authorize(user => this.data.user_id == user.id);
-                //                                return this.data.user_id == window.App.user.id
-            }
         },
 
         methods: {
-            update(){
+            update() {
                 axios.patch('/replies/' + this.data.id, {
                     body: this.body,
                 })
@@ -100,7 +97,6 @@
                 //                    flash('your reply has been deleted');
                 //                });
             },
-
             markBest() {
                 this.isBest = true;
             }

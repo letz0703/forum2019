@@ -35,10 +35,16 @@ window.flash = function(message, level = 'success'){
 
 // LETz can('update')
 // window.Vue.prototype.authorize = function(handler) {
-Vue.prototype.authorize = function(handler){
-    let user = window.App.user;
-    return user ? handler(user) : false;
-}
+let authorizations = require('./authorizations');
+Vue.prototype.authorize = function(...params){
+    if (! window.App.signedIn) return false;
+    if ( typeof params[0] === 'string'){
+        return authorizations[params[0]](params[1]);
+    }
+    return params[0](window.App.user);
+    // let user = window.App.user;
+    // return user ? handler(user) : false;
+};
 
 /**
  * Next we will register the CSRF Token as a common header with Axios so that
