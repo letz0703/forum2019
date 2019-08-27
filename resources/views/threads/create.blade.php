@@ -31,6 +31,7 @@
                                 <label for="body">Body:</label>
                                 <textarea name="body" id="body" class="form-control" rows=8>{{ old('body') }}</textarea>
                             </div>
+                            {{--<div class="g-recatcha" data-sitekey="{{ config('forum2019.recaptcha.key') }}"></div>--}}
                             <div class="form-group">
                                 <button type="submit" class="btn btn-primary">Publish</button>
                             </div>
