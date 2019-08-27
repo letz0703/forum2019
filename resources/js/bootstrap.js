@@ -45,6 +45,7 @@ Vue.prototype.authorize = function(...params){
     // let user = window.App.user;
     // return user ? handler(user) : false;
 };
+Vue.prototype.signedIn = window.App.signedIn;
 
 /**
  * Next we will register the CSRF Token as a common header with Axios so that

@@ -62,10 +62,6 @@
             ago() {
                 return moment(this.data.created_at).fromNow() + '...';
             },
-
-            signedIn(){
-                return window.App.signedIn;
-            },
         },
 
         methods: {
