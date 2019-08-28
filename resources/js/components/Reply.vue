@@ -52,7 +52,7 @@
                 body: this.data.body,
                 tempbody: '',
                 id: this.data.id,
-                isBest: false,
+                isBest: this.data.isBest,
                 reply: this.data,
             };
         },
@@ -99,7 +99,6 @@
                 //                });
             },
             markBest() {
-                this.isBest = true;
                 axios.post('/replies/'+this.data.id+'/best');
                 window.events.$emit('best-reply-selected', this.data.id);
             }
