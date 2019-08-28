@@ -24,7 +24,6 @@
             <div v-else v-html="body"></div>
         </div>
         <div class="card-footer level">
-            <!--<div v-if="authorize('updateReply', reply)">-->
             <div v-if="authorize('updateReply', reply)">
                 <button class="btn btn-outline-dark btn-sm mr-1" @click="editing = true">
                     Edit
@@ -56,6 +55,12 @@
                 isBest: false,
                 reply: this.data,
             };
+        },
+
+        created() {
+            window.events.$on('best-reply-selected', id => {
+                this.isBest = (id === this.id);
+            })
         },
 
         computed: {
@@ -95,6 +100,8 @@
             },
             markBest() {
                 this.isBest = true;
+                axios.post('/replies/'+this.data.id+'/best');
+                window.events.$emit('best-reply-selected', this.data.id);
             }
         }
     }
