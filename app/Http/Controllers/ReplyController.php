@@ -21,10 +21,9 @@ class ReplyController extends Controller
     /**
      * @param                   $channelId
      * @param Thread            $thread
-     *
      * @param CreatePostRequest $request
      *
-     * @return $this|\Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
+     * @return \Illuminate\Database\Eloquent\Model
      */
     public function store($channelId, Thread $thread, CreatePostRequest $request)
     {

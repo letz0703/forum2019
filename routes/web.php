@@ -35,16 +35,16 @@ Route::post('/threads/{channel}/{thread}/replies', 'ReplyController@store');
 
 Route::post('/replies/{reply}/favorites', 'FavoriteController@store');
 Route::delete('/replies/{reply}/favorites', 'FavoriteController@destroy');
-Route::delete('/replies/{reply}', 'ReplyController@destroy');
+Route::delete('/replies/{reply}', 'ReplyController@destroy')->name('reply.destroy');
 Route::patch('/replies/{reply}', 'ReplyController@update');
 Route::post('/replies/{reply}/best', 'BestReplyController@store')
 ->name('best-replies.store');
 
 
 Route::get('/profiles/{user}', 'ProfileController@show')->name('profile');
-
 Route::get('/profiles/{user}/notifications', 'NotificationController@index');
 Route::delete('/profiles/{user}/notifications/{notification}', 'NotificationController@destroy');
+
 
 Route::get('/api/users', 'Api\UserController@index');
 Route::post('/api/users/{user}/avatar', 'Api\UserAvatarController@store')
