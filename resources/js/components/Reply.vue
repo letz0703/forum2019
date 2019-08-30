@@ -3,7 +3,7 @@
         <div class="card-header" :class="isBest?'bg-success text-white': 'bg-default'">
             <div class="level">
                 <h5 class="flex">
-                    <a :href="'/profiles/'+data.owner.name" v-text="data.owner.name"></a>
+                    <a :href="'/profiles/'+reply.owner.name" v-text="reply.owner.name"></a>
                     said <span v-text="ago"></span>
                 </h5>
                 <div v-if="signedIn">
@@ -23,8 +23,8 @@
             </div>
             <div v-else v-html="body"></div>
         </div>
-        <div class="card-footer level" v-if="authorize('updateThread', reply.thread)">
-            <div v-if="authorize('updateReply', reply)">
+        <div class="card-footer level" v-if="authorize('owns', reply) || authorize('owns', reply.thread)">
+            <div v-if="authorize('owns', reply)">
                 <button class="btn btn-outline-dark btn-sm mr-1" @click="editing = true">
                     Edit
                 </button>
@@ -42,41 +42,41 @@
     import moment from 'moment';
 
     export default {
-        props: ['data'],
+        props: ['reply'],
 
         components: { Favorite },
 
         data() {
             return {
                 editing: false,
-                body: this.data.body,
+                body: this.reply.body,
                 tempbody: '',
-                id: this.data.id,
-                isBest: this.data.isBest,
-                reply: this.data,
+                id: this.reply.id,
+                isBest: this.reply.isBest,
+                reply: this.reply,
             };
         },
 
         created() {
-            window.events.$on('best-reply-selected', id => {
+            window.events.$on('best-reply-selected', id =>{
                 this.isBest = (id === this.id);
             })
         },
 
         computed: {
             ago() {
-                return moment(this.data.created_at).fromNow() + '...';
+                return moment(this.reply.created_at).fromNow() + '...';
             },
         },
 
         methods: {
             update() {
-                axios.patch('/replies/' + this.data.id, {
+                axios.patch('/replies/' + this.reply.id, {
                     body: this.body,
                 })
                      .catch(errors =>{
                          flash(errors.response.data, 'danger');
-                         this.body = this.data.body;
+                         this.body = this.reply.body;
                      });
                 this.editing = false;
                 this.tempbody = this.body;
@@ -90,17 +90,17 @@
             },
 
             destroy() {
-                axios.delete('/replies/' + this.data.id);
+                axios.delete('/replies/' + this.reply.id);
 
-                this.$emit('deleted', this.data.id);
+                this.$emit('deleted', this.reply.id);
 
                 //                $(this.$el).fadeOut(100, () =>{
                 //                    flash('your reply has been deleted');
                 //                });
             },
             markBest() {
-                axios.post('/replies/'+this.data.id+'/best');
-                window.events.$emit('best-reply-selected', this.data.id);
+                axios.post('/replies/' + this.reply.id + '/best');
+                window.events.$emit('best-reply-selected', this.reply.id);
             }
         }
     }
