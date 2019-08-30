@@ -23,7 +23,7 @@
             </div>
             <div v-else v-html="body"></div>
         </div>
-        <div class="card-footer level">
+        <div class="card-footer level" v-if="authorize('updateThread', reply.thread)">
             <div v-if="authorize('updateReply', reply)">
                 <button class="btn btn-outline-dark btn-sm mr-1" @click="editing = true">
                     Edit
