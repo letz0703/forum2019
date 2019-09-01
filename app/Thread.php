@@ -26,6 +26,8 @@ class Thread extends Model
         
         static::created(function($thread){
             $thread->update(['slug' => $thread->title]);
+            //(new Reputation)->award($thread->creator, Reputation::THREAD_WAS_PUBLISHED);
+            Reputation::award($thread->creator, Reputation::THREAD_WAS_PUBLISHED);
         });
         
         //static::deleting(function ($thread){
@@ -159,6 +161,13 @@ class Thread extends Model
     {
         return 'slug';
     }
+    
+    public function markBestReply(Reply $reply)
+    {
+        $this->update(['best_reply_id' => $reply->id]);
+        Reputation::award($reply->owner, Reputation::BEST_REPLY_SELECTED);
+    }
+    
     
     public function setSlugAttribute($value)
     {

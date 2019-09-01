@@ -17,6 +17,7 @@ class CreateUsersTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('email')->unique();
+            $table->unsignedInteger('reputation')->default(0);
             $table->boolean('confirmed')->default(false);
             $table->string('confirmation_token',25)->nullable()->unique();
             $table->timestamp('email_verified_at')->nullable();
