@@ -86,7 +86,7 @@ class ThreadController extends Controller
         
         //if ( Thread::whereTitle(request('title'))->exists()){
         //
-        //    pereg_replace_callback(/\d+$/, function($slug){ }, $max);
+        //    preg_replace_callback(/\d+$/, function($slug){ }, $max);
         //    $this->incrementSlug();
         //}
         $slug = str_slug(request('title'));
