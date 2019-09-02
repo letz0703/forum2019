@@ -24,7 +24,7 @@ class Thread extends Model
             //});
         });
         
-        static::created(function($thread){
+        static::created(function ($thread){
             $thread->update(['slug' => $thread->title]);
             //(new Reputation)->award($thread->creator, Reputation::THREAD_WAS_PUBLISHED);
             Reputation::award($thread->creator, Reputation::THREAD_WAS_PUBLISHED);
@@ -48,6 +48,12 @@ class Thread extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+    
+    public function lock()
+    {
+        $this->update(['locked' => true]);
+    }
+    
     
     public function replies()
     {

@@ -114,7 +114,15 @@ class ThreadTest extends TestCase
         $this->assertTrue($reply->fresh()->isBest());
     }
     
-    
+    /** @test */
+    public function it_can_be_locked()
+    {
+        $this->signIn();
+        $thread = create('App\Thread',['user_id' => auth()->id()]);
+        $this->assertFalse($thread->locked);
+        $thread->lock();
+        $this->assertTrue($thread->locked);
+    }
     
     
 }
