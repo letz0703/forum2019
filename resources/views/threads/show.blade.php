@@ -15,9 +15,11 @@
                                      width="40" height="40"
                                      class="mr-2"
                                 >
-                                <span class="flex"> <a
-                                        href="{{ route('profile', $thread->creator) }}"> {{ $thread->creator->name }} </a> posted
-                                {{ $thread->title }}
+                                <span class="flex">
+                                    <a href="{{ route('profile', $thread->creator) }}">
+                                        {{ $thread->creator->name }}
+                                    </a> ( {{ $thread->creator->reputation }} XP )posted
+                                    {{ $thread->title }}
                             </span>
                                 @can('update',$thread)
                                     <form method="POST" action="{{ $thread->path() }}">
