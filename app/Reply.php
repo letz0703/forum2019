@@ -26,6 +26,7 @@ class Reply extends Model
             //    $reply->thread->update(['best_reply_id' => null]);
             //}
             $reply->thread->decrement('replies_count');
+            Reputation::swipe($reply->owner, Reputation::REPLY_WAS_PUBLISHED);
         });
     }
     

@@ -19,6 +19,7 @@ class Thread extends Model
         
         static::deleting(function ($thread){
             $thread->replies->each->delete();
+            Reputation::swipe(auth()->user(), Reputation::THREAD_WAS_PUBLISHED);
             //$thread->replies->each(function ($reply){
             //    $reply->delete();
             //});
