@@ -107,6 +107,16 @@ class ThreadController extends Controller
         return view('threads.create');
     }
     
+    public function update($channel, Thread $thread)
+    {
+        if (request()->has('locked')){
+            if (! $thread-> isAdmin()) {
+                return response('', 403);
+            }
+        }
+        $thread->lock();
+    }
+    
     
     /**
      * @param ThreadFilters $filters

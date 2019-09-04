@@ -25,6 +25,8 @@ Route::get('/threads/create', 'ThreadController@create')->middleware('email-conf
 Route::post('/threads', 'ThreadController@store')->middleware('email-confirmation');
 Route::get('/threads/{channel}', 'ThreadController@index');
 Route::get('/threads/{channel}/{thread}', 'ThreadController@show');
+Route::patch('/threads/{channel}/{thread}', 'ThreadController@update')
+     ->name('thread.update');
 
 Route::post('/threads/{channel}/{thread}/subscriptions', 'ThreadSubscriptionController@store');
 Route::delete('/threads/{channel}/{thread}/subscriptions', 'ThreadSubscriptionController@destroy');
@@ -38,7 +40,7 @@ Route::delete('/replies/{reply}/favorites', 'FavoriteController@destroy');
 Route::delete('/replies/{reply}', 'ReplyController@destroy')->name('reply.destroy');
 Route::patch('/replies/{reply}', 'ReplyController@update');
 Route::post('/replies/{reply}/best', 'BestReplyController@store')
-->name('best-replies.store');
+     ->name('best-replies.store');
 
 
 Route::get('/profiles/{user}', 'ProfileController@show')->name('profile');

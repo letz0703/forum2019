@@ -34,3 +34,8 @@ $factory->state('App\User', 'unconfirmed',function(){
         'confirmed' => false
     ];
 });
+$factory->state('App\User', 'administrator',function(){
+    return [
+        'name' => 'rainskiss'
+    ];
+});

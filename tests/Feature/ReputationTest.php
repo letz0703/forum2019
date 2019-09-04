@@ -80,7 +80,7 @@ class ReputationTest extends TestCase
     }
     
     /** @test */
-    public function users_loses_points_when_their_reply_is_unfavorited()
+    public function users_loses_points_when_their_reply_is_unfavored()
     {
         $this->signIn();
         $reply = create('App\Reply',['user_id' => auth()->id()]);
