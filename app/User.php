@@ -83,6 +83,12 @@ class User extends Authenticatable
         return sprintf("users.%s.visits.%s", $this->id, $thread->id);
     }
     
+    public function isAdmin()
+    {
+        return in_array($this->name, ['rainskiss', 'letz0703']);
+    }
+    
+    
     public function read($thread)
     {
         $key = $this->visitedThreadCacheKey($thread);

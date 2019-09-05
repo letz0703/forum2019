@@ -23,10 +23,12 @@ Route::get('/register/confirm', 'Auth\RegistrationConfirmationController@index')
 Route::get('/threads/', 'ThreadController@index')->name('threads');
 Route::get('/threads/create', 'ThreadController@create')->middleware('email-confirmation');
 Route::post('/threads', 'ThreadController@store')->middleware('email-confirmation');
+Route::post("/locked-threads/{thread}", 'LockedThreadController@store')
+     ->name('locked-thread.store')->middleware('admin');
 Route::get('/threads/{channel}', 'ThreadController@index');
 Route::get('/threads/{channel}/{thread}', 'ThreadController@show');
-Route::patch('/threads/{channel}/{thread}', 'ThreadController@update')
-     ->name('thread.update');
+//Route::patch('/threads/{channel}/{thread}', 'ThreadController@update')
+//     ->name('thread.update');
 
 Route::post('/threads/{channel}/{thread}/subscriptions', 'ThreadSubscriptionController@store');
 Route::delete('/threads/{channel}/{thread}/subscriptions', 'ThreadSubscriptionController@destroy');

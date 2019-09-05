@@ -50,11 +50,6 @@ class Thread extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
     
-    public function isAdmin()
-    {
-        return in_array($this->creator->name, ['rainskiss', 'letz0703']);
-    }
-    
     public function lock()
     {
         $this->update(['locked' => true]);
