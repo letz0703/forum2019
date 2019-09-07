@@ -86,7 +86,11 @@
                                 {{--@endif--}}
                             </p>
                             <p>
+                            <div class="level">
                                 <subscriptions :active="{{ json_encode($thread->isSubscribedTo) }}"></subscriptions>
+                                <button class="btn btn-primary btn-sm ml-1" v-if="authorize('isAdmin')">Lock</button>
+
+                            </div>
                             </p>
                         </div>
                     </div>

@@ -35,6 +35,7 @@ window.flash = function(message, level = 'success'){
 
 // LETz can('update')
 // window.Vue.prototype.authorize = function(handler) {
+// Lock button v-if = " authorize('isAdmin') " 2019.9.8.
 let authorizations = require('./authorizations');
 Vue.prototype.authorize = function(...params){
     if (! window.App.signedIn) return false;
