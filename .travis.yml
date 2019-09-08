@@ -2,6 +2,7 @@ language: php
 php:
   - 7.2
 before_script:
+  - sudo service redis-server start --bind 127.0.0.1
   - cp .env.travis .env
   - composer install --no-interaction
   - php artisan key:generate
