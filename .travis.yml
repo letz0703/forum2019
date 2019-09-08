@@ -1,6 +1,6 @@
 language: php
 php:
-  - 7.3
+  - 7.1
 before_script:
   - cp .env.travis .env
   - composer install --no-interaction
