@@ -8,7 +8,3 @@ before_script:
 cache:
   directories:
     - vendor
-
-branches:
-  only:
-    - tests
