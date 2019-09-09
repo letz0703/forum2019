@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App;
-
 
 use Illuminate\Support\Facades\Redis;
 
@@ -15,7 +13,7 @@ class Trending
         //    return json_decode($thread);
         //});
     }
-    
+
     public function push($thread)
     {
         Redis::zincrby($this->cacheKey(), 1, json_encode([
@@ -23,18 +21,16 @@ class Trending
             'path'  => $thread->path(),
         ]));
     }
-    
+
     public function cacheKey()
     {
         return app()->environment('testing')
             ? 'testing_trending_threads'
             : 'trending_threads';
     }
-    
+
     public function reset()
     {
         Redis::del($this->cacheKey());
     }
-    
-    
 }

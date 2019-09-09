@@ -3,36 +3,35 @@
  * Created by letz.
  * User: letz
  * Date: 2019. 6. 6.
- * Time: AM 3:22
+ * Time: AM 3:22.
  */
 
 namespace App;
 
-
 trait RecordActivity
 {
-    
     protected static function bootRecordActivity()
     {
-        if (auth()->guest()) return;
-    
-        foreach (self::getActivitiesToRecord() as $event){
-            static::$event(function ($model) use ($event){
+        if (auth()->guest()) {
+            return;
+        }
+
+        foreach (self::getActivitiesToRecord() as $event) {
+            static::$event(function ($model) use ($event) {
                 $model->recordActivity($event);
             });
         }
-        
-        self::deleting(function($model){
+
+        self::deleting(function ($model) {
             $model->activity()->delete();
         });
     }
-    
+
     protected static function getActivitiesToRecord()
     {
         return ['created'];
     }
-    
-    
+
     protected function recordActivity($eventType)
     {
         $this->activity()->create([
@@ -49,15 +48,14 @@ trait RecordActivity
             //'subject_type' => get_class($this)
         ]);
     }
-    
+
     public function activity()
     {
         return $this->morphMany(Activity::class, 'subject');
     }
-    
-    
+
     /**
-     * created_thread
+     * created_thread.
      *
      * @param $eventType
      *
@@ -66,7 +64,7 @@ trait RecordActivity
     protected function getEventType($eventType): string
     {
         $className = strtolower(class_basename($this));
-        
+
         //return $eventType . '_' . strtolower(class_basename($this));
         return "{$eventType}_{$className}";
     }

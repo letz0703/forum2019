@@ -6,15 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Activity extends Model
 {
-    
     protected $guarded = [];
-    
-    
+
     public function subject()
     {
         return $this->morphTo();
     }
-    
+
     protected static function feed($user, $take = 50)
     {
         //return $user->activity()
@@ -23,10 +21,8 @@ class Activity extends Model
                      ->latest()
                      ->take($take)
                      ->get()
-                     ->groupBy(function ($activity){
+                     ->groupBy(function ($activity) {
                          return $activity->created_at->format('Y-m-d');
                      });
     }
-    
 }
-

@@ -2,9 +2,9 @@
 
 namespace App\Listeners;
 
-use App\Notifications\ThreadReceivedNewReply;
-use App\Notifications\YouWereMentioned;
 use App\User;
+use App\Notifications\YouWereMentioned;
+use App\Notifications\ThreadReceivedNewReply;
 
 class NotifyMentionedUsers
 {
@@ -19,13 +19,12 @@ class NotifyMentionedUsers
     {
         User::whereIn('name', $event->reply->mentionedUsers())
             ->get()
-            ->each(function ($user) use ($event){
+            ->each(function ($user) use ($event) {
                 $user->notify(new YouWereMentioned($event->reply));
             });
         //dd($users);
         //$mentionedUsers = $event->reply->mentionedUsers();
-        
-        
+
         //foreach ($mentionedUsers as $name){
         //    $user = User::whereName($name)->first();
         //    //dd($user);

@@ -2,10 +2,10 @@
 
 namespace App\Http\Requests;
 
-use App\Exceptions\ThrottleException;
 use App\Reply;
-use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Gate;
+use App\Exceptions\ThrottleException;
+use Illuminate\Foundation\Http\FormRequest;
 
 class CreatePostRequest extends FormRequest
 {
@@ -18,9 +18,7 @@ class CreatePostRequest extends FormRequest
     {
         return Gate::allows('create', new Reply);
     }
-    
-    
-    
+
     /**
      * @throws ThrottleException
      */
@@ -30,7 +28,7 @@ class CreatePostRequest extends FormRequest
             'Your reply too often. Take a break'
         );
     }
-    
+
     /**
      * Get the validation rules that apply to the request.
      *
@@ -39,7 +37,7 @@ class CreatePostRequest extends FormRequest
     public function rules()
     {
         return [
-            'body' => 'required|spamfree'
+            'body' => 'required|spamfree',
         ];
     }
 }

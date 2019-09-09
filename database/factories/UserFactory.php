@@ -29,13 +29,13 @@ $factory->define(User::class, function (Faker $faker) {
     ];
 });
 
-$factory->state('App\User', 'unconfirmed',function(){
+$factory->state('App\User', 'unconfirmed', function () {
     return [
-        'confirmed' => false
+        'confirmed' => false,
     ];
 });
-$factory->state('App\User', 'administrator',function(){
+$factory->state('App\User', 'administrator', function () {
     return [
-        'name' => 'rainskiss'
+        'name' => 'rainskiss',
     ];
 });

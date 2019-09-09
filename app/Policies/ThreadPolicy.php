@@ -9,14 +9,14 @@ use Illuminate\Auth\Access\HandlesAuthorization;
 class ThreadPolicy
 {
     use HandlesAuthorization;
-    
+
     //public function before($user)
     //{
     //    if ( $user->name === 'rainskiss') {
     //        return true;
     //    }
     //}
-    
+
     /**
      * Determine whether the user can view the thread.
      *

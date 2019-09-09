@@ -11,19 +11,16 @@ class InvalidKeywords
      *
      * @throws Exception
      */
-    
     public function detect($body)
     {
         $spamKeyWords = [
             'Yahoo Customer Service',
         ];
-    
-        foreach ($spamKeyWords as $spamKeyWord){
-            if (stripos($body, $spamKeyWord) !== false){
+
+        foreach ($spamKeyWords as $spamKeyWord) {
+            if (stripos($body, $spamKeyWord) !== false) {
                 throw new \Exception('You have spam');
             }
         }
     }
-    
-    
 }

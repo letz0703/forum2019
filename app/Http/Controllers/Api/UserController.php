@@ -12,10 +12,10 @@ class UserController extends Controller
     public function index()
     {
         $search = request('name');
-        return User::where('name','LIKE',"$search%")
+
+        return User::where('name', 'LIKE', "$search%")
             ->take(5)
             //->get('name');
         ->pluck('name');
     }
-    
 }
