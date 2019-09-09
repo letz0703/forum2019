@@ -1,13 +1,9 @@
 <?php
 
-
 namespace App\Exceptions;
-
-
 
 class ThrottleException extends \Exception
 {
-    
     /**
      * ThrottleException constructor.
      *
@@ -17,6 +13,4 @@ class ThrottleException extends \Exception
     {
         $this->message = $message;
     }
-    
-   
 }

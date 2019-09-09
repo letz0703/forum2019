@@ -2,15 +2,15 @@
 
 namespace App\Events;
 
-use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Broadcasting\PrivateChannel;
 
 class ThreadHasNewReply
 {
     use  SerializesModels;
     public $thread;
     public $reply;
-    
+
     /**
      * Create a new event instance.
      *

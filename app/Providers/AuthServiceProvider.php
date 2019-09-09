@@ -7,7 +7,6 @@ use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvid
 
 class AuthServiceProvider extends ServiceProvider
 {
-    
     /**
      * The policy mappings for the application.
      *
@@ -18,7 +17,7 @@ class AuthServiceProvider extends ServiceProvider
         'App\Reply' => 'App\Policies\ReplyPolicy',
         'App\User' => 'App\Policies\UserPolicy',
     ];
-    
+
     /**
      * Register any authentication / authorization services.
      *
@@ -27,11 +26,10 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerPolicies();
-        Gate::before(function ($user){
-            if ($user->name === 'rainskiss'){
+        Gate::before(function ($user) {
+            if ($user->name === 'rainskiss') {
                 return true;
             }
         });
-        
     }
 }

@@ -4,14 +4,14 @@ namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
 class YouWereMentioned extends Notification
 {
     use Queueable;
-    
+
     protected $reply;
+
     /**
      * YouWereMentioned constructor.
      *
@@ -21,8 +21,7 @@ class YouWereMentioned extends Notification
     {
         $this->reply = $reply;
     }
-    
-    
+
     /**
      * Get the notification's delivery channels.
      *
@@ -57,8 +56,8 @@ class YouWereMentioned extends Notification
     public function toArray($notifiable)
     {
         return [
-            'message' => $this->reply->owner->name. ' mentioned you ' .$this->reply->thread->title,
-            'link' => $this->reply->path()
+            'message' => $this->reply->owner->name.' mentioned you '.$this->reply->thread->title,
+            'link' => $this->reply->path(),
         ];
     }
 }

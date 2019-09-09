@@ -2,16 +2,16 @@
 
 namespace Tests\Feature;
 
+use Tests\TestCase;
 use App\Mail\PleaseConfirmYourEmail;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Support\Facades\Mail;
-use Tests\TestCase;
 
-class RegistrationsTest extends TestCase{
-    
+class RegistrationsTest extends TestCase
+{
     use RefreshDatabase;
-    
+
     /** @test */
     public function Confirmation_Email_is_sent_upon_registration()
     {
@@ -19,21 +19,21 @@ class RegistrationsTest extends TestCase{
         event(new Registered(create('App\User')));
         Mail::assertSent(PleaseConfirmYourEmail::class);
     }
-    
+
     /** @test */
     public function user_can_fully_confirm_their_email_address()
     {
         $user = factory('App\User')->state('unconfirmed')->create();
         $this->signIn($user);
         $this->assertFalse($user->confirmed);
-        
+
         //$this->post(route('register'), [
         //    'name'     => $user->name,
         //    'email'    => $user->email,
         //    'password' => $user->password,
         //    'password_confirmation' => $user->password
         //]);
-        
+
         //dd($user->confirmed);
         //dd($user->confirmation_token);
         $this->assertNotNull($user->confirmation_token);
@@ -45,7 +45,7 @@ class RegistrationsTest extends TestCase{
         $this->assertTrue($user->fresh()->confirmed);
         ////$response->assertRedirect('/threads');
     }
-    
+
     /** @test */
     public function redirect_users_when_the_given_token_is_invalid()
     {
@@ -53,6 +53,4 @@ class RegistrationsTest extends TestCase{
              ->assertRedirect(route('threads'))
              ->assertSessionHas('flash', 'Unknown token');
     }
-    
-    
 }

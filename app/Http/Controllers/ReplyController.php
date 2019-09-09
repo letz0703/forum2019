@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\CreatePostRequest;
 use App\Reply;
 use App\Thread;
+use App\Http\Requests\CreatePostRequest;
 
 class ReplyController extends Controller
 {
@@ -12,12 +12,12 @@ class ReplyController extends Controller
     {
         $this->middleware('auth', ['except' => 'index']);
     }
-    
+
     public function index($channel, Thread $thread)
     {
         return $thread->replies()->paginate(20);
     }
-    
+
     /**
      * @param                   $channelId
      * @param Thread            $thread
@@ -27,15 +27,16 @@ class ReplyController extends Controller
      */
     public function store($channelId, Thread $thread, CreatePostRequest $request)
     {
-        if ($thread->locked){
+        if ($thread->locked) {
             return response('This is locked', 422);
         }
+
         return $thread->addReply([
             'user_id' => auth()->id(),
             'body'    => request('body'),
         ])->load('owner');
     }
-    
+
     public function update(Reply $reply)
     {
         $this->authorize('update', $reply);
@@ -45,20 +46,20 @@ class ReplyController extends Controller
         //$spam->detect(request('body'));
         //$reply->update(['body'=>request('body')]);
     }
-    
-    
+
     public function destroy(Reply $reply)
     {
         $this->authorize('update', $reply);
         //if ($reply->user_id != auth()->id()){
         //    return response([], 403);
         //}
-        if (request()->expectsJson()){
+        if (request()->expectsJson()) {
             $reply->delete();
+
             return response(['status' => 'reply deleted']);
         }
         $reply->delete();
+
         return back();
     }
-    
 }

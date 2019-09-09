@@ -2,23 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Favorite;
 use App\Reply;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use App\Favorite;
 
 class FavoriteController extends Controller
 {
     //
-    
+
     public function __construct()
     {
         $this->middleware('auth');
     }
-    
+
     public function store(Reply $reply)
     {
         $reply->favorite();
+
         return back();
         //return $reply->favorite();
         //$reply->favorites()->create(['user_id' => auth()->id()]);
@@ -28,11 +27,9 @@ class FavoriteController extends Controller
         //    'favorited_type' => get_class($reply)
         //]);
     }
-    
+
     public function destroy(Reply $reply)
     {
         $reply->unfavorite();
     }
-    
-    
 }

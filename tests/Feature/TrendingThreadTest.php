@@ -3,20 +3,20 @@
 namespace Tests\Feature;
 
 use App\Trending;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Support\Facades\Redis;
 use Tests\TestCase;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class TrendingThreadTest extends TestCase
 {
     use RefreshDatabase;
+
     protected function setUp(): void
     {
         parent::setUp();
         $this->trending = new Trending();
         $this->trending->reset();
     }
-    
+
     /** @test */
     public function it_scores_thread_trending_each_time_a_thread_is_read()
     {

@@ -2,10 +2,8 @@
 
 namespace App\Listeners;
 
-
 use App\Events\ThreadHasNewReply;
 use App\Notifications\ThreadReceivedNewReply;
-use App\User;
 
 class NotifyThreadSubscribers
 {

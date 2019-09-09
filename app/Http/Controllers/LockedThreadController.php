@@ -14,5 +14,4 @@ class LockedThreadController extends Controller
         // middleware 'admin' is applied}
         $thread->lock();
     }
-    
 }

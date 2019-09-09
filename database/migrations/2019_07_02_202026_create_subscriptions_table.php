@@ -18,13 +18,12 @@ class CreateSubscriptionsTable extends Migration
             $table->unsignedInteger('user_id');
             $table->bigInteger('thread_id')->unsigned()->index();
             $table->timestamps();
-            $table->unique(['user_id','thread_id']);
-    
+            $table->unique(['user_id', 'thread_id']);
+
             $table->foreign('thread_id')
                 ->references('id')->on('threads')
                 ->onDelete('cascade');
         });
-    
     }
 
     /**

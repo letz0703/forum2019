@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', function (){
+Route::get('/', function () {
     return view('welcome');
 });
 
@@ -23,7 +23,7 @@ Route::get('/register/confirm', 'Auth\RegistrationConfirmationController@index')
 Route::get('/threads/', 'ThreadController@index')->name('threads');
 Route::get('/threads/create', 'ThreadController@create')->middleware('email-confirmation');
 Route::post('/threads', 'ThreadController@store')->middleware('email-confirmation');
-Route::post("/locked-threads/{thread}", 'LockedThreadController@store')
+Route::post('/locked-threads/{thread}', 'LockedThreadController@store')
      ->name('locked-thread.store')->middleware('admin');
 Route::get('/threads/{channel}', 'ThreadController@index');
 Route::get('/threads/{channel}/{thread}', 'ThreadController@show');
@@ -44,11 +44,9 @@ Route::patch('/replies/{reply}', 'ReplyController@update');
 Route::post('/replies/{reply}/best', 'BestReplyController@store')
      ->name('best-replies.store');
 
-
 Route::get('/profiles/{user}', 'ProfileController@show')->name('profile');
 Route::get('/profiles/{user}/notifications', 'NotificationController@index');
 Route::delete('/profiles/{user}/notifications/{notification}', 'NotificationController@destroy');
-
 
 Route::get('/api/users', 'Api\UserController@index');
 Route::post('/api/users/{user}/avatar', 'Api\UserAvatarController@store')
