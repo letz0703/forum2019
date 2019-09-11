@@ -7,7 +7,7 @@
                     said <span v-text="ago"></span>
                 </h5>
                 <div v-if="signedIn">
-                    <favorite :reply="data"></favorite>
+                    <favorite :reply="reply"></favorite>
                 </div>
             </div>
         </div>
@@ -53,7 +53,6 @@
                 tempbody: '',
                 id: this.reply.id,
                 isBest: this.reply.isBest,
-                reply: this.reply,
             };
         },
 
@@ -74,9 +73,9 @@
                 axios.patch('/replies/' + this.reply.id, {
                     body: this.body,
                 })
-                     .catch(errors =>{
-                         flash(errors.response.data, 'danger');
-                         this.body = this.reply.body;
+                     .catch(error =>{
+                         flash(error.response.data, 'danger');
+                         //                         this.body = this.reply.body;
                      });
                 this.editing = false;
                 this.tempbody = this.body;
@@ -90,15 +89,18 @@
             },
 
             destroy() {
-                axios.delete('/replies/' + this.reply.id);
+                axios.delete('/replies/' + this.id);
 
-                this.$emit('deleted', this.reply.id);
+                this.$emit('deleted', this.id);
 
                 //                $(this.$el).fadeOut(100, () =>{
                 //                    flash('your reply has been deleted');
                 //                });
             },
             markBest() {
+                if (! this.authorize("owns", this.reply.thread)){
+                    return;
+                }
                 axios.post('/replies/' + this.reply.id + '/best');
                 window.events.$emit('best-reply-selected', this.reply.id);
             }

@@ -4,7 +4,7 @@
             <reply :reply="reply" @deleted="remove(index)"></reply>
         </div>
         <paginator :dataSet="dataSet" @updated="fetch"></paginator>
-        <new-reply  @created="add"></new-reply>
+        <new-reply @created="add" v-if="! $parent.locked"></new-reply>
     </div>
 </template>
 
@@ -38,7 +38,7 @@
             url(page) {
                 if (! page){
                     let query = location.search.match(/page=(\d+)/);
-                    page = query? query[1]: 1;
+                    page = query ? query[1] : 1;
                 }
                 //                return location.pathname+'/replies?page='+page;
                 return `${location.pathname}/replies?page=${page}`
@@ -47,7 +47,7 @@
             refresh({ data }){
                 this.dataSet = data;
                 this.items = data.data;
-                window.scrollTo(0,0);
+                window.scrollTo(0, 0);
                 //                console.log(response);
                 //                console.log(data);
             },
