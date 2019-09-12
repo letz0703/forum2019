@@ -87,11 +87,15 @@
                             </p>
                             <p>
                             <div class="level">
-                                <subscriptions :active="{{ json_encode($thread->isSubscribedTo) }}" v-if="signedIn"></subscriptions>
-                                <button class="btn btn-primary btn-sm ml-1" v-if="authorize('isAdmin')" @click="locked = true">Lock</button>
-
+                                <subscriptions :active="{{ json_encode($thread->isSubscribedTo) }}"
+                                               v-if="signedIn"></subscriptions>
+                                <div v-if="! locked">
+                                    <button class="btn btn-primary btn-sm ml-1" v-if="authorize('isAdmin')"
+                                            @click="locked = true">Lock
+                                    </button>
+                                </div>
                             </div>
-                            </p>
+
                         </div>
                     </div>
                 </div>
