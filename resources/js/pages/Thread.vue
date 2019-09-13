@@ -3,13 +3,13 @@
     import Subscriptions from '../components/Subscription.vue';
 
     export default {
-        props: ['initialRepliesCount'],
+        props: ['dataRepliesCount','dataLocked'],
         components: { Replies, Subscriptions },
 
         data() {
             return {
-                repliesCount: this.initialRepliesCount,
-                locked: false
+                repliesCount: this.dataRepliesCount,
+                locked: this.dataLocked
             }
         }
     }

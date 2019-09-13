@@ -5,7 +5,7 @@
         </div>
         <paginator :dataSet="dataSet" @updated="fetch"></paginator>
         <new-reply @created="add" v-if="! $parent.locked"></new-reply>
-        <p v-else style="text-align: center">
+        <p style="text-align: center" v-else>
             This thread is locked
         </p>
     </div>

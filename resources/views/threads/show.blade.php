@@ -3,7 +3,7 @@
     <link rel="stylesheet" href="/css/vendor/jquery.atwho.css">
 @endsection
 @section('content')
-    <thread-view inline-template :initial-replies-count="{{ $thread->replies_count }}">
+    <thread-view inline-template :data-locked="{{ $thread->locked }}" :data-replies-count="{{ $thread->replies_count }}">
         <div class="container">
             <div class="row">
                 <div class="col-md-8">
