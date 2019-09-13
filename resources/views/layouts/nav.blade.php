@@ -29,19 +29,20 @@
                     </div>
                 </li>
                 <a class="nav-link" href="/threads/create">New Thread</a>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Channels
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        @foreach($channels as $channel)
-                            <a class="dropdown-item" href="/threads/{{ $channel->slug }}">{{ $channel->name }}</a>
-                        @endforeach
-                        {{--<div class="dropdown-divider"></div>--}}
-                        {{--<a class="dropdown-item" href="#">Something else here</a>--}}
-                    </div>
-                </li>
+                <channel-dropdown :channels="{{ $channels }}"></channel-dropdown>
+{{--                <li class="nav-item dropdown">--}}
+{{--                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"--}}
+{{--                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">--}}
+{{--                        Channels--}}
+{{--                    </a>--}}
+{{--                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">--}}
+{{--                        @foreach($channels as $channel)--}}
+{{--                            <a class="dropdown-item" href="/threads/{{ $channel->slug }}">{{ $channel->name }}</a>--}}
+{{--                        @endforeach--}}
+{{--                        <div class="dropdown-divider"></div>--}}
+{{--                        <a class="dropdown-item" href="#">Something else here</a>--}}
+{{--                    </div>--}}
+{{--                </li>--}}
 
             </ul>
 
@@ -49,14 +50,14 @@
             <ul class="navbar-nav ml-auto">
                 <!-- Authentication Links -->
                 @guest
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                </li>
-                @if (Route::has('register'))
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                        <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                     </li>
-                @endif
+                    @if (Route::has('register'))
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                        </li>
+                    @endif
                 @else
                     <user-notifications></user-notifications>
                     <li class="nav-item dropdown">
@@ -79,7 +80,7 @@
                             </form>
                         </div>
                     </li>
-                    @endguest
+                @endguest
             </ul>
         </div>
     </div>
