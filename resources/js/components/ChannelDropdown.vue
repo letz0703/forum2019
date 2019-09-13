@@ -55,6 +55,10 @@
         },
 
         computed: {
+            filteredThreads(){
+                return this.channels.filter(channel => {
+                    return channel.name.toLowerCase().startsWith(this.filter.toLowerCase())
+                });
             },
         },
     }
