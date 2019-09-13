@@ -21,6 +21,7 @@ require('./bootstrap');
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 
 Vue.component('flash', require('./components/Flash.vue').default);
+Vue.component('channel-dropdown', require('./components/ChannelDropdown.vue').default);
 // Vue.component('reply', require('./components/Reply.vue').default);
 Vue.component('thread-view', require('./pages/Thread.vue').default);
 Vue.component('paginator', require('./components/Paginator.vue').default);
