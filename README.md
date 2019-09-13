@@ -10,9 +10,10 @@ Begin by cloning this repository to your machine, and Installing all Composer de
 
 ```bash
 git clone git@github.com:letz0703/forum2019.git
-cd forum2019 && composer install
+cd forum2019 && composer install && npm install
 php artisan key:generate
 mv .env.example .env
+npm run dev
 ```
 
 ### Step 2.
