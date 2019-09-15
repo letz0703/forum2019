@@ -85,3 +85,22 @@ return [
     ],
 
 ];
+
+/* Letz::
+         // 0. 스카우트 설치
+            composer require laravel/scout // 안될 경우 composer self-update
+            pa vendor/publish --provider="Laravel\Scout|ScoutServiceProvider" => scout.php 가 생성됨
+         //1. .env 설정
+         SCOUT_DRIVER=null
+         SCOUT_QUEUE=true
+         QUEUE_CONNECTION=database
+        // 2. 테이블 생성
+            pa queue:table
+        // 3. 업무 JOB 생성 : pa make:job 업무
+            업무@handle(){ \Log::info('메시지');
+        // 4. 업무지시:
+            tinker> dispatch(new 업무)->delay(now()->addMinutes(1));
+        // 5. 워커 등록
+            pa make:work
+        // Final : logs/laravel.log 확인
+*/
