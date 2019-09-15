@@ -48,8 +48,7 @@ class LockThreadTest extends TestCase
     public function once_locked_a_thread_may_not_receive_new_reply()
     {
         $this->signIn();
-        $thread = create('App\Thread');
-        $thread->lock();
+        $thread = create('App\Thread',['locked' => true]);
         self::assertTrue($thread->locked);
         $reply = create('App\Reply');
         $this->post($thread->path() . '/replies', $reply->toArray())

@@ -52,16 +52,6 @@ class Thread extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
-
-    public function lock()
-    {
-        $this->update(['locked' => true]);
-    }
-    
-    public function unlock()
-    {
-        $this->update(['locked' => false]);
-    }
     
     public function replies()
     {

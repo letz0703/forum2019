@@ -117,7 +117,7 @@ class ThreadTest extends TestCase
         $this->signIn();
         $thread = create('App\Thread', ['user_id' => auth()->id()]);
         $this->assertFalse($thread->locked);
-        $thread->lock();
+        $thread->update(['locked' => true]);
         $this->assertTrue($thread->locked);
     }
 }
