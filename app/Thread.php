@@ -13,7 +13,7 @@ class Thread extends Model
     protected $with = ['creator', 'channel'];
     protected $appends = ['isSubscribedTo'];
     protected $casts = [
-        'locked' => 'boolean'
+        'locked' => 'boolean',
     ];
 
     protected static function boot()
@@ -57,12 +57,12 @@ class Thread extends Model
     {
         $this->update(['locked' => true]);
     }
-    
+
     public function unlock()
     {
         $this->update(['locked' => false]);
     }
-    
+
     public function replies()
     {
         return $this->hasMany(Reply::class);
