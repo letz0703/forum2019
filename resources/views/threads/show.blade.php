@@ -3,7 +3,7 @@
     <link rel="stylesheet" href="/css/vendor/jquery.atwho.css">
 @endsection
 @section('content')
-    <thread-view inline-template :data-locked="{{ $thread->locked }}" :data-replies-count="{{ $thread->replies_count }}">
+    <thread-view inline-template :thread="{{ $thread }}">
         <div class="container">
             <div class="row">
                 <div class="col-md-8">
@@ -89,9 +89,9 @@
                             <div class="level">
                                 <subscriptions :active="{{ json_encode($thread->isSubscribedTo) }}"
                                                v-if="signedIn"></subscriptions>
-                                <div v-if="! locked">
+                                <div>
                                     <button class="btn btn-primary btn-sm ml-1" v-if="authorize('isAdmin')"
-                                            @click="locked = true">Lock
+                                            @click="toggleLock" v-text="locked?'Unlock': 'Lock'">
                                     </button>
                                 </div>
                             </div>

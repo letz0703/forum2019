@@ -3,14 +3,21 @@
     import Subscriptions from '../components/Subscription.vue';
 
     export default {
-        props: ['dataRepliesCount','dataLocked'],
+        props: ['thread'],
         components: { Replies, Subscriptions },
 
         data() {
             return {
-                repliesCount: this.dataRepliesCount,
-                locked: this.dataLocked
+                repliesCount: this.thread.replies_count,
+                locked: this.thread.locked
             }
-        }
+        },
+
+        methods: {
+            toggleLock(){
+                this.locked = ! this.locked ;
+                axios[this.locked ? 'delete' : 'post']('/locked-threads/' + this.thread.slug);
+            }
+        },
     }
 </script>

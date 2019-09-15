@@ -25,6 +25,8 @@ Route::get('/threads/create', 'ThreadController@create')->middleware('email-conf
 Route::post('/threads', 'ThreadController@store')->middleware('email-confirmation');
 Route::post('/locked-threads/{thread}', 'LockedThreadController@store')
      ->name('locked-thread.store')->middleware('admin');
+Route::delete('/locked-threads/{thread}', 'LockedThreadController@destroy')
+     ->name('locked-thread.destroy')->middleware('admin');
 Route::get('/threads/{channel}', 'ThreadController@index');
 Route::get('/threads/{channel}/{thread}', 'ThreadController@show');
 //Route::patch('/threads/{channel}/{thread}', 'ThreadController@update')
