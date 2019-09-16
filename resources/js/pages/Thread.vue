@@ -22,8 +22,9 @@
             },
             togglePin(){
                 let uri = `/pinned-threads/${this.thread.slug}`;
-                this.pinned = ! this.pinned ;
                 axios[this.pinned ? 'delete' : 'post'](uri);
+                this.pinned = ! this.pinned ;
+
             }
         },
     }

@@ -94,7 +94,7 @@
                                             @click="toggleLock" v-text="locked?'Unlock': 'Lock'">
                                     </button>
                                     <button class="btn btn-primary btn-sm ml-1" v-if="authorize('isAdmin')"
-                                            @click="togglePin" v-text="pinned?'UnPin': 'Pin'">
+                                            @click="togglePin" v-text="pinned?'UnPin':'Pin'">
                                     </button>
                                 </div>
                             </div>
