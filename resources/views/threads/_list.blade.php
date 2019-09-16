@@ -5,6 +5,9 @@
                 <div class="flex">
                     <h5>
                         <a href="{{ $thread->path() }}">
+                            @if ($thread->pinned)
+                                <span style="color:red;">pinned</span>
+                            @endif
                             @if(auth()->check() && $thread->hasUpdatesFor(auth()->user()))
                                 {{ $thread->title }}
                             @else
@@ -28,7 +31,7 @@
             <div class="body">{{ $thread->body }}</div>
         </div>
         <div class="card-footer">
-            {{ $thread->visits()->count()}} Visits
+            Visits
         </div>
     </div>
 @empty
