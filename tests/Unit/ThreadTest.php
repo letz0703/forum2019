@@ -4,6 +4,7 @@ namespace Tests\Unit;
 
 use App\Thread;
 use Carbon\Carbon;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -11,6 +12,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 class ThreadTest extends TestCase
 {
     use RefreshDatabase;
+    //use DatabaseMigrations;
 
     /** @test */
     public function a_thread_has_a_creator()

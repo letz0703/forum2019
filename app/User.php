@@ -16,7 +16,10 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'avatar_path',
+        'name',
+        'email',
+        'password',
+        'avatar_path',
     ];
     //protected $guarded = [];
 
@@ -26,7 +29,9 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token', 'email',
+        'password',
+        'remember_token',
+        'email',
     ];
 
     /**
@@ -59,6 +64,11 @@ class User extends Authenticatable
     {
         return asset($avatar ?: 'avatars/default.jpg');
     }
+    
+    public function activity()
+    {
+        return $this->hasMany(Activity::class);
+    }
 
     public function confirm()
     {
@@ -72,19 +82,11 @@ class User extends Authenticatable
         return $this->hasOne(Reply::class)->latest();
     }
 
-    public function activity()
-    {
-        return $this->hasMany(Activity::class);
-    }
+    
 
     public function visitedThreadCacheKey($thread)
     {
         return sprintf('users.%s.visits.%s', $this->id, $thread->id);
-    }
-
-    public function isAdmin()
-    {
-        return in_array($this->name, ['rainskiss', 'letz0703']);
     }
 
     public function read($thread)
@@ -92,4 +94,5 @@ class User extends Authenticatable
         $key = $this->visitedThreadCacheKey($thread);
         cache()->forever($key, Carbon::now());
     }
+    
 }
