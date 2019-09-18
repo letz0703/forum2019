@@ -14,7 +14,7 @@ class Thread extends Model
     protected $appends = ['isSubscribedTo'];
     protected $casts = [
         'locked' => 'boolean',
-        'pinned' => 'boolean'
+        'pinned' => 'boolean',
     ];
 
     protected static function boot()
@@ -53,7 +53,7 @@ class Thread extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
-    
+
     public function replies()
     {
         return $this->hasMany(Reply::class);

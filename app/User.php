@@ -64,7 +64,7 @@ class User extends Authenticatable
     {
         return asset($avatar ?: 'avatars/default.jpg');
     }
-    
+
     public function activity()
     {
         return $this->hasMany(Activity::class);
@@ -82,8 +82,6 @@ class User extends Authenticatable
         return $this->hasOne(Reply::class)->latest();
     }
 
-    
-
     public function visitedThreadCacheKey($thread)
     {
         return sprintf('users.%s.visits.%s', $this->id, $thread->id);
@@ -94,5 +92,4 @@ class User extends Authenticatable
         $key = $this->visitedThreadCacheKey($thread);
         cache()->forever($key, Carbon::now());
     }
-    
 }
