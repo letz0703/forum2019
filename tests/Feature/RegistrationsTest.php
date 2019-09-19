@@ -26,12 +26,12 @@ class RegistrationsTest extends TestCase
         $user = factory('App\User')->state('unconfirmed')->create();
         $this->signIn($user);
         $this->assertFalse($user->confirmed);
-        
-        $this->get(route('register.confirm',[
-            'token' => $user->confirmation_token
+
+        $this->get(route('register.confirm', [
+            'token' => $user->confirmation_token,
         ]))->assertRedirect(route('threads'));
-        
-        tap($user->fresh(), function($user){
+
+        tap($user->fresh(), function ($user) {
             $this->assertTrue($user->confirmed);
             $this->assertNull($user->confirmation_token);
         });
