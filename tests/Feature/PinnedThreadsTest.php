@@ -3,13 +3,13 @@
 namespace Tests\Feature;
 
 use App\Thread;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class PinnedThreadsTest extends TestCase
 {
     use RefreshDatabase;
-    
+
     /** @test */
     public function an_administrator_can_pin_threads()
     {
@@ -18,7 +18,7 @@ class PinnedThreadsTest extends TestCase
         $this->post(route('pinned-thread.store', $thread));
         $this->assertTrue($thread->fresh()->pinned, 'Failed asserting that the thread was pinned');
     }
-    
+
     /** @test */
     public function an_administrator_can_unpin_threads()
     {
@@ -27,7 +27,7 @@ class PinnedThreadsTest extends TestCase
         $this->delete(route('pinned-thread.destroy', $thread));
         $this->assertFalse($thread->fresh()->pinned, 'Failed asserting that the thread was un-pinned');
     }
-    
+
     /** @test */
     public function pinned_threads_are_listed_first()
     {
@@ -41,9 +41,9 @@ class PinnedThreadsTest extends TestCase
                 ['id' => $ids[2]],
             ],
         ]);
-        
+
         $this->post(route('pinned-thread.store', $pinned = $threads->last()));
-        
+
         $this->getJson(route('threads'))->assertJson([
             'data' => [
                 ['id' => $pinned->id],

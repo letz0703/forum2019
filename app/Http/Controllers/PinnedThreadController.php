@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Thread;
-use Illuminate\Http\Request;
 
 class PinnedThreadController extends Controller
 {
@@ -15,7 +14,7 @@ class PinnedThreadController extends Controller
     {
         $thread->update(['pinned'=> true]);
     }
-    
+
     /**
      * Un-pin the given thread.
      * @param \App\Thread $thread

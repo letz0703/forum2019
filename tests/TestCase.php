@@ -23,14 +23,15 @@ abstract class TestCase extends BaseTestCase
 
         return $this;
     }
-    
+
     public function signInAdmin($admin = null)
     {
         $admin = factory('App\User')->state('administrator')->create();
         config(['forum.administrators'=>[$admin->email]]);
+
         return $this->signIn($admin);
     }
-    
+
     protected function disableExceptionHandling()
     {
         $this->oldExceptionHandler = $this->app->make(ExceptionHandler::class);
