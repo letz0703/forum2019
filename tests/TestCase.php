@@ -24,12 +24,13 @@ abstract class TestCase extends BaseTestCase
         return $this;
     }
     
-    public function signInAdmin()
+    public function signInAdmin($admin = null)
     {
         $admin = factory('App\User')->state('administrator')->create();
-        return $this->signIn($admin);
+        $this->signIn($admin);
+        //config(['forum.administrator'=>[$admin->email]]);
+        return $this;
     }
-    
     
     protected function disableExceptionHandling()
     {

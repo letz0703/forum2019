@@ -33,4 +33,6 @@ https://www.google.com/recaptcha/intro
 php artisan cache:clear
  ```
  ### Step 5.
- > Use your forum! Visit http://forum2019.test/threads
+1.> Use your forum! Visit http://forum2019.test/register and register a account.
+2.> Edit `config/concil.php`, adding the email address of your account you just create.
+3.> Vist: http://forum2019.test/admin/channels to seed your forum with one or more channels.

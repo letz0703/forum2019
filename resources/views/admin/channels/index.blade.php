@@ -1,7 +1,7 @@
 @extends('admin.layout.app')
 @section('administration-content')
     <p>
-        <a href="{{ route('admin.channels.create') }}" class="btn-sm"><sup>new</sup>New Channel</a>
+        <a href="{{ route('admin.channels.create') }}" class="btn btn-primary btn-sm">New Channel<sup>+</sup></a>
     </p>
     <table class="table">
         <thead>

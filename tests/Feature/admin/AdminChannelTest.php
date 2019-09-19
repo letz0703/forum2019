@@ -1,20 +1,32 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Feature\Admin;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Symfony\Component\HttpFoundation\Response;
 use Tests\TestCase;
 
-class AdminTest extends TestCase{
-    
+class AdminChannelTest extends TestCase{
     use RefreshDatabase;
+    
+    /** @test */
+    public function a_channel_requires_a_name()
+    {
+        $this->withExceptionHandling();
+        $this->signInAdmin();
+        
+        $channel = make('App\Channel', ['name' => null]);
+        $this->post(route('admin.channels.store'), $channel->toArray())
+             ->assertSessionHasErrors('name');
+    }
     
     /** @test */
     public function an_administrator_can_access_the_administration_section()
     {
+        //$administrator = factory('App\User')->create();
+        //config(['forum.administrators' => [$administrator->email]]);
         $this->signInAdmin();
-        $this->get('/admin')
+        $this->get(route('admin.dashboard.index'))
              ->assertStatus(Response::HTTP_OK);
     }
     
@@ -23,10 +35,9 @@ class AdminTest extends TestCase{
     {
         $this->withExceptionHandling();
         $this->signIn();
-        $this->get('/admin')
+        $this->get(route('admin.dashboard.index'))
              ->assertStatus(Response::HTTP_FORBIDDEN);
     }
-    
     /** @test */
     public function admin_can_create_a_channel()
     {
@@ -42,34 +53,4 @@ class AdminTest extends TestCase{
              ->assertSee('php')
              ->assertSee('This is php channel');
     }
-    
-    /** @test */
-    public function a_channel_requires_a_name()
-    {
-        $this->withExceptionHandling();
-        
-        $this->signInAdmin();
-        $this->createChannel(['name' => null])
-             -> assertSessionHasErrors('name');
-    }
-    
-    /** @test */
-    public function a_channel_requires_a_description()
-    {
-        $this->withExceptionHandling();
-        
-        $this->createChannel(['description' => null])
-             ->assertSessionHasErrors('description');
-    }
-    
-    
-    protected function createChannel($overrides = [])
-    {
-        $this->signInAdmin();
-        $channel = make('App\Channel', $overrides);
-        
-        return $this->post('/admin/channels', $channel->toArray());
-    }
-    
-    
 }
