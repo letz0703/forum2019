@@ -10,9 +10,9 @@ class RegistrationConfirmationController extends Controller{
     {
         $user = User::where('confirmation_token', request('token'))->first();
         
-        if ( ! $user || !$user->isAdmin){
+        if ( ! $user){
             return redirect(route('threads'))
-                 ->with('flash', 'Unknown token');
+                ->with('flash', 'Unknown token');
         }
         
         $user->confirm();

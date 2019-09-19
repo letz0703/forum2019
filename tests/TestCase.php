@@ -27,9 +27,8 @@ abstract class TestCase extends BaseTestCase
     public function signInAdmin($admin = null)
     {
         $admin = factory('App\User')->state('administrator')->create();
-        $this->signIn($admin);
-        //config(['forum.administrator'=>[$admin->email]]);
-        return $this;
+        config(['forum.administrators'=>[$admin->email]]);
+        return $this->signIn($admin);
     }
     
     protected function disableExceptionHandling()
