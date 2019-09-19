@@ -30,7 +30,7 @@ https://www.google.com/recaptcha/intro
 > Until an administration portal is available, manually insert any number of "channels" into the channels table 
  in your database. Once finished, clear your server cache, and you'll all set to go.
  ```
-php artisan cache:clear
+    php artisan cache:clear
  ```
  ### Step 5.
 > 1. Use your forum! Visit http://forum2019.test/register and register a account.
