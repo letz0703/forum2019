@@ -14,10 +14,9 @@ class LockedThreadController extends Controller
         // middleware 'admin' is applied}
         $thread->update(['locked' => true]);
     }
-    
+
     public function destroy(Thread $thread)
     {
         $thread->update(['locked' => false]);
     }
-    
 }

@@ -17,5 +17,4 @@ class ChannelTest extends TestCase
 
         $this->assertTrue($channel->threads->contains($thread));
     }
-    
 }
