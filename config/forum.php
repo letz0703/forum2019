@@ -2,6 +2,6 @@
 
 return [
     'administrators' => [
-        'rainskiss@nate.com',
+        env('ADMIN_EMAIL', 'admin@example.com'),
     ],
 ];
