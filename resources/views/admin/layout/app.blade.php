@@ -6,7 +6,7 @@
             <div class="col-md-2">
                 <ul class="nav flex-column nav-stacked" aria-orientation="vertical" id="v-menu">
                     <li role="presentation"><a class="nav-link"  href="{{route('admin.dashboard.index')}}">Dashboard</a></li>
-                    <li role="presentation"><a class="nav-link" href="{{route('admin.channels.index')}}">Sellers</a></li>
+                    <li role="presentation"><a class="nav-link" href="{{route('admin.channels.index')}}">Channels</a></li>
                 </ul>
             </div>
             <div class="col-md-10">

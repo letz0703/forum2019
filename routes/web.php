@@ -72,4 +72,6 @@ Route::group([
          ->name('admin.channels.index');
     Route::get('/channels/create', 'ChannelController@create')
          ->name('admin.channels.create');
+    Route::patch('/channels/{channel}', 'ChannelController@update')
+         ->name('admin.channels.update');
 });
