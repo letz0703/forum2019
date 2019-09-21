@@ -8,7 +8,8 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
-class ChannelController extends Controller{
+class ChannelController extends Controller
+{
     //
     public function index()
     {
@@ -42,21 +43,21 @@ class ChannelController extends Controller{
     
     public function edit(Channel $channel)
     {
-        return view('admin.channels.edit',compact('channel'));
+        return view('admin.channels.edit', compact('channel'));
     }
     
     
     public function update(Request $request, Channel $channel)
     {
         $this->validate($request, [
-            'name' => 'required|spamfree|unique:channels',
-            'description' => 'required|spamfree'
+            'name'        => 'required|spamfree|unique:channels',
+            'description' => 'required|spamfree',
         ]);
         
         $channel->update([
-            'name' => request('name'),
-            'slug' => $channel->make_slug(request('name')),
-            'description' => request('description')
+            'name'        => request('name'),
+            'slug'        => $channel->make_slug(request('name')),
+            'description' => request('description'),
         ]);
         
         cache()->forget('channels');
@@ -69,8 +70,6 @@ class ChannelController extends Controller{
             ->with('flash', 'Your channel has been updated');
         
     }
-    
-    
     
     
 }
