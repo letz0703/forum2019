@@ -85,8 +85,8 @@ class ThreadTest extends TestCase
         $this->signIn();
         $thread = create('App\Thread', ['title' => 'Foo title']);
         $this->assertEquals('foo-title', $thread->slug);
-        //$thread = create('App\Thread', ['title' => 'Foo title']);
-        //$this->assertEquals($thread->fresh()->slug, 'foo-title-2');
+        $thread = create('App\Thread', ['title' => 'Foo title']);
+        $this->assertEquals($thread->fresh()->slug, 'foo-title-2');
         $this->post(route('threads'), $thread->toArray());
         $this->assertDatabaseHas('threads', ['slug'=>'foo-title-2']);
         $this->assertTrue(Thread::whereSlug('foo-title-2')->exists());

@@ -185,7 +185,8 @@ class Thread extends Model
     
     function make_slug($string)
     {
-        return preg_replace('/\s+/u', '-', trim($string));
+        $slug = preg_replace('/\s+/u', '-', trim($string));
+        return $slug = str_slug($slug);
     }
     
     

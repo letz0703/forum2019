@@ -22,3 +22,7 @@ yarn-error.log
 _ide_helper.php
 storage/app/public/.DS_Store
 dump.rdb
+Thumbs.db
+*sublime*.*
+.DS_Store
+
