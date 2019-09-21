@@ -182,12 +182,11 @@ class Thread extends Model
         }
         $this->attributes['slug'] = $slug;
     }
-    
-    function make_slug($string)
+
+    public function make_slug($string)
     {
         $slug = preg_replace('/\s+/u', '-', trim($string));
+
         return $slug = str_slug($slug);
     }
-    
-    
 }

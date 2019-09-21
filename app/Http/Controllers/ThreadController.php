@@ -67,7 +67,7 @@ class ThreadController extends Controller
 
         return redirect('/threads');
     }
-    
+
     /**
      * @param \Illuminate\Http\Request $request
      *
