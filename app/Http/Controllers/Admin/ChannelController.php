@@ -6,6 +6,7 @@ use App\Channel;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class ChannelController extends Controller{
     //
@@ -39,6 +40,12 @@ class ChannelController extends Controller{
             ->with('flash', 'Your channel has been created');
     }
     
+    public function edit(Channel $channel)
+    {
+        return view('admin.channels.edit',compact('channel'));
+    }
+    
+    
     public function update(Request $request, Channel $channel)
     {
         $this->validate($request, [
@@ -48,6 +55,7 @@ class ChannelController extends Controller{
         
         $channel->update([
             'name' => request('name'),
+            'slug' => $channel->make_slug(request('name')),
             'description' => request('description')
         ]);
         
@@ -61,5 +69,8 @@ class ChannelController extends Controller{
             ->with('flash', 'Your channel has been updated');
         
     }
+    
+    
+    
     
 }
