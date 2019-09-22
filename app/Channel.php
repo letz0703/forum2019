@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Channel extends Model
 {
     protected $guarded = [];
+    protected $casts = [
+        'archived' => 'boolean',
+    ];
 
     public function getRouteKeyName()
     {
@@ -22,4 +25,12 @@ class Channel extends Model
     {
         return preg_replace('/\s+/u', '-', trim($string));
     }
+    
+    public function archive()
+    {
+        $this->update([
+            'archived' => true,
+        ]);
+    }
+    
 }

@@ -18,6 +18,7 @@ class CreateChannelsTable extends Migration
             $table->string('name', 50);
             $table->string('slug', 50);
             $table->string('description')->nullable();
+            $table->boolean('archived')->default(false);
             $table->timestamps();
         });
     }
