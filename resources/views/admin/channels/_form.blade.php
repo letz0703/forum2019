@@ -1,6 +1,6 @@
 @csrf
 <div class="form-group">
-    <label for="name">Name:</label>
+    <label for="name">Channel Name:</label>
     <input type="text" class="form-control" id="name" name="name"
            value="{{ old('name', $channel->name) }}" required>
 </div>
@@ -16,7 +16,9 @@
 {{--    <label class="form-check-label" for="archive">Archive it</label>--}}
 {{--</div>--}}
 <div class="form-group">
-    <button type="submit" class="btn btn-link btn-sm">Add</button>
+    <button type="submit" class="btn btn-link btn-sm">
+        {{ $buttonText?:'Add Channel' }}
+    </button>
 </div>
 
 @if (count($errors))
