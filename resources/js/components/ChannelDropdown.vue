@@ -17,7 +17,7 @@
                 />
             </div>
             <ul class="list-group channel-list">
-                <li class="list-group-item" v-for="channel in filteredThreads">
+                <li class="list-group-item" v-for="channel in filteredChannels">
                     <a :href="`/threads/${channel.slug}`" v-text="channel.name"></a>
                 </li>
             </ul>
@@ -45,19 +45,25 @@
 
 <script>
     export default {
-        props: ['channels'],
+        // props: ['channels'],
 
         data(){
             return {
+                channels: [],
                 toggle: false,
                 filter: '',
             }
         },
+        created(){
+            axios.get('/api/channels').then(({ data }) => (this.channels = data));
+        },
 
         computed: {
-            filteredThreads(){
+            filteredChannels(){
                 return this.channels.filter(channel => {
-                    return channel.name.toLowerCase().startsWith(this.filter.toLowerCase())
+                    return channel.name
+                                  .toLowerCase()
+                                  .startsWith(this.filter.toLocaleLowerCase());
                 });
             },
         },
