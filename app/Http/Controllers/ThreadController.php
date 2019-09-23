@@ -14,38 +14,38 @@ class ThreadController extends Controller
     {
         $this->middleware('auth')->only(['store', 'create', 'destroy']);
     }
-    
+
     public function index(Channel $channel, ThreadFilters $filters, Trending $trending)
     {
         $threads = $this->getThreads($channel, $filters);
-        
+
         if (request()->wantsJson()) {
             return $threads;
         }
-        
+
         return view('threads.index', [
             'threads'  => $threads,
             'trending' => $trending->get(),
         ]);
     }
-    
+
     public function show($channel, Thread $thread, Trending $trending)
     {
         if (auth()->check()) {
             auth()->user()->read($thread);
         }
-        
+
         $thread->visits()->record();
-        
+
         $trending->push($thread);
-        
+
         //return $thread->load('replies');
         //return Thread::withCount('replies')->first();
         //return $thread;
         //return view('threads.show', compact('thread'));
         return view('threads.show', compact('thread'));
     }
-    
+
     public function destroy($channel, Thread $thread)
     {
         $this->authorize('update', $thread);
@@ -57,17 +57,17 @@ class ThreadController extends Controller
         //    //
         //    //return redirect('/login');
         //}
-        
+
         //$thread->replies()->delete();
         $thread->delete();
-        
+
         if (request()->wantsJson()) {
             return response([], 204);
         }
-        
+
         return redirect('/threads');
     }
-    
+
     /**
      * @param \Illuminate\Http\Request $request
      *
@@ -81,25 +81,25 @@ class ThreadController extends Controller
             'body'       => 'required|spamfree',
             'channel_id' => 'required|exists:channels,id',
         ]);
-        
+
         //if ( Thread::whereTitle(request('title'))->exists()){
         //
         //    preg_replace_callback(/\d+$/, function($slug){ }, $max);
         //    $this->incrementSlug();
         //}
         $slug = str_slug(request('title'));
-        
+
         $thread = Thread::create([
             'user_id'    => auth()->id(),
             'channel_id' => request('channel_id'),
             'title'      => request('title'),
             'body'       => request('body'),
         ]);
-        
+
         return redirect($thread->path())
             ->with('flash', 'Your thread has been published');
     }
-    
+
     public function create()
     {
         return view('threads.create', [
@@ -108,7 +108,7 @@ class ThreadController extends Controller
                                  ->get(),
         ]);
     }
-    
+
     public function update($channel, Thread $thread)
     {
         //if (request()->has('locked')){
@@ -118,7 +118,7 @@ class ThreadController extends Controller
         //}
         //$thread->lock();
     }
-    
+
     /**
      * @param ThreadFilters $filters
      *
@@ -129,15 +129,15 @@ class ThreadController extends Controller
         $threads = Thread::orderBy('pinned', 'DESC')
                          ->latest()
                          ->filter($filters);
-        
+
         if ($channel->exists) {
             $threads->where('channel_id', $channel->id);
         }
-        
+
         return $threads->paginate(5);
-        
+
         //dd($threads->toSql());
-        
+
         //return $threads->get();
     }
 }
