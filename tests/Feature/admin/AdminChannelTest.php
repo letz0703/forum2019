@@ -6,7 +6,8 @@ use Tests\TestCase;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class AdminChannelTest extends TestCase{
+class AdminChannelTest extends TestCase
+{
     use RefreshDatabase;
     
     /** @test */
@@ -60,22 +61,44 @@ class AdminChannelTest extends TestCase{
     {
         $this->signInAdmin();
         
-        $channel = create('App\Channel');
-        
-        $updated_channel_data = [
-            'name' => 'updated',
-            'description' => 'updated channel description',
-        ];
-        
         $this->patch(
             route('admin.channels.update',
-                ['channel' => $channel->slug]
-            ), $updated_channel_data
+                [
+                    'channel' => create('App\Channel')->slug
+                ]
+            ), $updated_channel_data = [
+            'name'        => 'updated',
+            'description' => 'updated channel description',
+            'archived' => false,
+        ]
         );
         
         $this->get(route('admin.channels.index'))
-            ->assertSee($updated_channel_data['name'])
-            ->assertSee($updated_channel_data['description']);
+             ->assertSee($updated_channel_data['name'])
+             ->assertSee($updated_channel_data['description']);
     }
+    
+    /** @test */
+    public function an_admin_can_mark_existing_channel_as_archived()
+    {
+        //$this->withExceptionHandling();
+        $this->signInAdmin();
+        
+        $channel = create('App\Channel');
+        
+        $this->assertFalse($channel->archived);
+        
+        $this->patch(
+            route('admin.channels.update', ['channel' => $channel->slug]),
+            [
+                'name'        => 'altered',
+                'description' => 'altered channel description',
+                'archived'    => true,
+            ]
+        );
+        
+        $this->assertTrue($channel->fresh()->archived);
+    }
+    
     
 }
