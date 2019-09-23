@@ -20,10 +20,11 @@ class Channel extends Model
     {
         return $this->hasMany('App\Thread');
     }
-
-    public function make_slug($string)
+    
+    function make_slug($string)
     {
-        return preg_replace('/\s+/u', '-', trim($string));
+        $slug = preg_replace('/\s+/u', '-', trim($string));
+        return $slug = str_slug($slug);
     }
     
     public function archive()

@@ -10,6 +10,11 @@
            value="{{ old('description', $channel->description) }}"
            required>
 </div>
+{{--<div class="form-group form-check">--}}
+{{--    <input type="checkbox" class="form-check-input" id="archived" name="archived" placeholder="Archived"--}}
+{{--           value="" required>--}}
+{{--    <label class="form-check-label" for="archive">Archive it</label>--}}
+{{--</div>--}}
 <div class="form-group">
     <button type="submit" class="btn btn-link btn-sm">Add</button>
 </div>
