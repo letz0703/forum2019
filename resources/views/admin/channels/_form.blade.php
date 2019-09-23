@@ -10,17 +10,18 @@
            value="{{ old('description', $channel->description) }}"
            required>
 </div>
-{{--<div class="form-group form-check">--}}
-{{--    <input type="checkbox" class="form-check-input" id="archived" name="archived" placeholder="Archived"--}}
-{{--           value="" required>--}}
-{{--    <label class="form-check-label" for="archive">Archive it</label>--}}
-{{--</div>--}}
+<div class="form-group">
+    <label for="archived">Status :</label>
+    <select name="archived" id="archived" class="form-control">
+        <option value="0" {{ $channel->archived?'':'selected' }}selected>Active</option>
+        <option value="1" {{ $channel->archived?'selected':'' }}>Archived</option>
+    </select>
+</div>
 <div class="form-group">
     <button type="submit" class="btn btn-link btn-sm">
         {{ $buttonText?:'Add Channel' }}
     </button>
 </div>
-
 @if (count($errors))
     <ul class="alert alert-danger">
         @foreach( $errors->all() as $error)
@@ -28,4 +29,5 @@
         @endforeach
     </ul>
 @endif
+
 
