@@ -2,7 +2,6 @@
 
 namespace App;
 
-use const false;
 use Illuminate\Database\Eloquent\Model;
 
 class Channel extends Model
@@ -41,9 +40,13 @@ class Channel extends Model
     
     public function archive()
     {
-        $this->update([
-            'archived' => true,
-        ]);
+        $this->update(['archived' => true,]);
     }
+    
+    protected static function withArchived()
+    {
+        return (new static)->newQueryWithoutScope('active');
+    }
+    
     
 }

@@ -37,20 +37,22 @@ class ChannelTest extends TestCase
         $this->assertEquals(1, Channel::count());
     }
     
+    /** @test */
     public function users_may_not_see_archived_channels()
     {
+        $this->signInAdmin();
         $channel1 = create('App\Channel', ['name' => 'aaa']);
         $channel2 = create('App\Channel', ['name' => 'foo']);
         $archivedChannel = create('App\Channel',
             ['name' => 'ccc', 'archived' => true]);
-    
+        
         $response = $this->getJson(route('api.channels.index'))
-             ->assertDontSee($archivedChannel['name'])
-             ->assertSee($channel1['name']);
+                         ->assertDontSee($archivedChannel['name'])
+                         ->assertSee($channel1['name']);
         $data = $response->json();
         
         //dd($data[0]['name']);
-        $this->assertEquals($data[0]['name'],$channel1->name );
+        $this->assertEquals($data[0]['name'], $channel1->name);
     }
     
 }
