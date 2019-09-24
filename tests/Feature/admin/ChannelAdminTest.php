@@ -100,5 +100,18 @@ class ChannelAdminTest extends TestCase
         $this->assertTrue($channel->fresh()->archived);
     }
     
+    /** @test */
+    public function archives_channel_should_not_influence_thread_path()
+    {
+        $thread = create('App\Thread');
+        
+        $path = $thread->path();
+        
+        $thread->channel->archive();
+        
+        $this->assertEquals($path, $thread->fresh()->path());
+        
+    }
+    
     
 }
