@@ -2,6 +2,7 @@
 
 namespace Tests\Unit;
 
+use App\Channel;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -28,6 +29,14 @@ class ChannelTest extends TestCase
     }
     
     /** @test */
+    public function archived_channels_are_excluded_by_default()
+    {
+        create('App\Channel');
+        create('App\Channel', ['archived' => true]);
+        
+        $this->assertEquals(1, Channel::count());
+    }
+    
     public function users_may_not_see_archived_channels()
     {
         $channel1 = create('App\Channel', ['name' => 'aaa']);

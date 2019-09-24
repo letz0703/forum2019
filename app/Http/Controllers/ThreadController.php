@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Thread;
 use App\Channel;
+use App\Filters\ThreadFilters;
+use App\Thread;
 use App\Trending;
 use Illuminate\Http\Request;
-use App\Filters\ThreadFilters;
 
 class ThreadController extends Controller
 {
@@ -103,9 +103,7 @@ class ThreadController extends Controller
     public function create()
     {
         return view('threads.create', [
-            'channels' => Channel::where('archived', false)
-                                 ->orderBy('name', 'asc')
-                                 ->get(),
+            'channels' => Channel::all(),
         ]);
     }
     
