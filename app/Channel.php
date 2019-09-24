@@ -35,6 +35,7 @@ class Channel extends Model
     function make_slug($string)
     {
         $slug = preg_replace('/\s+/u', '-', trim($string));
+        
         return $slug = str_slug($slug);
     }
     

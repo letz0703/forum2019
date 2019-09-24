@@ -13,8 +13,9 @@ class ChannelController extends Controller
     //
     public function index()
     {
-        $channels = Channel::with('threads')->get();
-        return view('admin.channels.index',compact('channels'));
+        $channels = Channel::withoutGlobalScopes('active')->with('threads')->get();
+        
+        return view('admin.channels.index', compact('channels'));
     }
     
     public function create()
