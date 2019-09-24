@@ -34,7 +34,7 @@ class AppServiceProvider extends ServiceProvider
             $channels = \Cache::rememberForever('channels', function () {
                 return Channel::all();
             });
-            
+
             $view->with('channels', $channels);
         });
 
