@@ -6,7 +6,7 @@ use Tests\TestCase;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class AdminChannelTest extends TestCase
+class ChannelAdminTest extends TestCase
 {
     use RefreshDatabase;
     
@@ -64,12 +64,12 @@ class AdminChannelTest extends TestCase
         $this->patch(
             route('admin.channels.update',
                 [
-                    'channel' => create('App\Channel')->slug
+                    'channel' => create('App\Channel')->slug,
                 ]
             ), $updated_channel_data = [
             'name'        => 'updated',
             'description' => 'updated channel description',
-            'archived' => false,
+            'archived'    => false,
         ]
         );
         

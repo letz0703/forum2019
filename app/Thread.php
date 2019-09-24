@@ -131,7 +131,9 @@ class Thread extends Model
 
     public function isSubscribedTo()
     {
-        return $this->subscriptions()->where('user_id', auth()->id())->exists();
+        return $this->subscriptions()
+                    ->where('user_id', auth()->id())
+                    ->exists();
     }
 
     public function getIsSubscribedToAttribute()
