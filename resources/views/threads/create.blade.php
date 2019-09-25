@@ -13,7 +13,7 @@
                                 <label for="channel_id">Title :</label>
                                 <select name="channel_id" id="channel_id" class="form-control">
                                     <option value="">Choose One ...</option>
-{{--                                    @foreach(App\Channel::all() as $channel)--}}
+                                    {{--                                    @foreach(App\Channel::all() as $channel)--}}
                                     @foreach($channels as $channel)
                                         <option value="{{ $channel->id }}" {{ old('channel_id') == $channel->id ? 'selected': '' }}>
                                             {{ $channel->name }}
@@ -32,6 +32,8 @@
                                 <textarea name="body" id="body" class="form-control" rows=8>{{ old('body') }}</textarea>
                             </div>
                             {{--<div class="g-recatcha" data-sitekey="{{ config('forum2019.recaptcha.key') }}"></div>--}}
+
+                            {{--                            <div class="g-recaptcha" data-sitekey="{{ config('services.recaptcha.sitekey') }}"></div>--}}
                             <div class="form-group">
                                 <button type="submit" class="btn btn-primary">Publish</button>
                             </div>

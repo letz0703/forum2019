@@ -8,6 +8,7 @@ use App\Thread;
 use App\Trending;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Zttp\Zttp;
 
 class ThreadController extends Controller
 {
@@ -86,6 +87,16 @@ class ThreadController extends Controller
                              })]
             ]);
         
+        $response = Zttp::asFormParams()->post('https://www.google.com/recaptcha/api/siteverify', [
+            'secret'   => config('services.recaptcha.secret'),
+            'response' => $request->input('g-recaptcha-response'),
+            'remoteip' => request()->ip()
+        ]);
+    
+        if ( ! $response->json()['success']) {
+            throw new \Exception('Recaptcha failed');
+        }
+    
         //if ( Thread::whereTitle(request('title'))->exists()){
         //
         //    preg_replace_callback(/\d+$/, function($slug){ }, $max);
