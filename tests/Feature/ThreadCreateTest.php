@@ -3,13 +3,28 @@
 namespace Tests\Feature;
 
 use App\Activity;
+use App\Rules\Recaptcha;
 use App\Thread;
-use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class ThreadCreateTest extends TestCase
 {
     use RefreshDatabase;
+    
+    //public function setUp()
+    //{
+    //    parent::setUp();
+    //    //$m = \Mockery::mock(Recaptcha::class);
+    //    //$m->shouldReceive('passes')->once()->andReturn(true);
+    //    //app()->singleton(Recaptcha::class, $m);
+    //
+    //    app()->singleton(Recaptcha::class, function(){
+    //        $m = \Mockery::mock(Recaptcha::class);
+    //        $m->shouldReceive('passes')->once()->andReturn(true);
+    //        return $m;
+    //    });
+    //}
     
     /** @test */
     public function guest_may_not_create_thread()
@@ -40,7 +55,7 @@ class ThreadCreateTest extends TestCase
         $this->signIn();
         $thread = factory('App\Thread')->create();
         // hit the end point
-        $response = $this->post('/threads', $thread->toArray());
+        $response = $this->post('/threads', $thread->toArray()+['g-recaptcha-response' => 'token']);
         $this->get($response->headers->get('Location'))
              ->assertSee($thread->title)
              ->assertSee($thread->body);
@@ -109,7 +124,7 @@ class ThreadCreateTest extends TestCase
     /** @test */
     public function a_new_thread_cannot_be_created_in_an_archived_channel()
     {
-        $channel = create('App\Channel',['archived' => true]);
+        $channel = create('App\Channel', ['archived' => true]);
         
         //$response  = $this->publishThread([
         //    'title' => 'Some Title',
@@ -126,6 +141,14 @@ class ThreadCreateTest extends TestCase
         $this->assertEquals(0, Thread::count());
     }
     
+    /** @test */
+    public function a_thread_requires_recaptcha_verification()
+    {
+        unset(app()[Recaptcha::class]);
+        
+        $this->publishThread(['g-recaptcha-response' => 'test'])
+             ->assertSessionHasErrors('g-recaptcha-response');
+    }
     
     public function publishThread($overrides = [])
     {

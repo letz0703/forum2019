@@ -79,6 +79,7 @@ class ThreadTest extends TestCase
         $this->assertEquals(2, $thread->visits()->count());
     }
 
+    
     /** @test */
     public function a_thread_requires_a_unique_slug()
     {
@@ -87,10 +88,10 @@ class ThreadTest extends TestCase
         $this->assertEquals('foo-title', $thread->slug);
         $thread = create('App\Thread', ['title' => 'Foo title']);
         $this->assertEquals($thread->fresh()->slug, 'foo-title-2');
-        $this->post(route('threads'), $thread->toArray());
+        $this->post(route('threads'), $thread->toArray()+['g-recaptcha-response'=>'token']);
         $this->assertDatabaseHas('threads', ['slug'=>'foo-title-2']);
         $this->assertTrue(Thread::whereSlug('foo-title-2')->exists());
-        $this->post(route('threads'), $thread->toArray());
+        $this->post(route('threads'), $thread->toArray()+['g-recaptcha-response'=>'token']);
         $this->assertTrue(Thread::whereSlug('foo-title-3')->exists());
     }
 
@@ -99,7 +100,7 @@ class ThreadTest extends TestCase
     {
         $this->signIn();
         $thread = create('App\Thread', ['title' => 'Foo Title 1', 'slug' => 'foo-title-1']);
-        $this->post(route('threads'), $thread->toArray());
+        $this->post(route('threads'), $thread->toArray()+['g-recaptcha-response' => 'token']);
         $this->assertTrue(Thread::whereSlug('foo-title-1-2')->exists());
     }
 
