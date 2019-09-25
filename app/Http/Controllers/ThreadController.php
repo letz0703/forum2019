@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use Zttp\Zttp;
+use Zttp\Zttp;
 use App\Thread;
 use App\Channel;
 use App\Trending;
 use Illuminate\Http\Request;
 use App\Filters\ThreadFilters;
 use Illuminate\Validation\Rule;
-use Zttp\Zttp;
 
 class ThreadController extends Controller
 {
@@ -87,13 +87,13 @@ class ThreadController extends Controller
                                  $query->where('archived', false);
                              })]
             ]);
-        
+
         $response = Zttp::asFormParams()->post('https://www.google.com/recaptcha/api/siteverify', [
             'secret'   => config('services.recaptcha.secret'),
             'response' => $request->input('g-recaptcha-response'),
             'remoteip' => request()->ip()
         ]);
-        
+
         if (! $response->json()['success']) {
             throw new \Exception('Recaptcha failed');
         }
