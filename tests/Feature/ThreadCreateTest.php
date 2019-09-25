@@ -126,6 +126,14 @@ class ThreadCreateTest extends TestCase
         $this->assertEquals(0, Thread::count());
     }
     
+    /** @test */
+    public function a_thread_requires_recaptcha_verification()
+    {
+        $this->publishThread(['g-recaptcha-response' => 'test'])
+            ->assertSessionHasErrors('g-recaptcha-response');
+    }
+    
+    
     
     public function publishThread($overrides = [])
     {
