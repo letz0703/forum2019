@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Activity;
+use App\Rules\Recaptcha;
 use App\Thread;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -10,6 +11,20 @@ use Tests\TestCase;
 class ThreadCreateTest extends TestCase
 {
     use RefreshDatabase;
+    
+    //public function setUp()
+    //{
+    //    parent::setUp();
+    //    //$m = \Mockery::mock(Recaptcha::class);
+    //    //$m->shouldReceive('passes')->once()->andReturn(true);
+    //    //app()->singleton(Recaptcha::class, $m);
+    //
+    //    app()->singleton(Recaptcha::class, function(){
+    //        $m = \Mockery::mock(Recaptcha::class);
+    //        $m->shouldReceive('passes')->once()->andReturn(true);
+    //        return $m;
+    //    });
+    //}
     
     /** @test */
     public function guest_may_not_create_thread()
@@ -129,6 +144,8 @@ class ThreadCreateTest extends TestCase
     /** @test */
     public function a_thread_requires_recaptcha_verification()
     {
+        unset(app()[Recaptcha::class]);
+        
         $this->publishThread(['g-recaptcha-response' => 'test'])
              ->assertSessionHasErrors('g-recaptcha-response');
     }

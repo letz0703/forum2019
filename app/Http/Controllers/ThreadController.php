@@ -76,7 +76,7 @@ class ThreadController extends Controller
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function store(Request $request)
+    public function store(Request $request, Recaptcha $recaptcha)
     {
         $this->validate($request, [
             'title'                => 'required|spamfree',
@@ -85,7 +85,7 @@ class ThreadController extends Controller
                 Rule::exists('channels', 'id')
                     ->where(function ($query){ $query->where('archived', false);
                     })],
-            'g-recaptcha-response' => ['required', new Recaptcha],
+            'g-recaptcha-response' => ['required', $recaptcha],
         ]);
         
         
