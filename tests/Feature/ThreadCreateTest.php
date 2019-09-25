@@ -4,8 +4,8 @@ namespace Tests\Feature;
 
 use App\Activity;
 use App\Thread;
-use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class ThreadCreateTest extends TestCase
 {
@@ -109,7 +109,7 @@ class ThreadCreateTest extends TestCase
     /** @test */
     public function a_new_thread_cannot_be_created_in_an_archived_channel()
     {
-        $channel = create('App\Channel',['archived' => true]);
+        $channel = create('App\Channel', ['archived' => true]);
         
         //$response  = $this->publishThread([
         //    'title' => 'Some Title',
@@ -130,10 +130,8 @@ class ThreadCreateTest extends TestCase
     public function a_thread_requires_recaptcha_verification()
     {
         $this->publishThread(['g-recaptcha-response' => 'test'])
-            ->assertSessionHasErrors('g-recaptcha-response');
+             ->assertSessionHasErrors('g-recaptcha-response');
     }
-    
-    
     
     public function publishThread($overrides = [])
     {
