@@ -55,7 +55,7 @@ class ThreadCreateTest extends TestCase
         $this->signIn();
         $thread = factory('App\Thread')->create();
         // hit the end point
-        $response = $this->post('/threads', $thread->toArray());
+        $response = $this->post('/threads', $thread->toArray()+['g-recaptcha-response' => 'token']);
         $this->get($response->headers->get('Location'))
              ->assertSee($thread->title)
              ->assertSee($thread->body);
