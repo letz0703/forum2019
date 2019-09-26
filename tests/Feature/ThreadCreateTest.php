@@ -12,20 +12,6 @@ class ThreadCreateTest extends TestCase
 {
     use RefreshDatabase;
     
-    //public function setUp()
-    //{
-    //    parent::setUp();
-    //    //$m = \Mockery::mock(Recaptcha::class);
-    //    //$m->shouldReceive('passes')->once()->andReturn(true);
-    //    //app()->singleton(Recaptcha::class, $m);
-    //
-    //    app()->singleton(Recaptcha::class, function(){
-    //        $m = \Mockery::mock(Recaptcha::class);
-    //        $m->shouldReceive('passes')->once()->andReturn(true);
-    //        return $m;
-    //    });
-    //}
-    
     /** @test */
     public function guest_may_not_create_thread()
     {
@@ -55,7 +41,7 @@ class ThreadCreateTest extends TestCase
         $this->signIn();
         $thread = factory('App\Thread')->create();
         // hit the end point
-        $response = $this->post('/threads', $thread->toArray()+['g-recaptcha-response' => 'token']);
+        $response = $this->post('/threads', $thread->toArray() + ['g-recaptcha-response' => 'token']);
         $this->get($response->headers->get('Location'))
              ->assertSee($thread->title)
              ->assertSee($thread->body);
