@@ -2,8 +2,8 @@
 
 namespace App\Rules;
 
-use Illuminate\Contracts\Validation\Rule;
 use Zttp\Zttp;
+use Illuminate\Contracts\Validation\Rule;
 
 class Recaptcha implements Rule
 {
@@ -16,7 +16,7 @@ class Recaptcha implements Rule
     {
         //
     }
-    
+
     /**
      * Determine if the validation rule passes.
      *
@@ -32,10 +32,10 @@ class Recaptcha implements Rule
             'response' => $value,
             'remoteip' => request()->ip(),
         ]);
-        
+
         return $response->json()['success'];
     }
-    
+
     /**
      * Get the validation error message.
      *
