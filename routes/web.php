@@ -20,8 +20,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/register/confirm', 'Auth\RegistrationConfirmationController@index')->name('register.confirm');
 
-Route::get('/threads/', 'ThreadController@index')->name('threads');
+Route::get('/threads/', 'ThreadController@index')->name('threads')->name('threads');
 Route::get('/threads/create', 'ThreadController@create')->middleware('email-confirmation');
+Route::patch('/threads/{channel}/{thread}', 'ThreadController@update')->name('threads.update');
 Route::post('/threads', 'ThreadController@store')->middleware('email-confirmation');
 Route::post('/locked-threads/{thread}', 'LockedThreadController@store')
      ->name('locked-thread.store')->middleware('admin');

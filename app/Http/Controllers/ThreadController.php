@@ -122,6 +122,10 @@ class ThreadController extends Controller
         //    }
         //}
         //$thread->lock();
+        $thread->update(request()->validate([
+            'title' => 'required|spamfree',
+            'body'  => 'required|spamfree',
+        ]));
     }
 
     /**
