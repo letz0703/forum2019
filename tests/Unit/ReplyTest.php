@@ -46,4 +46,33 @@ class ReplyTest extends TestCase
             $reply->body
         );
     }
+    
+    /** @test */
+    public function it_generate_correct_path_with_pagination()
+    {
+        // given we have a thread
+        $thread = create('App\Thread');
+        // And it has three replies
+        $replies = create('App\Reply', ['thread_id' => $thread->id], 3);
+        // And we paginate one per page
+        config(['forum2019.pagination.perPage' => 2]);
+        // If we generate path for last reply(3rd one)
+        //dd($replies->last()->path());
+        // The path should include the ?page=3 in the path
+        $this->assertEquals(
+            $replies->first()->path(),
+            $thread->path() . '?page=1#reply-1'
+        );
+        
+        $this->assertEquals(
+            $replies[1]->path(),
+            $thread->path() . '?page=1#reply-2'
+        );
+        
+        $this->assertEquals(
+            $replies->last()->path(),
+            $thread->path() . '?page=2#reply-3'
+        );
+    }
+    
 }

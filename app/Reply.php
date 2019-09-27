@@ -42,7 +42,11 @@ class Reply extends Model
 
     public function path()
     {
-        return $this->thread->path()."#reply-{$this->id}";
+        $perPage = config('forum2019.pagination.perPage');
+        $replyPosition = $this->thread->replies()->pluck('id')->search($this->id)+1;
+        $page = ceil($replyPosition/$perPage);
+        
+        return $this->thread->path()."?page={$page}#reply-{$this->id}";
     }
 
     public function mentionedUsers()
