@@ -22,18 +22,24 @@ Route::get('/register/confirm', 'Auth\RegistrationConfirmationController@index')
 
 Route::get('/threads/', 'ThreadController@index')->name('threads')->name('threads');
 Route::get('/threads/create', 'ThreadController@create')->middleware('email-confirmation');
+Route::get('/threads/{channel}/{thread}', 'ThreadController@show')->name('threads.show');
 Route::patch('/threads/{channel}/{thread}', 'ThreadController@update')->name('threads.update');
+Route::delete('/threads/{channel}/{thread}', 'ThreadController@destroy');
+
 Route::post('/threads', 'ThreadController@store')->middleware('email-confirmation');
+// Locked Thread
 Route::post('/locked-threads/{thread}', 'LockedThreadController@store')
      ->name('locked-thread.store')->middleware('admin');
 Route::delete('/locked-threads/{thread}', 'LockedThreadController@destroy')
      ->name('locked-thread.destroy')->middleware('admin');
+
+// Pinned Thread
 Route::post('/pinned-threads/{thread}', 'PinnedThreadController@store')
      ->name('pinned-thread.store')->middleware('admin');
 Route::delete('/pinned-threads/{thread}', 'PinnedThreadController@destroy')
      ->name('pinned-thread.destroy')->middleware('admin');
-Route::get('/threads/{channel}', 'ThreadController@index');
-Route::get('/threads/{channel}/{thread}', 'ThreadController@show');
+
+
 //Route::patch('/threads/{channel}/{thread}', 'ThreadController@update')
 //     ->name('thread.update');
 
@@ -41,7 +47,7 @@ Route::post('/threads/{channel}/{thread}/subscriptions', 'ThreadSubscriptionCont
 Route::delete('/threads/{channel}/{thread}/subscriptions', 'ThreadSubscriptionController@destroy');
 
 Route::get('/threads/{channel}/{thread}/replies', 'ReplyController@index');
-Route::delete('/threads/{channel}/{thread}', 'ThreadController@destroy');
+
 Route::post('/threads/{channel}/{thread}/replies', 'ReplyController@store');
 
 Route::post('/replies/{reply}/favorites', 'FavoriteController@store');

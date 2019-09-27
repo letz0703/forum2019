@@ -86,6 +86,9 @@ class ThreadCreateTest extends TestCase
         
         $this->assertEquals('changed', $thread->fresh()->title);
     }
+    
+    
+    /** @test */
     public function unauthorized_user_may_not_delete_threads()
     {
         $this->withExceptionHandling();
