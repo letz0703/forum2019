@@ -15,7 +15,7 @@ class ReplyController extends Controller
 
     public function index($channel, Thread $thread)
     {
-        return $thread->replies()->paginate(20);
+        return $thread->replies()->paginate(config('forum2019.pagination.perPage'));
     }
 
     /**
