@@ -72,23 +72,6 @@ class ThreadCreateTest extends TestCase
     }
     
     /** @test */
-    public function a_thread_can_be_updated()
-    {
-        $this->signIn();
-        // given we have a thread
-        $thread = create('App\Thread',['user_id' => auth()->id()]);
-        
-        // User hit the endpoint for updating
-        $this->patchJson($thread->path(),[
-            'title' => 'changed',
-            'body' => 'changed'
-        ]);
-        
-        $this->assertEquals('changed', $thread->fresh()->title);
-    }
-    
-    
-    /** @test */
     public function unauthorized_user_may_not_delete_threads()
     {
         $this->withExceptionHandling();
