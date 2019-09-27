@@ -39,7 +39,6 @@ Route::post('/pinned-threads/{thread}', 'PinnedThreadController@store')
 Route::delete('/pinned-threads/{thread}', 'PinnedThreadController@destroy')
      ->name('pinned-thread.destroy')->middleware('admin');
 
-
 //Route::patch('/threads/{channel}/{thread}', 'ThreadController@update')
 //     ->name('thread.update');
 
