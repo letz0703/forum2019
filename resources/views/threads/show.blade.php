@@ -3,14 +3,16 @@
     <link rel="stylesheet" href="/css/vendor/jquery.atwho.css">
 @endsection
 @section('content')
-    <thread-view inline-template :thread="{{ $thread }}">
+    <thread-view inline-template :thread="{{ $thread }}" v-cloak>
         <div class="container">
             <div class="row">
                 <div class="col-md-8">
 
-                    </div>
+                    @include('threads._question')
 
+                    <replies @removed="repliesCount--" @added="repliesCount++"></replies>
                 </div>
+
                 <div class="col-md-4">
                     <div class="card">
                         <div class="card-header">
