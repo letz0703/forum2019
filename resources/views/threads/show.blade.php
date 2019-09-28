@@ -7,63 +7,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-8">
-                    <div class="card">
-                        <div class="card-header">
-                            <div class="level">
-                                <img src="{{ asset($thread->creator->avatar_path) }}"
-                                     alt="{{ $thread->creator->name }}"
-                                     width="40" height="40"
-                                     class="mr-2"
-                                >
-                                <span class="flex">
-                                    <a href="{{ route('profile', $thread->creator) }}">
-                                        {{ $thread->creator->name }}
-                                    </a> ( {{ $thread->creator->reputation }} XP )posted
-                                    {{ $thread->title }}
-                            </span>
-                                @can('update',$thread)
-                                    <form method="POST" action="{{ $thread->path() }}">
-                                        @csrf
-                                        {{ method_field('DELETE') }}
-                                        <button type="submit" class="btn btn-link btn-sm">Delete Thread</button>
-                                    </form>
-                                @endcan
-                            </div>
-                            {{--<a href="/profiles/{{ $thread->creator->name }}">--}}
 
-                        </div>
-
-                        <div class="card-body">
-                            {{ $thread-> body }}
-                        </div>
-                        <replies @removed="repliesCount--" @added="repliesCount++"></replies>
-                        {{--@php--}}
-                        {{--$replies = $thread->replies()->paginate(2);--}}
-                        {{--@endphp--}}
-                        {{--@foreach($replies as $reply)--}}
-                        {{--@include('threads.reply')--}}
-                        {{--@endforeach--}}
-                        {{--<div style="align-self:center;">--}}
-                        {{--                            {{ $thread->replies()->links() }}--}}
-                        {{--</div>--}}
                     </div>
 
-                    {{--@if ( auth()->check())--}}
-                    {{--<form method="POST" action="{{ $thread->path().'/replies' }}">--}}
-                    {{--@csrf--}}
-                    {{--<div class="form-group">--}}
-                    {{--<textarea name="body" id="body" class="form-control"--}}
-                    {{--placeholder="Have something to say"--}}
-                    {{--rows=5--}}
-                    {{--></textarea>--}}
-                    {{--</div>--}}
-                    {{--<div class="form-group">--}}
-                    {{--<button type="submit" class="btn btn-sm btn-primary">Submit</button>--}}
-                    {{--</div>--}}
-                    {{--</form>--}}
-                    {{--@else--}}
-                    {{--<p style="text-align:center;">Please <a href="{{ route('login') }}">login to participate</a></p>,--}}
-                    {{--@endif--}}
                 </div>
                 <div class="col-md-4">
                     <div class="card">
