@@ -50,7 +50,6 @@
             return {
                 editing: false,
                 body: this.reply.body,
-                tempbody: '',
                 id: this.reply.id,
                 isBest: this.reply.isBest,
             };
@@ -78,14 +77,13 @@
                          //                         this.body = this.reply.body;
                      });
                 this.editing = false;
-                this.tempbody = this.body;
 
                 flash('updated');
             },
 
             cancel() {
                 this.editing = false;
-                this.body = this.tempbody;
+                this.body = this.reply.body;
             },
 
             destroy() {
