@@ -11,20 +11,27 @@
                 repliesCount: this.thread.replies_count,
                 locked: this.thread.locked,
                 pinned: this.thread.pinned,
+                editing: false,
             }
         },
 
         methods: {
             toggleLock(){
                 let uri = `/locked-threads/${this.thread.slug}`;
-                this.locked = ! this.locked ;
                 axios[this.locked ? 'delete' : 'post'](uri);
+                this.locked = ! this.locked ;
             },
             togglePin(){
                 let uri = `/pinned-threads/${this.thread.slug}`;
                 axios[this.pinned ? 'delete' : 'post'](uri);
                 this.pinned = ! this.pinned ;
 
+            },
+
+            toggleEdit(){
+                if (! this.locked){
+                   this.editing = true;
+                }
             }
         },
     }
