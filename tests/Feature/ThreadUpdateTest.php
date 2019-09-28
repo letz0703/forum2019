@@ -15,8 +15,8 @@ class ThreadUpdateTest extends TestCase
     {
         $this->withExceptionHandling();
         $this->signIn();
-        $thread = create('App\Thread',['user_id'=> auth()->id()]);
-        $this->patch($thread->path(), [ 'body' => 'changed body'])
+        $thread = create('App\Thread', ['user_id' => auth()->id()]);
+        $this->patch($thread->path(), ['body' => 'changed body'])
              ->assertSessionHasErrors('title');
     }
     
