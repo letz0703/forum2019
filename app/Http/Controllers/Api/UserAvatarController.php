@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 class UserAvatarController extends Controller
 {
     /**
-     * Store a new user avatar
+     * Store a new user avatar.
      *
      * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
      */
