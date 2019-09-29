@@ -6,7 +6,7 @@
     <thread-view inline-template :thread="{{ $thread }}" v-cloak>
         <div class="container">
             <div class="row">
-                <div class="col-md-8">
+                <div class="col-md-8" v-cloak>
 
                     @include('threads._question')
 

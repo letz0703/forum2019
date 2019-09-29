@@ -11,8 +11,14 @@
     </div>
     <div class="card-footer">
         <div class="level">
-            <button type="button" class="btn-sm btn-outline-dark"
-                    @click="toggleEdit">Edit
+            <button class="btn-sm btn-outline-dark mr-2"
+                    @click="editing = false" v-show="!editing">Edit
+            </button>
+            <button class="btn-sm btn-outline-dark mr-2"
+                    @click="editing = false">Update
+            </button>
+            <button class="btn-sm btn-outline-dark"
+                    @click="editing = false">Cancel
             </button>
             @can('update',$thread)
                 <form method="POST" action="{{ $thread->path() }}" class="ml-auto">
@@ -22,6 +28,7 @@
                 </form>
             @endcan
         </div>
+        {{--<button class="btn-sm btn-outline-dark" @click="this.editing = false">Cancel</buttoccn>--}}
 
     </div>
 </div>
@@ -40,7 +47,7 @@
                 <a href="{{ route('profile', $thread->creator) }}">
                     {{ $thread->creator->name }}
                 </a> ( {{ $thread->creator->reputation }} XP )posted
-                    {{ $thread->title }}
+                {{ $thread->title }}
             </span>
         </div>
     </div>
@@ -48,9 +55,16 @@
         {{ $thread-> body }}
     </div>
     <div class="card-footer">
-        <button type="button" class="btn-sm btn-outline-dark"
-                @click="toggleEdit">Edit
-        </button>
+        <div class="level">
+            <button class="btn-sm btn-outline-dark" @click="editing = true">Edit</button>
+            @can('update',$thread)
+                <form method="POST" action="{{ $thread->path() }}" class="ml-auto">
+                    @csrf
+                    {{ method_field('DELETE') }}
+                    <button type="submit" class="btn btn-link btn-sm">Delete Thread</button>
+                </form>
+            @endcan
+        </div>
     </div>
     {{--<button class="btn btn-outline-dark btn-sm" @click="edit = true"--}}
     {{--> Edit </button>--}}
