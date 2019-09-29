@@ -52,7 +52,7 @@
     </div>
     <div class="card-body" v-text="body"></div>
     <div class="card-footer">
-        <div class="level">
+        <div class="level" v-if="authorize('owns', thread)">
             <button class="btn-sm btn-outline-dark" @click="editing = true">Edit</button>
             @can('update',$thread)
                 <form method="POST" action="{{ $thread->path() }}" class="ml-auto">
