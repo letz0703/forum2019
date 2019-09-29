@@ -12,6 +12,10 @@
                 locked: this.thread.locked,
                 pinned: this.thread.pinned,
                 editing: false,
+                form: {
+                    title: this.thread.title,
+                    body: this.thread.body
+                },
             }
         },
 
@@ -32,7 +36,29 @@
                 if (! this.locked){
                    this.editing = true;
                 }
+            },
+
+            update() {
+                axios.patch(location.pathname, {
+                    title: this.form.title,
+                    body: this.form.body
+                }).then(() => {
+                    flash('Your thread has been updated')
+                });
+                this.editing = false;
+
+            },
+
+            reset() {
+                this.form = {
+                    'title': this.form.title,
+                    'body' : this.form.body
+                };
+
+                this.editing = false;
             }
+
+
         },
     }
 </script>

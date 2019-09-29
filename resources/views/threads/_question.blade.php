@@ -2,12 +2,11 @@
 <div class="card" v-if="editing">
     <div class="card-header">
         <div class="level">
-            <input type="text" value="{{ $thread->title }}" class="form-control">
-
+            <input type="text" class="form-control" v-model="form.title">
         </div>
     </div>
     <div class="card-body" class="form-group">
-        <textarea class="form-control" rows="10">{{ $thread->body }}</textarea>
+        <textarea class="form-control" rows="10" v-model="form.body">{{ $thread->body }}</textarea>
     </div>
     <div class="card-footer">
         <div class="level">
@@ -15,10 +14,10 @@
                     @click="editing = false" v-show="!editing">Edit
             </button>
             <button class="btn-sm btn-outline-dark mr-2"
-                    @click="editing = false">Update
+                    @click="update">Update
             </button>
             <button class="btn-sm btn-outline-dark"
-                    @click="editing = false">Cancel
+                    @click="reset">Cancel
             </button>
             @can('update',$thread)
                 <form method="POST" action="{{ $thread->path() }}" class="ml-auto">
@@ -47,12 +46,13 @@
                 <a href="{{ route('profile', $thread->creator) }}">
                     {{ $thread->creator->name }}
                 </a> ( {{ $thread->creator->reputation }} XP )posted
-                {{ $thread->title }}
+                <div v-text="form.title"></div>
+                {{--{{ $thread->title }}--}}
             </span>
         </div>
     </div>
-    <div class="card-body">
-        {{ $thread-> body }}
+    <div class="card-body" v-text="form.body">
+        {{--{{ $thread-> body }}--}}
     </div>
     <div class="card-footer">
         <div class="level">
