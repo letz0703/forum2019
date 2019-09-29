@@ -11,14 +11,15 @@
                 repliesCount: this.thread.replies_count,
                 locked: this.thread.locked,
                 pinned: this.thread.pinned,
-                editing: false,
                 title: this.thread.title,
                 body: this.thread.body,
-                form: {
-                    title: this.thread.title,
-                    body: this.thread.body
-                },
+                form: {},
+                editing: false,
             }
+        },
+
+        created() {
+            this.resetForm();
         },
 
         methods: {
@@ -27,6 +28,7 @@
                 axios[this.locked ? 'delete' : 'post'](uri);
                 this.locked = ! this.locked ;
             },
+            
             togglePin(){
                 let uri = `/pinned-threads/${this.thread.slug}`;
                 axios[this.pinned ? 'delete' : 'post'](uri);
@@ -41,22 +43,18 @@
             },
 
             update() {
-                axios.patch(location.pathname, {
-                    title: this.form.title,
-                    body: this.form.body
-                }).then(() => {
+                axios.patch(location.pathname, this.form).then(() =>{
                     this.title = this.form.title;
                     this.body = this.form.body;
                     flash('Your thread has been updated')
                 });
                 this.editing = false;
-
             },
 
-            reset() {
+            resetForm() {
                 this.form = {
-                    'title': this.form.title,
-                    'body' : this.form.body
+                    'title': this.title,
+                    'body' : this.body
                 };
 
                 this.editing = false;
