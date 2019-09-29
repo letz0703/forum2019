@@ -1,5 +1,4 @@
 /node_modules
-/public/hot
 /public/storage
 /public/js/app.js
 /public/hot
@@ -26,3 +25,4 @@ Thumbs.db
 *sublime*.*
 .DS_Store
 
+!/public/storage/avatars/default.jpg
