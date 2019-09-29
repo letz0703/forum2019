@@ -17,7 +17,7 @@
                     @click="update">Update
             </button>
             <button class="btn-sm btn-outline-dark"
-                    @click="reset">Cancel
+                    @click="resetForm">Cancel
             </button>
             @can('update',$thread)
                 <form method="POST" action="{{ $thread->path() }}" class="ml-auto">

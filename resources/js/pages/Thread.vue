@@ -28,7 +28,7 @@
                 axios[this.locked ? 'delete' : 'post'](uri);
                 this.locked = ! this.locked ;
             },
-            
+
             togglePin(){
                 let uri = `/pinned-threads/${this.thread.slug}`;
                 axios[this.pinned ? 'delete' : 'post'](uri);
@@ -59,8 +59,6 @@
 
                 this.editing = false;
             }
-
-
         },
     }
 </script>
