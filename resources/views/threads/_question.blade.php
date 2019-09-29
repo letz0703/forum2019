@@ -17,7 +17,7 @@
                     @click="update">Update
             </button>
             <button class="btn-sm btn-outline-dark"
-                    @click="reset">Cancel
+                    @click="editing = false">Cancel
             </button>
             @can('update',$thread)
                 <form method="POST" action="{{ $thread->path() }}" class="ml-auto">
@@ -46,14 +46,11 @@
                 <a href="{{ route('profile', $thread->creator) }}">
                     {{ $thread->creator->name }}
                 </a> ( {{ $thread->creator->reputation }} XP )posted
-                <div v-text="form.title"></div>
-                {{--{{ $thread->title }}--}}
+                <span v-text="title"></span>
             </span>
         </div>
     </div>
-    <div class="card-body" v-text="form.body">
-        {{--{{ $thread-> body }}--}}
-    </div>
+    <div class="card-body" v-text="body"></div>
     <div class="card-footer">
         <div class="level">
             <button class="btn-sm btn-outline-dark" @click="editing = true">Edit</button>

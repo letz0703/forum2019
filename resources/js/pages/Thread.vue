@@ -12,6 +12,8 @@
                 locked: this.thread.locked,
                 pinned: this.thread.pinned,
                 editing: false,
+                title: this.thread.title,
+                body: this.thread.body,
                 form: {
                     title: this.thread.title,
                     body: this.thread.body
@@ -43,6 +45,8 @@
                     title: this.form.title,
                     body: this.form.body
                 }).then(() => {
+                    this.title = this.form.title;
+                    this.body = this.form.body;
                     flash('Your thread has been updated')
                 });
                 this.editing = false;
