@@ -2,9 +2,9 @@
 
 namespace App;
 
+use Laravel\Scout\Searchable;
 use Illuminate\Database\Eloquent\Model;
 use App\Notifications\ThreadReceivedNewReply;
-use Laravel\Scout\Searchable;
 
 class Thread extends Model
 {

@@ -86,10 +86,10 @@ Route::group([
          ->name('admin.channels.update');
 });
 
-Route::get('/search', function() {
+Route::get('/search', function () {
     $query = '*'; // <-- Change the query for testing.
-    
+
     $result = App\Thread::search($query)->get();
-    
+
     return $result;
 });
