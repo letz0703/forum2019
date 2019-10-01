@@ -6,6 +6,27 @@
                 @include('threads._list')
                 {{ $threads->render() }}
             </div>
+
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">Search</div>
+                    <div class="card-body">
+                        <form method="GET" action="/threads/search">
+                            <div class="form-group">
+                                <input type="text"
+                                       name="q"
+                                       class="form-control"
+                                       placeholder="Search for something"
+                                >
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-sm btn-outline-dark">Search</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
             @if (count($trending))
                 <div class="col-md-4">
                     <div class="card">

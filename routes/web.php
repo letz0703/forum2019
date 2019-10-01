@@ -22,6 +22,7 @@ Route::get('/register/confirm', 'Auth\RegistrationConfirmationController@index')
 
 Route::get('/threads/', 'ThreadController@index')->name('threads');
 Route::get('/threads/create', 'ThreadController@create')->middleware('email-confirmation');
+Route::get('/threads/search', 'SearchController@show');
 Route::get('/threads/{channel}', 'ThreadController@index');
 Route::get('/threads/{channel}/{thread}', 'ThreadController@show')->name('threads.show');
 Route::patch('/threads/{channel}/{thread}', 'ThreadController@update')->name('threads.update');
@@ -84,4 +85,12 @@ Route::group([
          ->name('admin.channels.edit');
     Route::patch('/channels/{channel}', 'ChannelController@update')
          ->name('admin.channels.update');
+});
+
+Route::get('/search', function() {
+    $query = '*'; // <-- Change the query for testing.
+    
+    $result = App\Thread::search($query)->get();
+    
+    return $result;
 });
