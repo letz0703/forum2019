@@ -11,15 +11,14 @@ class SearchController extends Controller
     {
         $threads = Thread::search(request('q'))
                          ->paginate(config('forum2019.pagination.perPage'));
-        
+
         if (request()->expectsJson()) {
             return $threads;
         }
-        
+
         return view('threads.index', [
             'threads'  => $threads,
             'trending' => $trending->get(),
         ]);
     }
-    
 }
