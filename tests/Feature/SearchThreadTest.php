@@ -12,11 +12,13 @@ class SearchThreadTest extends TestCase
     /** @test */
     public function a_user_can_search_threads()
     {
+        config(['scout.driver' => 'algolia']);
         $search = "foobar";
         $thread = create('App\Thread', [], 2);
         $thread = create('App\Thread', ['body' => "A thread with {$search} term."], 2);
         $results = $this->getJson("/threads/search?q={$search}")->json();
         //dd($results);
+
         $this->assertCount(2, $results['data']);
     }
 }
