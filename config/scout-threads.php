@@ -16,7 +16,7 @@ return [
     |
     */
 
-    'searchableAttributes' => ["title","body"],
+    'searchableAttributes' => ['title', 'body'],
 
     /*
     |--------------------------------------------------------------------------
