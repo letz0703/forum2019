@@ -8,7 +8,10 @@ window.Vue = require('vue');
 
 require('./bootstrap');
 
+import App from './components/App.vue';
+import InstantSearch from 'vue-instantsearch';
 
+Vue.use(InstantSearch);
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -27,6 +30,7 @@ Vue.component('thread-view', require('./pages/Thread.vue').default);
 Vue.component('paginator', require('./components/Paginator.vue').default);
 Vue.component('user-notifications', require('./components/UserNotifications.vue').default);
 Vue.component('avatar-form', require('./components/AvatarForm.vue').default);
+Vue.component('app', require('./components/App.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
