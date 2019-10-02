@@ -15,6 +15,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::view('scan', 'scan');
+
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
