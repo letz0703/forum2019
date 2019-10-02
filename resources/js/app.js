@@ -1,4 +1,3 @@
-
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -8,7 +7,6 @@ window.Vue = require('vue');
 
 require('./bootstrap');
 
-import App from './components/App.vue';
 import InstantSearch from 'vue-instantsearch';
 
 Vue.use(InstantSearch);
@@ -39,5 +37,5 @@ Vue.component('app', require('./components/App.vue').default);
  */
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
 });

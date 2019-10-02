@@ -15,11 +15,11 @@
     import 'instantsearch.css/themes/algolia-min.css';
 
     export default {
-        data() {
+        data(){
             return {
                 searchClient: algoliasearch(
                     'B1G2GM9NG0',
-                    'aadef574be1f9252bb48d4ea09b5cfe5'
+                    'aadef574be1f9252bb48d4ea09b5cfe5',
                 ),
             };
         },
