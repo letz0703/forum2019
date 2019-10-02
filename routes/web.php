@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', function (){
+Route::get('/', function () {
     return view('welcome');
 });
 
@@ -74,7 +74,7 @@ Route::group([
     'prefix'     => 'admin',
     'middleware' => 'admin',
     'namespace'  => 'Admin',
-], function (){
+], function () {
     Route::get('/', 'DashboardController@index')
          ->name('admin.dashboard.index');
     Route::post('/channels', 'ChannelController@store')
@@ -89,10 +89,10 @@ Route::group([
          ->name('admin.channels.update');
 });
 
-Route::get('/search', function (){
+Route::get('/search', function () {
     $query = '*'; // <-- Change the query for testing.
-    
+
     $result = App\Thread::search($query)->get();
-    
+
     return $result;
 });
