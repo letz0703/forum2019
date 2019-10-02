@@ -25,10 +25,7 @@
                         </form>
                     </div>
                 </div>
-            </div>
-
-            @if (count($trending))
-                <div class="col-md-4">
+                @if (count($trending))
                     <div class="card">
                         <div class="card-header">
                             Trending Thread
@@ -43,9 +40,8 @@
                             </ul>
                         </div>
                     </div>
-                </div>
-            @endif
-
+                @endif
+            </div>
         </div>
     </div>
 @endsection
