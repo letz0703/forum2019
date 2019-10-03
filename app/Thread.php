@@ -161,7 +161,7 @@ class Thread extends Model
     {
         $key = $user->visitedThreadCacheKey($this);
 
-        return $this->updated_at->cache($key);
+        return $this->updated_at > cache($key);
     }
 
     public function getRouteKeyName()
