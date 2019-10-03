@@ -32,7 +32,7 @@ return [
     |
     */
 
-    'customRanking' => null,
+    'customRanking' => ['desc(title)', 'desc(body)'],
 
     /*
     |--------------------------------------------------------------------------
@@ -79,7 +79,7 @@ return [
     |
     */
 
-    'attributesForFaceting' => null,
+    'attributesForFaceting' => ['body', 'channel.name'],
 
     /*
     |--------------------------------------------------------------------------
@@ -155,4 +155,16 @@ return [
     | configuration, just use the command `scout:sync` to get remote settings in this file.
     |
     */
+    'ranking' => [
+        'desc(isSubscribedTo)',
+        'desc(replies_count)',
+        'typo',
+        'geo',
+        'words',
+        'filters',
+        'proximity',
+        'attribute',
+        'exact',
+        'custom',
+    ],
 ];
