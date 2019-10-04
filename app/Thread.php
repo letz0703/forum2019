@@ -192,4 +192,9 @@ class Thread extends Model
 
         return $slug = str_slug($slug);
     }
+    public function toSearchableArray()
+    {
+        return $this->toArray()+['path' => $this->path()];
+    }
+    
 }

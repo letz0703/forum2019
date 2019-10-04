@@ -8,7 +8,10 @@
 
                 <div class="search-panel__results">
                     <ais-search-box placeholder="Search here…" class="searchbox"/>
+                    <ais-refinement-list attribute="channel.name"></ais-refinement-list>
                     <ais-hits>
+                        <div slot="item" slot-scope="{ item }">
+                            <a :href="item.path">
                                 <ais-highlight :hit="item" attribute="title"/>
                             </a>
                             <!--                            <p><ais-highlight :hit="item" attribute="body" /></p>-->
