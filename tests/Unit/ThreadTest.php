@@ -79,7 +79,7 @@ class ThreadTest extends TestCase
         $this->assertEquals(2, $thread->visits()->count());
     }
 
-    
+
     /** @test */
     public function a_thread_requires_a_unique_slug()
     {

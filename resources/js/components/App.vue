@@ -9,12 +9,10 @@
                 <div class="search-panel__results">
                     <ais-search-box placeholder="Search here…" class="searchbox"/>
                     <ais-hits>
-                        <template slot="item" slot-scope="{ item }">
-                            <h1>
                                 <ais-highlight :hit="item" attribute="title"/>
-                            </h1>
+                            </a>
                             <!--                            <p><ais-highlight :hit="item" attribute="body" /></p>-->
-                        </template>
+                        </div>
                     </ais-hits>
 
                     <div class="pagination">
@@ -39,7 +37,7 @@
             // let i2 = process.env.MIX_ALGOLIA_KEY;
             return {
                 searchClient: algoliasearch(
-                    i11, i12
+                    i11, i12,
                 ),
             };
         },
