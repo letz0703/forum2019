@@ -43,51 +43,51 @@
 </script>
 
 <style>
-    body {
-        font-family: sans-serif;
-        padding: 1em;
-    }
+    /*body {*/
+    /*    font-family: sans-serif;*/
+    /*    padding: 1em;*/
+    /*}*/
 
     .ais-Highlight-highlighted {
         background: cyan;
         font-style: normal;
     }
 
-    .header {
-        display: flex;
-        align-items: center;
-        min-height: 50px;
-        padding: 0.5rem 1rem;
-        background-image: linear-gradient(to right, #4dba87, #2f9088);
-        color: #fff;
-        margin-bottom: 1rem;
-    }
+    /*.header {*/
+    /*    display: flex;*/
+    /*    align-items: center;*/
+    /*    min-height: 50px;*/
+    /*    padding: 0.5rem 1rem;*/
+    /*    background-image: linear-gradient(to right, #4dba87, #2f9088);*/
+    /*    color: #fff;*/
+    /*    margin-bottom: 1rem;*/
+    /*}*/
 
-    .header a {
-        color: #fff;
-        text-decoration: none;
-    }
+    /*.header a {*/
+    /*    color: #fff;*/
+    /*    text-decoration: none;*/
+    /*}*/
 
-    .header-title {
-        font-size: 1.2rem;
-        font-weight: normal;
-    }
+    /*.header-title {*/
+    /*    font-size: 1.2rem;*/
+    /*    font-weight: normal;*/
+    /*}*/
 
-    .header-title::after {
-        content: ' ▸ ';
-        padding: 0 0.5rem;
-    }
+    /*.header-title::after {*/
+    /*    content: ' ▸ ';*/
+    /*    padding: 0 0.5rem;*/
+    /*}*/
 
-    .header-subtitle {
-        font-size: 1.2rem;
-    }
+    /*.header-subtitle {*/
+    /*    font-size: 1.2rem;*/
+    /*}*/
 
-    .container {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 1rem;
-    }
-
+    /*.container {*/
+    /*    max-width: 1200px;*/
+    /*    margin: 0 auto;*/
+    /*    padding: 1rem;*/
+    /*}*/
+    
     .search-panel {
         display: flex;
     }
