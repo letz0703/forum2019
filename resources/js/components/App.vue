@@ -1,9 +1,15 @@
 <template>
     <div class="container">
+        <ais-instant-search :search-client="searchClient" index-name="threads"
+                            :routing="routing"
+        >
             <div class="search-panel">
                 <div class="search-panel__results">
 
+                    <ais-search-box class="searchbox" :autofocus="true"/>
+
                     <ais-refinement-list attribute="channel.name"></ais-refinement-list>
+
                     <ais-hits>
                         <div slot="item" slot-scope="{ item }">
                             <a :href="item.path">
@@ -25,12 +31,20 @@
 <script>
     import algoliasearch from 'algoliasearch/lite';
     import 'instantsearch.css/themes/algolia-min.css';
+    import { history as historyRouter } from "instantsearch.js/es/lib/routers";
+    import { simple as simpleMapping } from "instantsearch.js/es/lib/stateMappings";
 
     export default {
         data(){
             return {
                 searchClient: algoliasearch(
+                    'OQKRHTYVZ8',
+                    '779170b35e21654c3ef0d8dcba2c7f61'
                 ),
+                routing: {
+                    router: historyRouter(),
+                    stateMapping: simpleMapping(),
+                },
             };
         },
     };
