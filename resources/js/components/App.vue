@@ -1,20 +1,14 @@
 <template>
     <div class="container">
-        <ais-instant-search :search-client="searchClient" index-name="threads">
             <div class="search-panel">
-                <!--                <div class="search-panel__filters">-->
-                <!--                    <ais-refinement-list attribute="channel.name" searchable/>-->
-                <!--                </div>-->
-
                 <div class="search-panel__results">
-                    <ais-search-box placeholder="Search here…" class="searchbox"/>
+
                     <ais-refinement-list attribute="channel.name"></ais-refinement-list>
                     <ais-hits>
                         <div slot="item" slot-scope="{ item }">
                             <a :href="item.path">
                                 <ais-highlight :hit="item" attribute="title"/>
                             </a>
-                            <!--                            <p><ais-highlight :hit="item" attribute="body" /></p>-->
                         </div>
                     </ais-hits>
 
