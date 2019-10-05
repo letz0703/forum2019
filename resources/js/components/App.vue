@@ -34,13 +34,8 @@
 
     export default {
         data(){
-            let i11 = 'OQKRHTYVZ8';
-            let i12 = '779170b35e21654c3ef0d8dcba2c7f61';
-            // let i1 = process.env.MIX_ALGOLIA_APP_ID;
-            // let i2 = process.env.MIX_ALGOLIA_KEY;
             return {
                 searchClient: algoliasearch(
-                    i11, i12,
                 ),
             };
         },
