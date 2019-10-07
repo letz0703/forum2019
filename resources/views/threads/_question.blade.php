@@ -5,8 +5,12 @@
             <input type="text" class="form-control" v-model="form.title">
         </div>
     </div>
-    <div class="card-body" class="form-group">
-        <textarea class="form-control" rows="10" v-model="form.body">{{ $thread->body }}</textarea>
+    <div class="card-body">
+        <div class="form-group">
+            <wysiwyg v-model="form.body" value="form.body"></wysiwyg>
+        </div>
+
+{{--        <textarea class="form-control" rows="10" v-model="form.body">{{ $thread->body }}</textarea>--}}
     </div>
     <div class="card-footer">
         <div class="level">
@@ -50,7 +54,7 @@
             </span>
         </div>
     </div>
-    <div class="card-body" v-text="body"></div>
+    <div class="card-body" v-html="body"></div>
     <div class="card-footer">
         <div class="level" v-if="authorize('owns', thread)">
             <button class="btn-sm btn-outline-dark" @click="editing = true">Edit</button>
