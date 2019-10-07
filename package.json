@@ -32,6 +32,7 @@
         "jquery.caret": "^0.3.1",
         "moment": "^2.24.0",
         "momentjs": "^2.0.0",
+        "trix": "^1.2.0",
         "vue-instantsearch": "^2.5.0"
     }
 }
