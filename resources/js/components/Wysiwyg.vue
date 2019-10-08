@@ -1,13 +1,13 @@
 <template>
-    <div>
-        <input id="trix" type="hidden" :name="name" :value="value">
-        <trix-editor ref="trix" input="trix"></trix-editor>
-    </div>
+  <div>
+    <input id="trix" type="hidden" :name="name" :value="value" />
+    <trix-editor ref="trix" input="trix" :placeholder="placeholder"></trix-editor>
+  </div>
 </template>
 
 <script>
-    export default {
-        props: ['name', 'value'],
+export default {
+  props: ["name", "value","placeholder"],
 
   mounted() {
     this.$refs.trix.addEventListener("trix-change", e => {

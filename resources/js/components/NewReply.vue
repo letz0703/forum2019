@@ -2,13 +2,10 @@
     <div>
         <div v-if="signedIn">
             <div class="form-group">
-            <textarea name="body" id="body" class="form-control"
-                      placeholder="Have something to say"
-                      rows="5"
-                      required
-                      v-model="body"
-            ></textarea>
-                <div class="form-group">
+                <wysiwyg name="body" v-model="body" placeholder="Have something to say?"
+                         ref="trix"
+                ></wysiwyg>
+                <div>
                     <button class="btn btn-sm btn-primary" @click="addReply">Post</button>
                 </div>
             </div>
@@ -61,6 +58,7 @@
                      .then(({data}) =>{
                          this.body = '';
                          flash('reply has been posted');
+                         this.$refs.trix.$refs.trix.value = '';
                          this.$emit('created', data);
                      });
             }
