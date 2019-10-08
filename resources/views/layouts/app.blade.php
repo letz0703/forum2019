@@ -33,6 +33,13 @@
         .flex {flex: 1;}
         [v-cloak] { display: none; }
         .ais-highlight > em {background: yellow;font-style: normal}
+        pre {
+            outline: auto;
+            outline-color: silver;
+            background: rgba(245, 245, 245, 1.0);
+            padding: 0.5em;
+            outline-style: dotted;
+        }
     </style>
 </head>
 <body>

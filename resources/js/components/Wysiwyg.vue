@@ -9,16 +9,16 @@
     export default {
         props: ['name', 'value'],
 
-        mounted(){
-            this.$refs.trix.addEventListener('trix-change', e => {
-                console.log('Handling');
-                this.$emit('input', e.target.innerHTML);
-            });
-        },
+  mounted() {
+    this.$refs.trix.addEventListener("trix-change", e => {
+      // console.log('Handling');
+      this.$emit("input", e.target.innerHTML);
+    });
+  },
 
-        data(){
-            return {}
-        },
-    }
+  data() {
+    return {};
+  }
+};
 </script>
 
