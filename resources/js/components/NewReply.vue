@@ -4,6 +4,7 @@
             <div class="form-group">
                 <wysiwyg name="body" v-model="body" placeholder="Have something to say?"
                          ref="trix"
+                         :shouldClear="completed"
                 ></wysiwyg>
                 <div>
                     <button class="btn btn-sm btn-primary" @click="addReply">Post</button>
@@ -25,6 +26,7 @@
         data() {
             return {
                 body: '',
+                completed: false
             }
         },
 
@@ -57,8 +59,9 @@
                      })
                      .then(({data}) =>{
                          this.body = '';
+                         this.completed = true;
                          flash('reply has been posted');
-                         this.$refs.trix.$refs.trix.value = '';
+                         // this.$refs.trix.$refs.trix.value = '';
                          this.$emit('created', data);
                      });
             }
