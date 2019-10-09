@@ -14,7 +14,7 @@
                         <form action="/threads" method="POST">
                             @csrf
                             <div class="form-group">
-                                <label for="channel_id">Title :</label>
+                                <label for="channel_id">Channel :</label>
                                 <select name="channel_id" id="channel_id" class="form-control">
                                     <option value="">Choose One ...</option>
                                     {{--                                    @foreach(App\Channel::all() as $channel)--}}
@@ -33,7 +33,8 @@
 
                             <div class="form-group">
                                 <label for="body">Body:</label>
-                                <textarea name="body" id="body" class="form-control" rows=8>{{ old('body') }}</textarea>
+                                <wysiwyg name="body"></wysiwyg>
+{{--                                <textarea name="body" id="body" class="form-control" rows=8>{{ old('body') }}</textarea>--}}
                             </div>
 
                             {{--                            <div class="g-recaptcha" data-sitekey="{{ config('services.recaptcha.sitekey') }}"></div>--}}

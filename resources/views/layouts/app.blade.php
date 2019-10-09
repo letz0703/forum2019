@@ -25,6 +25,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/trix/1.2.0/trix.css">
     @yield('header')
     <style>
         body {padding-bottom: 100px;}
@@ -32,6 +33,13 @@
         .flex {flex: 1;}
         [v-cloak] { display: none; }
         .ais-highlight > em {background: yellow;font-style: normal}
+        pre {
+            outline: auto;
+            outline-color: silver;
+            background: rgba(245, 245, 245, 1.0);
+            padding: 0.5em;
+            outline-style: dotted;
+        }
     </style>
 </head>
 <body>

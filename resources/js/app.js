@@ -30,7 +30,11 @@ Vue.component('thread-view', require('./pages/Thread.vue').default);
 Vue.component('paginator', require('./components/Paginator.vue').default);
 Vue.component('user-notifications', require('./components/UserNotifications.vue').default);
 Vue.component('avatar-form', require('./components/AvatarForm.vue').default);
+Vue.component('wysiwyg', require('./components/Wysiwyg.vue').default);
 Vue.component('app', require('./components/App.vue').default);
+
+Vue.config.ignoredElements = ['trix-editor'];
+
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
