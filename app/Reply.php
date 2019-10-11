@@ -81,4 +81,10 @@ class Reply extends Model
     {
         return $this->isBest();
     }
+    
+    public function getBodyAttribute($body)
+    {
+        return \Purify::clean($body);
+    }
+    
 }

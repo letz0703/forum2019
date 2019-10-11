@@ -48,6 +48,16 @@ class ReplyTest extends TestCase
     }
     
     /** @test */
+    public function a_reply_body_is_sanitised_automatically()
+    {
+        $reply = make('App\Reply', ['body' => '<script>alert("bad")</script><p>This is ok</p>']);
+        //dd($thread->body);
+        $this->assertEquals("<p>This is ok</p>", $reply->body);
+        //$this->assertEmpty($thread->body);
+    }
+    
+    
+    /** @test */
     public function it_generate_correct_path_with_pagination()
     {
         // given we have a thread
