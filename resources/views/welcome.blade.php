@@ -93,6 +93,14 @@
                     <a href="https://forge.laravel.com">Forge</a>
                     <a href="https://github.com/laravel/laravel">GitHub</a>
                 </div>
+
+                @php
+                    $body = '<script>alert("gotcha")</script><h3>Heading Tree Is Allowed</h3><a href="#" title="Some Anchor" onClick="alert(\'gotcha\')">Click me</a>';
+                @endphp
+
+                {!! Purify::clean($body) !!}
+                {{--                {!! strip_tags($body, '<h1><h2><h3><a>') !!}--}}
+
             </div>
         </div>
     </body>

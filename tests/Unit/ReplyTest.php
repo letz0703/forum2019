@@ -42,10 +42,20 @@ class ReplyTest extends TestCase
         //$reply = create('App\Reply',['body' => 'Hello @Jane-Doe']);
         $reply = new Reply(['body' => 'Hello @Jane-Doe']);
         $this->assertEquals(
-            "Hello <a href='/profiles/Jane-Doe'>@Jane-Doe</a>",
+            'Hello <a href="/profiles/Jane-Doe">@Jane-Doe</a>',
             $reply->body
         );
     }
+    
+    /** @test */
+    public function a_reply_body_is_sanitised_automatically()
+    {
+        $reply = make('App\Reply', ['body' => '<script>alert("bad")</script><p>This is ok</p>']);
+        //dd($thread->body);
+        $this->assertEquals("<p>This is ok</p>", $reply->body);
+        //$this->assertEmpty($thread->body);
+    }
+    
     
     /** @test */
     public function it_generate_correct_path_with_pagination()
