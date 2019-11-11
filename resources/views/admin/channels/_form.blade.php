@@ -19,7 +19,7 @@
 </div>
 <div class="form-group">
     <button type="submit" class="btn btn-link btn-sm">
-        {{ $buttonText?:'Add Channel' }}
+        {{ $buttonText ?? 'Add Channel' }}
     </button>
 </div>
 @if (count($errors))
