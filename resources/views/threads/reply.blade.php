@@ -21,6 +21,7 @@
                 @endif
             </div>
         </div>
+        
         <div class="card-body">
             <div v-if="editing">
                 <div class="form-group">
