@@ -2,10 +2,10 @@
 
 namespace App\Http\Requests;
 
-use App\Reply;
-use Illuminate\Support\Facades\Gate;
 use App\Exceptions\ThrottleException;
+use App\Reply;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Gate;
 
 class CreatePostRequest extends FormRequest
 {
