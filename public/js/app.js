@@ -11072,13 +11072,13 @@ __webpack_require__.r(__webpack_exports__);
   props: ['reply'],
   data: function data() {
     return {
-      favoritesCount: this.reply.favoritesCount,
-      isFavorited: this.reply.isFavorited
+      count: this.reply.favoritesCount,
+      active: this.reply.isFavorited
     };
   },
   computed: {
     classes: function classes() {
-      return ['btn', 'btn-sm', this.isFavorited ? 'btn-primary' : 'btn-outline-dark'];
+      return ['btn', 'btn-sm', this.active ? 'btn-primary' : 'btn-outline-dark'];
     },
     endpoint: function endpoint() {
       return '/replies/' + this.reply.id + '/favorites';
@@ -11086,7 +11086,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     toggle: function toggle() {
-      this.isFavorited ? this.unfavorite() : this.favorite(); //                if (this.isFavorited){
+      this.active ? this.unfavorite() : this.favorite(); //                if (this.isFavorited){
       //                    this.unfavorite();
       //
       //                } else{
@@ -11097,13 +11097,13 @@ __webpack_require__.r(__webpack_exports__);
     unfavorite: function unfavorite() {
       axios["delete"](this.endpoint); // delete Favorite
 
-      this.isFavorited = false;
-      this.favoritesCount--;
+      this.active = false;
+      this.count--;
     },
     favorite: function favorite() {
       axios.post(this.endpoint);
-      this.isFavorited = true;
-      this.favoritesCount++;
+      this.active = true;
+      this.count++;
     }
   }
 });
@@ -92396,7 +92396,7 @@ var render = function() {
       [
         _c("i", { staticClass: "fas fa-heart" }),
         _vm._v(" "),
-        _c("span", { domProps: { textContent: _vm._s(_vm.favoritesCount) } })
+        _c("span", { domProps: { textContent: _vm._s(_vm.count) } })
       ]
     )
   ])

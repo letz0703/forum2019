@@ -9,15 +9,15 @@
                     said {{ $reply->created_at->diffForHumans() }}
                 </h5>
                 @if ( auth()->check() )
-                <div>
-                <favorite :reply = " {{ $reply }}"></favorite>
-                {{--<form action="/replies/{{ $reply->id }}/favorites" method="POST">--}}
-                    {{--@csrf--}}
-                    {{--<button type="submit" class="btn btn-default btn-sm" {{ $reply->isFavorited()? 'disabled': '' }}>--}}
+                    <div>
+                        <favorite :reply="{{ $reply }}"></favorite>
+                        {{--<form action="/replies/{{ $reply->id }}/favorites" method="POST">--}}
+                        {{--@csrf--}}
+                        {{--<button type="submit" class="btn btn-default btn-sm" {{ $reply->isFavorited()? 'disabled': '' }}>--}}
                         {{--{{$reply->favorites_count}} {{ str_plural('favorite', $reply->favorites_count) }}--}}
-                    {{--</button>--}}
-                {{--</form>--}}
-                </div>
+                        {{--</button>--}}
+                        {{--</form>--}}
+                    </div>
                 @endif
             </div>
         </div>
@@ -28,7 +28,7 @@
                     <textarea class="form-control" v-model="body"></textarea>
                 </div>
                 <button type="submit" class="btn btn-primary btn-sm" @click="update">update</button>
-                <button class="btn btn-link btn-sm" @click = "cancel">cancel</button>
+                <button class="btn btn-link btn-sm" @click="cancel">cancel</button>
             </div>
             <div v-else v-text="body">
                 {{ $reply->body }}
