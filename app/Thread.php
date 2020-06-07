@@ -2,9 +2,9 @@
 
 namespace App;
 
-use Laravel\Scout\Searchable;
-use Illuminate\Database\Eloquent\Model;
 use App\Notifications\ThreadReceivedNewReply;
+use Illuminate\Database\Eloquent\Model;
+use Laravel\Scout\Searchable;
 
 class Thread extends Model
 {
@@ -174,14 +174,13 @@ class Thread extends Model
         $this->update(['best_reply_id' => $reply->id]);
         Reputation::award($reply->owner, Reputation::BEST_REPLY_SELECTED);
     }
-    
+
     public function getBodyAttribute($body)
     {
         //return $body;
         return \Purify::clean($body);
     }
-    
-    
+
     public function setSlugAttribute($value)
     {
         $slug = $this->make_slug($value);
