@@ -3,8 +3,8 @@
 namespace App\Listeners;
 
 use App\Mail\PleaseConfirmYourEmail;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Auth\Events\Registered;
+use Illuminate\Support\Facades\Mail;
 
 class SendEmailConfirmationRequest
 {
