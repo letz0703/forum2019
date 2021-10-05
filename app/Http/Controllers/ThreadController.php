@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Thread;
 use App\Channel;
-use App\Trending;
-use App\Rules\Recaptcha;
-use Illuminate\Http\Request;
 use App\Filters\ThreadFilters;
+use App\Rules\Recaptcha;
+use App\Thread;
+use App\Trending;
+use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
 class ThreadController extends Controller
@@ -71,9 +71,9 @@ class ThreadController extends Controller
     }
 
     /**
-     * @param \Illuminate\Http\Request $request
-     *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     *
      * @throws \Illuminate\Validation\ValidationException
      */
     public function store(Recaptcha $recaptcha)
@@ -124,8 +124,7 @@ class ThreadController extends Controller
     }
 
     /**
-     * @param ThreadFilters $filters
-     *
+     * @param  ThreadFilters  $filters
      * @return mixed
      */
     protected function getThreads(Channel $channel, ThreadFilters $filters)
