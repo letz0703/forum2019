@@ -13,7 +13,6 @@ class ThreadFilters extends Filters
 
     /**
      * @param $username
-     *
      * @return mixed
      */
     protected function by($username)
@@ -25,6 +24,7 @@ class ThreadFilters extends Filters
 
     /**
      * Filter the thread according to most popular threads.
+     *
      * @return $this
      */
     protected function popular()

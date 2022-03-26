@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreatePostRequest;
 use App\Reply;
 use App\Thread;
-use App\Http\Requests\CreatePostRequest;
 
 class ReplyController extends Controller
 {
@@ -19,10 +19,9 @@ class ReplyController extends Controller
     }
 
     /**
-     * @param                   $channelId
-     * @param Thread            $thread
-     * @param CreatePostRequest $request
-     *
+     * @param  $channelId
+     * @param  Thread  $thread
+     * @param  CreatePostRequest  $request
      * @return \Illuminate\Database\Eloquent\Model
      */
     public function store($channelId, Thread $thread, CreatePostRequest $request)
