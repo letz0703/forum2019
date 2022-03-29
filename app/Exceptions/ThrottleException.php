@@ -7,7 +7,7 @@ class ThrottleException extends \Exception
     /**
      * ThrottleException constructor.
      *
-     * @param string $message
+     * @param  string  $message
      */
     public function __construct($message)
     {

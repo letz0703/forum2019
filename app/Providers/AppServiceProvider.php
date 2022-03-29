@@ -2,9 +2,9 @@
 
 namespace App\Providers;
 
-use View;
 use App\Channel;
 use Illuminate\Support\ServiceProvider;
+use View;
 
 class AppServiceProvider extends ServiceProvider
 {
