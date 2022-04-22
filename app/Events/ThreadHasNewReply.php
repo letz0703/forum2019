@@ -2,8 +2,8 @@
 
 namespace App\Events;
 
-use Illuminate\Queue\SerializesModels;
 use Illuminate\Broadcasting\PrivateChannel;
+use Illuminate\Queue\SerializesModels;
 
 class ThreadHasNewReply
 {
@@ -14,8 +14,8 @@ class ThreadHasNewReply
     /**
      * Create a new event instance.
      *
-     * @param \App\Thread $thread
-     * @param \App\Reply $reply
+     * @param  \App\Thread  $thread
+     * @param  \App\Reply  $reply
      */
     public function __construct($thread, $reply)
     {
