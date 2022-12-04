@@ -58,7 +58,6 @@ trait RecordActivity
      * created_thread.
      *
      * @param $eventType
-     *
      * @return string like 'created'
      */
     protected function getEventType($eventType): string
