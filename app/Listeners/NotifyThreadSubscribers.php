@@ -8,7 +8,7 @@ use App\Notifications\ThreadReceivedNewReply;
 class NotifyThreadSubscribers
 {
     /**
-     * @param ThreadHasNewReply|ThreadReceivedNewReply $event
+     * @param  ThreadHasNewReply|ThreadReceivedNewReply  $event
      */
     public function handle(ThreadReceivedNewReply $event)
     {

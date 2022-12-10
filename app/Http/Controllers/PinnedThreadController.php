@@ -8,7 +8,8 @@ class PinnedThreadController extends Controller
 {
     /**
      * Pin the given thread.
-     * @param \App\Thread $thread
+     *
+     * @param  \App\Thread  $thread
      */
     public function store(Thread $thread)
     {
@@ -17,7 +18,8 @@ class PinnedThreadController extends Controller
 
     /**
      * Un-pin the given thread.
-     * @param \App\Thread $thread
+     *
+     * @param  \App\Thread  $thread
      */
     public function destroy(Thread $thread)
     {
